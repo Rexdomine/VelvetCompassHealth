@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #fce2a0;
+  color: #272426;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: Raleway, sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.custom-checkbox {
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid #fce2a0;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-checkbox::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #835816;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.custom-checkbox:checked::before {
+  transform: scale(1);
+}
+
+.custom-checkbox:checked {
+  border-color: #835816;
+}
+
+.custom-checkbox:focus {
+  outline: 1px solid #835816;
+  outline-offset: 2px;
+}
+
+.form-input-minimal {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgb(252 226 160 / 20%);
+  padding: 0.75rem 0;
+  color: #fce2a0;
+  width: 100%;
+  transition: border-color 0.4s ease;
+  font-family: Raleway, sans-serif;
+  font-weight: 300;
+  resize: none;
+}
+
+.form-input-minimal:focus {
+  outline: none;
+  border-bottom-color: #835816;
+  box-shadow: none;
+}
+
+.input-group label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgb(252 226 160 / 60%);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.custom-checkbox-step3 {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #835816;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.custom-checkbox-step3:checked {
+  background-color: #835816;
+}
+
+.custom-checkbox-step3:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #272426;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label {
+  cursor: pointer;
+  font-family: Raleway, sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  color: #fce2a0;
+  line-height: 1.5;
+  transition: opacity 0.3s ease;
+}
+
+.checkbox-group:hover .checkbox-label {
+  opacity: 0.8;
+}
+
+.custom-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #835816;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.custom-radio:checked {
+  border-color: #835816;
+}
+
+.custom-radio:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #835816;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-label {
+  cursor: pointer;
+  font-family: Raleway, sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  color: #fce2a0;
+  line-height: 1.5;
+  transition: opacity 0.3s ease;
+}
+
+.radio-group:hover .radio-label {
+  opacity: 0.8;
+}
+
+.custom-checkbox-step5 {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #835816;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.custom-checkbox-step5:checked {
+  background-color: #835816;
+  border-color: #835816;
+}
+
+.custom-checkbox-step5:checked::after {
+  content: '\e5ca';
+  font-family: 'Material Symbols Outlined';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 18px;
+  color: #272426;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+}
+
+.checkbox-group-step5 {
+  border-bottom: 1px solid rgb(252 226 160 / 5%);
+  padding-bottom: 1.25rem;
+}
+
+.checkbox-group-step5:last-child {
+  border-bottom: none;
+}
+
+.architectural-spacing {
+  letter-spacing: 0.4em;
+}
