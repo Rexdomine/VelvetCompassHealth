@@ -524,12 +524,17 @@ function App() {
                 </p>
               </div>
               <div className="flex justify-center">
-                <a
+                <button
                   className="group border border-primary text-background-light px-10 py-5 uppercase text-[11px] tracking-[0.4em] flex items-center gap-6 hover:bg-primary/10 transition-all duration-500 rounded-sm"
-                  href="#office"
+                  onClick={() => {
+                    setStep(1)
+                    setSubmitted(false)
+                    setStatus({ type: 'idle', message: '' })
+                  }}
+                  type="button"
                 >
-                  Return to Home
-                </a>
+                  Return
+                </button>
               </div>
             </div>
           ) : (
