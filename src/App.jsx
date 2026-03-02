@@ -459,7 +459,7 @@ function App() {
                 <img
                   alt="Portrait of Dr. E I Joseph-Ebare"
                   className="w-full h-full object-cover grayscale mix-blend-multiply dark:mix-blend-normal opacity-90"
-                  src="/images/founder-portrait.png"
+                  src="/images/founder-portrait-new.jpg"
                 />
                 <div className="absolute -bottom-8 -right-8 w-48 h-48 border border-primary/20 dark:border-white/10 z-0" />
                 <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/5 dark:bg-white/5 z-0" />
