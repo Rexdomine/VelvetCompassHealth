@@ -85,7 +85,7 @@ function buildAdminEmailHtml({
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="850" style="max-width:850px;width:100%;background:#F2EBE0;border:1px solid #D8D0C4;box-shadow:0 20px 50px rgba(0,0,0,0.08);">
             <tr>
               <td align="center" style="padding:40px 24px 24px 24px;">
-                <img src="${escapeHtml(logoHeaderUrl)}" alt="Velvet Compass Health" width="76" style="display:block;width:76px;max-width:76px;height:auto;margin:0 auto 16px auto;" />
+                <img src="${escapeHtml(logoHeaderUrl)}" alt="Velvet Compass Health" width="110" style="display:block;width:110px;max-width:110px;height:auto;margin:0 auto 16px auto;" />
                 <h1 style="margin:0 0 8px 0;font-family:Georgia,'Crimson Pro',serif;font-size:44px;line-height:1.15;font-weight:600;color:#272426;">New Access Application</h1>
                 <p style="margin:0;font-size:10px;line-height:1.6;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#835816;">
                   A formal enquiry has been submitted through the portal.
@@ -248,7 +248,7 @@ function buildAdminEmailHtml({
                 <p style="margin:0 0 12px 0;font-size:10px;line-height:1.6;letter-spacing:0.2em;text-transform:uppercase;color:#9A7B4B;font-weight:700;">
                   Confidential Internal Report. Not for public distribution.
                 </p>
-                <img src="${escapeHtml(logoFooterUrl)}" alt="Velvet Compass Health" width="52" style="display:block;width:52px;max-width:52px;height:auto;margin:0 auto 10px auto;" />
+                <img src="${escapeHtml(logoFooterUrl)}" alt="Velvet Compass Health" width="72" style="display:block;width:72px;max-width:72px;height:auto;margin:0 auto 10px auto;" />
                 <p style="margin:0;font-size:9px;line-height:1.8;text-transform:uppercase;letter-spacing:0.12em;color:#9A7B4B;">
                   Clinical Excellence • Discretion • Continuity
                 </p>
