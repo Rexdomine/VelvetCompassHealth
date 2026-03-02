@@ -2,6 +2,7 @@ services:
   - type: web
     name: velvet-compass-health
     env: node
+    branch: main
     autoDeploy: true
     buildCommand: npm install --include=dev && npm run build
     startCommand: npm run start
