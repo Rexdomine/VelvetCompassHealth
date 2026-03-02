@@ -15,6 +15,7 @@ const dbPath = process.env.DB_PATH ?? path.join(rootDir, 'data', 'app.db')
 const adminEmail = process.env.ADMIN_EMAIL ?? 'office@velvetcompasshealth.com'
 const senderEmail = process.env.BREVO_SENDER_EMAIL ?? ''
 const senderName = process.env.BREVO_SENDER_NAME ?? 'Velvet Compass Health'
+const publicSiteUrl = process.env.PUBLIC_SITE_URL ?? 'https://velvetcompasshealth.com'
 const isProduction = process.env.NODE_ENV === 'production'
 
 let emailService = null
@@ -24,6 +25,7 @@ if (process.env.BREVO_API_KEY) {
     adminEmail,
     senderEmail,
     senderName,
+    publicSiteUrl,
   })
 } else if (isProduction) {
   throw new Error('BREVO_API_KEY is required in production to send admin enquiry emails.')

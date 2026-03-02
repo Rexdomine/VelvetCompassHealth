@@ -34,6 +34,7 @@ Set in `.env`:
 - `BREVO_API_KEY` (required in production)
 - `BREVO_SENDER_EMAIL` (required in production; must be a verified Brevo sender)
 - `BREVO_SENDER_NAME` (optional, default `Velvet Compass Health`)
+- `PUBLIC_SITE_URL` (optional, default `https://velvetcompasshealth.com`; used for email logo URL)
 
 ## Enquiry Email Notifications
 When an enquiry is submitted, the API sends a transactional notification email to `ADMIN_EMAIL` using Brevo.
