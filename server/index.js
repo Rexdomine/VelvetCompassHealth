@@ -18,8 +18,11 @@ const app = createApp({ db })
 if (process.env.NODE_ENV === 'production') {
   const distDir = path.join(rootDir, 'dist')
   app.use(express.static(distDir))
-  app.get('*', (_req, res) => {
-    res.sendFile(path.join(distDir, 'index.html'))
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' || req.path.startsWith('/api/')) {
+      return next()
+    }
+    return res.sendFile(path.join(distDir, 'index.html'))
   })
 }
 
