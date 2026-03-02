@@ -290,6 +290,14 @@ function App() {
                 Request Access
               </a>
             </div>
+            <div className="md:hidden">
+              <a
+                className="px-4 py-2 border border-primary text-primary dark:text-secondary dark:border-secondary hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-charcoal transition-all text-[11px] tracking-[0.2em] uppercase"
+                href="#access"
+              >
+                Request Access
+              </a>
+            </div>
           </div>
         </div>
       </nav>
