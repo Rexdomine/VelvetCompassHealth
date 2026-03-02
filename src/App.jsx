@@ -256,8 +256,12 @@ function App() {
               <img
                 alt="Velvet Compass Health logo"
                 className="h-12 md:h-14 w-auto object-contain"
+                decoding="async"
+                fetchPriority="high"
+                height="56"
                 loading="eager"
-                src="/Logo.svg"
+                src="/logo-header.png"
+                width="220"
               />
             </div>
             <div className="hidden md:flex space-x-12 items-center">
@@ -995,8 +999,12 @@ function App() {
             <img
               alt="Velvet Compass Health logo"
               className="h-20 md:h-24 w-auto object-contain"
+              decoding="async"
+              fetchPriority="low"
+              height="96"
               loading="lazy"
-              src="/Logo.svg"
+              src="/logo-footer.png"
+              width="320"
             />
           </div>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
