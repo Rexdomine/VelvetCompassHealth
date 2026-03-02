@@ -51,7 +51,7 @@ function parseAllowedOrigins(originsEnv) {
     })
 }
 
-export function createApp({ db }) {
+export function createApp({ db, emailService = null }) {
   const app = express()
 
   app.disable('x-powered-by')
@@ -79,7 +79,7 @@ export function createApp({ db }) {
       standardHeaders: true,
       legacyHeaders: false,
     }),
-    (req, res) => {
+    async (req, res) => {
       const parsed = enquirySchema.safeParse(req.body)
       if (!parsed.success) {
         return res.status(400).json({ error: 'Please provide valid enquiry details.' })
@@ -101,6 +101,17 @@ export function createApp({ db }) {
         return res
           .status(400)
           .json({ error: 'Urgent symptoms indicated. Please seek immediate emergency care.' })
+      }
+
+      const enquiryDetails = {
+        ...payload,
+        submittedAt: new Date().toISOString(),
+        ipAddress: req.ip,
+        userAgent: req.get('user-agent') ?? '',
+      }
+
+      if (emailService) {
+        await emailService.sendEnquiryNotification(enquiryDetails)
       }
 
       const insert = db.prepare(`
@@ -172,8 +183,8 @@ export function createApp({ db }) {
         ack_information_accuracy: 1,
         message: '',
         emergency_confirmed: 1,
-        ip_address: req.ip,
-        user_agent: req.get('user-agent') ?? '',
+        ip_address: enquiryDetails.ipAddress,
+        user_agent: enquiryDetails.userAgent,
       })
 
       return res.status(201).json({ success: true })
