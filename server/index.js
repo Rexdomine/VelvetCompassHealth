@@ -31,7 +31,32 @@ if (process.env.BREVO_API_KEY) {
   throw new Error('BREVO_API_KEY is required in production to send admin enquiry emails.')
 }
 
-const db = createDatabase(dbPath)
+function shouldFallbackDbPath(error) {
+  return Boolean(
+    error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      ['EACCES', 'EPERM', 'EROFS', 'ENOENT'].includes(error.code),
+  )
+}
+
+function initDatabase() {
+  try {
+    return createDatabase(dbPath)
+  } catch (error) {
+    if (!shouldFallbackDbPath(error)) {
+      throw error
+    }
+
+    const fallbackPath = path.join(rootDir, 'data', 'app.db')
+    console.warn(
+      `Unable to use DB_PATH="${dbPath}" (${error.code}). Falling back to "${fallbackPath}".`,
+    )
+    return createDatabase(fallbackPath)
+  }
+}
+
+const db = initDatabase()
 const app = createApp({ db, emailService })
 
 if (process.env.NODE_ENV === 'production') {
