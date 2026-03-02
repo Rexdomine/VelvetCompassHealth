@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import express from 'express'
 import { createApp } from './app.js'
 import { createDatabase } from './db.js'
+import { createBrevoEmailService } from './email.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -11,9 +12,25 @@ const rootDir = path.resolve(__dirname, '..')
 
 const port = Number.parseInt(process.env.PORT ?? '8080', 10)
 const dbPath = process.env.DB_PATH ?? path.join(rootDir, 'data', 'app.db')
+const adminEmail = process.env.ADMIN_EMAIL ?? 'office@velvetcompasshealth.com'
+const senderEmail = process.env.BREVO_SENDER_EMAIL ?? ''
+const senderName = process.env.BREVO_SENDER_NAME ?? 'Velvet Compass Health'
+const isProduction = process.env.NODE_ENV === 'production'
+
+let emailService = null
+if (process.env.BREVO_API_KEY) {
+  emailService = createBrevoEmailService({
+    apiKey: process.env.BREVO_API_KEY,
+    adminEmail,
+    senderEmail,
+    senderName,
+  })
+} else if (isProduction) {
+  throw new Error('BREVO_API_KEY is required in production to send admin enquiry emails.')
+}
 
 const db = createDatabase(dbPath)
-const app = createApp({ db })
+const app = createApp({ db, emailService })
 
 if (process.env.NODE_ENV === 'production') {
   const distDir = path.join(rootDir, 'dist')

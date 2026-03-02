@@ -14,6 +14,14 @@ services:
         value: velvetcompasshealth.com
       - key: DB_PATH
         value: /var/data/app.db
+      - key: ADMIN_EMAIL
+        value: office@velvetcompasshealth.com
+      - key: BREVO_SENDER_NAME
+        value: Velvet Compass Health
+      - key: BREVO_SENDER_EMAIL
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
     disk:
       name: velvet-compass-data
       mountPath: /var/data

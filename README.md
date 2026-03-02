@@ -30,6 +30,14 @@ Set in `.env`:
 - `PORT` (default `8080`)
 - `DB_PATH` (default `./data/app.db`)
 - `CORS_ORIGIN` (optional comma-separated allowlist)
+- `ADMIN_EMAIL` (default `office@velvetcompasshealth.com`)
+- `BREVO_API_KEY` (required in production)
+- `BREVO_SENDER_EMAIL` (required in production; must be a verified Brevo sender)
+- `BREVO_SENDER_NAME` (optional, default `Velvet Compass Health`)
+
+## Enquiry Email Notifications
+When an enquiry is submitted, the API sends a transactional notification email to `ADMIN_EMAIL` using Brevo.
+If Brevo is not configured in production, the server fails fast at startup to prevent silent intake drops.
 
 ## Deploy
 1. `npm run build`
