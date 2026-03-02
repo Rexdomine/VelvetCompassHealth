@@ -338,7 +338,7 @@ function App() {
           <img
             alt="Abstract architectural shadows on a minimal wall"
             className="w-full h-full object-cover opacity-80 dark:opacity-40 grayscale mix-blend-multiply dark:mix-blend-overlay"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8acmlhzcuKWq6_Sj9gnDmu5M3-zapgqO30LnDvn0-CSXMZ5WEwbCjnS_hMBZafcp6h2vU4BCbp2-foioPPvTfgR_XJgvIMLlZCBZuhmIBmIDOnULXbeBeTQjzpUMkg8qEvFmQeaSfxO7Xv88u_R1VQ7nYgtnxzlwf2SJ6FdQvv0bQ3GgAh8XUyyP814kvsATD--vjgNCY4-_K0nUHti_mA6de21gHJUzIivLubJCNxqdiCnUZHCVSJ0GynBAJuEn_GCjgkBOHAdUz"
+            src="/images/header-hero.png"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background-light/50 via-transparent to-background-light dark:from-background-dark/50 dark:to-background-dark" />
         </div>
@@ -349,10 +349,17 @@ function App() {
           <h2 className="text-xl md:text-2xl font-light text-charcoal/90 dark:text-gray-200 mb-6 tracking-wide">
             Outsource medical complexity through ongoing clinical oversight.
           </h2>
-          <p className="text-lg md:text-xl font-light text-charcoal/80 dark:text-gray-300 max-w-3xl mx-auto tracking-wide leading-relaxed mb-12">
-            Velvet Compass Health is a private medical office providing clear medical direction for individuals whose
-            roles, visibility, and responsibilities leave no room for overcomplicated or fragmented care.
-          </p>
+          <div className="text-lg md:text-xl font-light text-charcoal/80 dark:text-gray-300 max-w-4xl mx-auto tracking-wide leading-relaxed mb-12 space-y-5">
+            <p>
+              Velvet Compass Health is a private medical office providing clear medical direction for individuals whose
+              roles, visibility, and responsibilities leave no room for overcomplicated or fragmented care.
+            </p>
+            <p>
+              The office assigns a dedicated personal doctor who holds the full picture, clinically and personally, and
+              interprets investigations and specialist opinions, directing care with defined coordination across NHS and
+              private settings. Clarity is established early, not retrospectively.
+            </p>
+          </div>
           <div>
             <a
               className="inline-block px-8 py-4 bg-primary text-white font-sans text-sm tracking-widest uppercase hover:bg-charcoal transition-colors duration-300"
@@ -384,7 +391,7 @@ function App() {
             <h2 className="font-display text-4xl md:text-5xl text-charcoal dark:text-white mb-8">
               Clarity Over <span className="italic text-primary dark:text-secondary">Confusion</span>
             </h2>
-            <div className="space-y-6 text-charcoal/80 dark:text-gray-300 font-light text-lg leading-relaxed">
+            <div className="space-y-3 text-charcoal/80 dark:text-gray-300 font-light text-lg leading-relaxed">
               <p>
                 Velvet Compass Health operates as a private medical office structured to maintain clarity across time,
                 transitions, and complexity.
@@ -410,22 +417,12 @@ function App() {
           <div className="text-center mb-20">
             <span className="text-xs font-bold tracking-[0.3em] text-primary uppercase">Service</span>
             <h2 className="mt-4 font-display text-3xl md:text-4xl text-charcoal dark:text-white">How It Works</h2>
+            <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl font-light text-charcoal/80 dark:text-gray-300 leading-relaxed tracking-wide">
+              The office brings clarity where healthcare becomes unclear by centralising interpretation, coordination,
+              and continuity within one defined framework.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-primary/20 dark:border-white/10 divide-y md:divide-y-0 md:divide-x divide-primary/20 dark:divide-white/10">
-            <div className="group p-8 lg:p-10 hover:bg-background-alt dark:hover:bg-surface-dark transition-colors duration-500">
-              <h3 className="font-display text-xl text-charcoal dark:text-white mb-4">Contextual Interpretation</h3>
-              <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
-                Investigations interpreted in context, not isolation. We ensure data points are understood as part of
-                your broader physiological narrative.
-              </p>
-            </div>
-            <div className="group p-8 lg:p-10 hover:bg-background-alt dark:hover:bg-surface-dark transition-colors duration-500">
-              <h3 className="font-display text-xl text-charcoal dark:text-white mb-4">Coordinated Care</h3>
-              <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
-                Seamless management across multiple specialists and institutions, bridging the gap between NHS and
-                private sector provision.
-              </p>
-            </div>
             <div className="group p-8 lg:p-10 hover:bg-background-alt dark:hover:bg-surface-dark transition-colors duration-500">
               <h3 className="font-display text-xl text-charcoal dark:text-white mb-4">Continuity Over Time</h3>
               <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
@@ -440,6 +437,20 @@ function App() {
                 they are needed.
               </p>
             </div>
+            <div className="group p-8 lg:p-10 hover:bg-background-alt dark:hover:bg-surface-dark transition-colors duration-500">
+              <h3 className="font-display text-xl text-charcoal dark:text-white mb-4">Coordinated Care</h3>
+              <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
+                Seamless management across multiple specialists and institutions, bridging the gap between NHS and
+                private sector provision.
+              </p>
+            </div>
+            <div className="group p-8 lg:p-10 hover:bg-background-alt dark:hover:bg-surface-dark transition-colors duration-500">
+              <h3 className="font-display text-xl text-charcoal dark:text-white mb-4">Contextual Interpretation</h3>
+              <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
+                Investigations interpreted in context, not isolation. We ensure data points are understood as part of
+                your broader physiological narrative.
+              </p>
+            </div>
           </div>
           <div className="border-b border-primary/20 dark:border-white/10 w-full mb-16" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -447,21 +458,33 @@ function App() {
               <h4 className="text-sm font-bold tracking-widest uppercase text-charcoal dark:text-white mb-4">
                 Suitability
               </h4>
-              <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
-                This service is particularly suited to high-visibility individuals who require absolute discretion and
-                a single point of contact for complex health portfolios. It is designed for those who value time and
-                clarity above all else.
-              </p>
+              <div className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm space-y-4">
+                <p>
+                  The service is suited to individuals and families who value continuity over episodic care, whether
+                  managing evolving medical circumstances, navigating demanding schedules, or whose roles and
+                  visibility require discretion.
+                </p>
+                <p>
+                  Engagement is by application and initial review. Formal engagement proceeds following consideration
+                  of scope and suitability. Client numbers remain intentionally limited to preserve continuity and
+                  discretion.
+                </p>
+              </div>
             </div>
             <div>
               <h4 className="text-sm font-bold tracking-widest uppercase text-charcoal dark:text-white mb-4">
-                Scope &amp; Limitations
+                Scope
               </h4>
-              <p className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm">
-                Please note: Velvet Compass Health is not a replacement for your standard General Practitioner (GP) and
-                is not an emergency service. We provide oversight, strategy, and coordination, working alongside your
-                existing primary care providers.
-              </p>
+              <div className="font-light text-charcoal/70 dark:text-gray-400 leading-relaxed text-sm space-y-4">
+                <p>
+                  The office operates alongside existing clinicians. It does not replace a GP or specialist and does
+                  not provide emergency services.
+                </p>
+                <p>
+                  VCH is a private medical office providing clarity and continuity within defined professional
+                  boundaries.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -483,35 +506,38 @@ function App() {
             </div>
             <div className="flex flex-col justify-center h-full order-2 lg:order-2">
               <span className="text-xs font-bold tracking-[0.3em] text-primary uppercase block mb-4">
-                About the Founder
+                Clinical Lead
               </span>
               <h2 className="font-display text-4xl md:text-5xl text-charcoal dark:text-white mb-8 leading-tight">
-                Dr. E I Joseph-Ebare
+                Dr. Ehizele Ijeoma Joseph-Ebare
               </h2>
               <div className="space-y-8">
-                <div className="relative py-8 border-y border-primary/20 dark:border-white/10">
-                  <p className="font-display italic text-xl md:text-2xl text-primary dark:text-secondary leading-relaxed">
-                    "Velvet Compass Health was founded on the philosophy that complex healthcare requires an architect,
-                    not just a builder."
-                  </p>
-                </div>
-                <div className="space-y-6 text-charcoal/80 dark:text-gray-300 font-light text-lg leading-relaxed">
+                <div className="space-y-3 text-charcoal/80 dark:text-gray-300 font-light text-lg leading-relaxed">
                   <p>
-                    Dr. E I Joseph-Ebare is a clinician with a diverse background in both high-acuity medicine and
-                    strategic management. She completed her medical degree at Barts and The London School of Medicine
-                    and Dentistry, followed by rigorous clinical training in Cardiology and Acute Medicine within the
-                    NHS.
+                    Dr E I Joseph-Ebare is a UK-trained medical doctor educated at Barts and The London School of
+                    Medicine and Dentistry. Her clinical training has included cardiology, acute medicine, emergency
+                    medicine and complex multi-morbidity across major London teaching hospitals, including Guy&apos;s and
+                    St Thomas&apos; NHS Foundation Trust.
                   </p>
                   <p>
-                    Recognizing the systemic gaps in care coordination for complex patients, she pursued further
-                    education at Harvard Business School, specializing in health care strategy. This unique combination
-                    of frontline clinical experience and high-level strategic training allows her to navigate medical
-                    systems with exceptional efficacy.
+                    She worked on the frontline during the COVID-19 pandemic and has managed both high-acuity
+                    presentations and longitudinal medical complexity. This breadth of exposure informs a clinical
+                    approach that is structured, decisive, and resistant to both over-intervention and
+                    under-recognition.
                   </p>
                   <p>
-                    She founded Velvet Compass Health to provide a level of oversight that is often missing in modern
-                    healthcare, bridging the gap between disparate specialists and ensuring that the patient narrative
-                    remains coherent and central to all decision-making.
+                    In addition to her medical training, Dr Joseph-Ebare holds a BSc in Global and Public Health and
+                    has completed advanced business and financial principles training through Harvard Business School.
+                    Her work extends into charitable and public health initiatives within the UK and internationally.
+                  </p>
+                  <p>
+                    Velvet Compass Health was established to provide structured clinical oversight for individuals
+                    navigating increasingly fragmented healthcare systems. The office reflects her professional
+                    standard: precise, accountable, and resistant to both medical excess and medical neglect.
+                  </p>
+                  <p>
+                    Dr Joseph-Ebare&apos;s philosophy is simple - clinical excellence and emotional intelligence are not
+                    opposing forces. Decisive medicine requires both.
                   </p>
                 </div>
               </div>
