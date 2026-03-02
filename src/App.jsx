@@ -249,42 +249,54 @@ function App() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center font-sans antialiased bg-charcoal text-secondary px-6">
-        <main className="w-full max-w-3xl flex flex-col items-center text-center">
-          <div className="mb-16">
-            <span className="material-symbols-outlined text-primary text-6xl md:text-7xl font-light">explore</span>
-          </div>
-          <h1 className="font-display text-4xl md:text-6xl text-secondary mb-10 font-normal leading-tight tracking-wide">
-            Application Received
-          </h1>
-          <div className="space-y-8 mb-16 max-w-2xl">
-            <p className="text-lg md:text-xl font-light leading-relaxed text-secondary">
-              Thank you for your interest in Velvet Compass Health. Your enquiry has been received and will be
-              reviewed with the discretion and clinical consideration it requires.
-            </p>
-            <p className="text-sm md:text-base font-light leading-relaxed text-secondary/70">
-              Due to our limited capacity and commitment to medical continuity, formal engagement proceeds following a
-              thorough review of scope and suitability. You will be contacted via the details provided should we be
-              able to progress your application.
-            </p>
-          </div>
-          <div className="w-16 h-px bg-primary/40 mb-16" />
-          <div className="mb-24">
-            <a
-              className="group inline-flex items-center justify-center px-10 py-4 border border-primary text-primary text-xs font-medium uppercase architectural-spacing transition-all duration-500 hover:bg-primary hover:text-charcoal"
-              href="/"
-            >
-              <span className="material-symbols-outlined text-lg mr-3 transform group-hover:-translate-x-1 transition-transform duration-300">
-                west
+      <div className="min-h-screen flex flex-col bg-background-dark text-secondary font-sans antialiased">
+        <main className="flex-1 flex flex-col items-center justify-center px-6 py-12 md:py-24">
+          <div className="max-w-2xl w-full flex flex-col items-center text-center">
+            <div className="mb-12 text-primary">
+              <span className="material-symbols-outlined text-6xl md:text-7xl font-extralight opacity-90">
+                explore
               </span>
-              Return to Home
-            </a>
+              <div className="-mt-8">
+                <span className="material-symbols-outlined text-3xl md:text-4xl font-light">
+                  medical_services
+                </span>
+              </div>
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl text-secondary font-normal mb-10 tracking-wide">
+              Enquiry Submitted
+            </h1>
+            <div className="space-y-8 mb-16">
+              <p className="text-primary uppercase text-[11px] tracking-[0.32em] font-medium">Thank You</p>
+              <p className="text-secondary/90 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">
+                Thank you for your interest in Velvet Compass Health. Your details have been received and will be
+                reviewed with the discretion and clinical oversight they require.
+              </p>
+              <p className="text-secondary/70 text-sm md:text-base font-light leading-relaxed max-w-lg mx-auto italic">
+                Due to our limited capacity and commitment to medical continuity, formal engagement proceeds following
+                a thorough review of scope and suitability. You will be contacted via the details provided should we be
+                able to progress your application.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <a
+                className="group border border-primary text-secondary px-10 py-5 uppercase text-[11px] tracking-[0.4em] flex items-center gap-6 hover:bg-primary/10 transition-all duration-500 rounded-sm"
+                href="/"
+              >
+                <span className="material-symbols-outlined text-sm transition-transform duration-300 group-hover:-translate-x-1">
+                  arrow_back
+                </span>
+                Return to Home
+              </a>
+            </div>
           </div>
         </main>
-        <footer className="mt-auto pb-12 w-full max-w-4xl border-t border-secondary/10 pt-8 text-center">
-          <p className="text-[10px] md:text-xs uppercase architectural-spacing font-sans text-secondary/30 leading-loose">
-            Velvet Compass Health is a private medical family office. We do not provide emergency medical services.
-          </p>
+        <footer className="py-12 px-6">
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
+            <div className="w-24 h-px bg-primary/20 mb-8" />
+            <p className="text-[9px] text-secondary/40 tracking-[0.3em] text-center uppercase leading-loose max-w-2xl">
+              Your data is handled with the highest level of clinical confidentiality and discretion.
+            </p>
+          </div>
         </footer>
       </div>
     )
