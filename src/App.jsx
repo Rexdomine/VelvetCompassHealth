@@ -374,7 +374,7 @@ function App() {
               <img
                 alt="Abstract beige texture representing calm structure"
                 className="w-full h-full object-cover opacity-80 mix-blend-multiply dark:opacity-50"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuWFvinxa91ks5comEur3frPR3UaT88YIOYGN6hp2N4c22MCYEtBZo3rT80JzRTy6lFWIaQ6DtZXwM6syNkaYz3NJxU3Wm9JQcjmduICfbCo_QE-K0vmHr0M1QGhcjxOPX8bLo5PSrC-bUpqeZTWlgMim38rDactBnXJkXB0_zGWsF-COWoY3SNaq2q0e70HDvlchrQJq-1lLWkYfVMWJn0xlm0Phqmb6ikzTP1Es3vobiW_DmWwxShOTx9uVJ1AShQ3oEs4QbD2te"
+                src="/images/office-texture.png"
               />
               <div className="absolute inset-4 border border-primary/30 dark:border-secondary/30" />
             </div>
@@ -475,7 +475,7 @@ function App() {
                 <img
                   alt="Portrait of Dr. E I Joseph-Ebare"
                   className="w-full h-full object-cover grayscale mix-blend-multiply dark:mix-blend-normal opacity-90"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7uKqxuzJDrBZZQ2RXMt235ckWpMsXybX63t5KPJ9X1P8vkqo74zfdHXpVEC-RPIMtcGaLEgnEAx0C-qLU5od4rV-ecOvOGLrv_6mnYpGCetC9AQ3O4TmcylAKOrsPzM09p_x0p6sASdJ-RHUA3fWzPMpUcnbspdd0m4nfhSlsQZ2x6299fG6nrqwWm8jWPbcxZtv2T_eFNOndsAQFRJpcRpTBzY-tgzpX6Krxiyfk0K5ctSZ_-mXm98rvfLq_SGx274aONaXBlQ3S"
+                  src="/images/founder-portrait.png"
                 />
                 <div className="absolute -bottom-8 -right-8 w-48 h-48 border border-primary/20 dark:border-white/10 z-0" />
                 <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/5 dark:bg-white/5 z-0" />
