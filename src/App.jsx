@@ -247,61 +247,6 @@ function App() {
     }
   }
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen flex flex-col bg-background-dark text-secondary font-sans antialiased">
-        <main className="flex-1 flex flex-col items-center justify-center px-6 py-12 md:py-24">
-          <div className="max-w-2xl w-full flex flex-col items-center text-center">
-            <div className="mb-12 text-primary">
-              <span className="material-symbols-outlined text-6xl md:text-7xl font-extralight opacity-90">
-                explore
-              </span>
-              <div className="-mt-8">
-                <span className="material-symbols-outlined text-3xl md:text-4xl font-light">
-                  medical_services
-                </span>
-              </div>
-            </div>
-            <h1 className="font-display text-4xl md:text-5xl text-secondary font-normal mb-10 tracking-wide">
-              Enquiry Submitted
-            </h1>
-            <div className="space-y-8 mb-16">
-              <p className="text-primary uppercase text-[11px] tracking-[0.32em] font-medium">Thank You</p>
-              <p className="text-secondary/90 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">
-                Thank you for your interest in Velvet Compass Health. Your details have been received and will be
-                reviewed with the discretion and clinical oversight they require.
-              </p>
-              <p className="text-secondary/70 text-sm md:text-base font-light leading-relaxed max-w-lg mx-auto italic">
-                Due to our limited capacity and commitment to medical continuity, formal engagement proceeds following
-                a thorough review of scope and suitability. You will be contacted via the details provided should we be
-                able to progress your application.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <a
-                className="group border border-primary text-secondary px-10 py-5 uppercase text-[11px] tracking-[0.4em] flex items-center gap-6 hover:bg-primary/10 transition-all duration-500 rounded-sm"
-                href="/"
-              >
-                <span className="material-symbols-outlined text-sm transition-transform duration-300 group-hover:-translate-x-1">
-                  arrow_back
-                </span>
-                Return to Home
-              </a>
-            </div>
-          </div>
-        </main>
-        <footer className="py-12 px-6">
-          <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <div className="w-24 h-px bg-primary/20 mb-8" />
-            <p className="text-[9px] text-secondary/40 tracking-[0.3em] text-center uppercase leading-loose max-w-2xl">
-              Your data is handled with the highest level of clinical confidentiality and discretion.
-            </p>
-          </div>
-        </footer>
-      </div>
-    )
-  }
-
   return (
     <>
       <nav className="fixed w-full z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm border-b border-primary/20 dark:border-background-light/10">
@@ -561,86 +506,114 @@ function App() {
       <section className="py-24 bg-charcoal text-background-light relative" id="access">
         <div className="absolute inset-0 bg-primary/5" />
         <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold tracking-[0.3em] text-background-light/50 uppercase block mb-4">
-              Step {step} of {TOTAL_STEPS}
-            </span>
-            {step === 1 ? (
-              <>
-                <h2 className="text-xs md:text-sm font-sans font-medium tracking-[0.4em] uppercase text-background-light/60 mb-8">
-                  Important Notice
-                </h2>
-                <h3 className="font-display text-4xl md:text-6xl text-background-light mb-10 font-normal leading-tight">
-                  Emergency Disclaimer
-                </h3>
-                <div className="max-w-2xl mx-auto">
-                  <p className="text-base md:text-lg font-light leading-relaxed text-background-light/90">
-                    Velvet Compass Health is not an emergency service. If you are experiencing urgent symptoms,
-                    including chest pain, severe breathlessness, sudden neurological symptoms, severe or worsening
-                    abdominal pain, or thoughts of self-harm,{' '}
-                    <span className="text-primary font-medium">
-                      please seek immediate care via 999 / 112 or attend A&amp;E.
-                    </span>
-                  </p>
-                </div>
-              </>
-            ) : step === 2 ? (
-              <>
-                <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
-                  Identity
-                </h2>
-                <div className="w-12 h-px bg-primary/40 mx-auto mt-8" />
-              </>
-            ) : step === 3 ? (
-              <>
-                <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
-                  Focus of Support
-                </h2>
-                <p className="text-background-light/80 font-sans font-light text-sm md:text-base tracking-wide max-w-lg mx-auto">
-                  What are you primarily seeking support with at this stage? (Select one or more)
+          {submitted ? (
+            <div className="max-w-2xl mx-auto text-center py-8 md:py-12">
+              <h2 className="font-display text-4xl md:text-5xl text-background-light font-normal mb-6 tracking-wide">
+                Enquiry Submitted
+              </h2>
+              <p className="text-primary uppercase text-[11px] tracking-[0.32em] font-medium mb-8">Thank You</p>
+              <div className="space-y-6 mb-12">
+                <p className="text-background-light/90 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">
+                  Thank you for your interest in Velvet Compass Health. Your details have been received and will be
+                  reviewed with the discretion and clinical oversight they require.
                 </p>
-                <div className="w-12 h-px bg-primary/40 mx-auto mt-10" />
-              </>
-            ) : step === 4 ? (
-              <>
-                <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
-                  Current GP &amp; Care Context
-                </h2>
-                <div className="w-12 h-px bg-primary/40 mx-auto mt-10" />
-              </>
-            ) : step === 5 ? (
-              <>
-                <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
-                  High-risk Exclusions
-                </h2>
-                <p className="text-background-light/80 font-sans font-light text-sm md:text-base tracking-wide max-w-lg mx-auto leading-relaxed">
-                  Please confirm that none of the following apply today:
-                  <br />
-                  <span className="text-[10px] uppercase tracking-widest opacity-60 mt-2 block">
-                    (Select all that apply)
-                  </span>
+                <p className="text-background-light/70 text-sm md:text-base font-light leading-relaxed max-w-lg mx-auto italic">
+                  Due to our limited capacity and commitment to medical continuity, formal engagement proceeds
+                  following a thorough review of scope and suitability. You will be contacted via the details provided
+                  should we be able to progress your application.
                 </p>
-                <div className="w-12 h-px bg-primary/40 mx-auto mt-10" />
-              </>
-            ) : step === 6 ? (
-              <>
-                <h2 className="font-display italic text-5xl md:text-6xl text-background-light mb-6 font-normal">
-                  Guidance Preference
-                </h2>
-                <p className="text-background-light/80 text-base md:text-lg font-light tracking-wide">
-                  Which approach best reflects how you like to work?
-                </p>
-              </>
-            ) : (
-              <>
-                <h2 className="font-display text-4xl md:text-5xl text-background-light font-normal">
-                  Boundaries &amp; Expectations
-                </h2>
-              </>
-            )}
-          </div>
+              </div>
+              <div className="flex justify-center">
+                <a
+                  className="group border border-primary text-background-light px-10 py-5 uppercase text-[11px] tracking-[0.4em] flex items-center gap-6 hover:bg-primary/10 transition-all duration-500 rounded-sm"
+                  href="#office"
+                >
+                  Return to Home
+                </a>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="text-center mb-12">
+                <span className="text-xs font-bold tracking-[0.3em] text-background-light/50 uppercase block mb-4">
+                  Step {step} of {TOTAL_STEPS}
+                </span>
+                {step === 1 ? (
+                  <>
+                    <h2 className="text-xs md:text-sm font-sans font-medium tracking-[0.4em] uppercase text-background-light/60 mb-8">
+                      Important Notice
+                    </h2>
+                    <h3 className="font-display text-4xl md:text-6xl text-background-light mb-10 font-normal leading-tight">
+                      Emergency Disclaimer
+                    </h3>
+                    <div className="max-w-2xl mx-auto">
+                      <p className="text-base md:text-lg font-light leading-relaxed text-background-light/90">
+                        Velvet Compass Health is not an emergency service. If you are experiencing urgent symptoms,
+                        including chest pain, severe breathlessness, sudden neurological symptoms, severe or worsening
+                        abdominal pain, or thoughts of self-harm,{' '}
+                        <span className="text-primary font-medium">
+                          please seek immediate care via 999 / 112 or attend A&amp;E.
+                        </span>
+                      </p>
+                    </div>
+                  </>
+                ) : step === 2 ? (
+                  <>
+                    <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
+                      Identity
+                    </h2>
+                    <div className="w-12 h-px bg-primary/40 mx-auto mt-8" />
+                  </>
+                ) : step === 3 ? (
+                  <>
+                    <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
+                      Focus of Support
+                    </h2>
+                    <p className="text-background-light/80 font-sans font-light text-sm md:text-base tracking-wide max-w-lg mx-auto">
+                      What are you primarily seeking support with at this stage? (Select one or more)
+                    </p>
+                    <div className="w-12 h-px bg-primary/40 mx-auto mt-10" />
+                  </>
+                ) : step === 4 ? (
+                  <>
+                    <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
+                      Current GP &amp; Care Context
+                    </h2>
+                    <div className="w-12 h-px bg-primary/40 mx-auto mt-10" />
+                  </>
+                ) : step === 5 ? (
+                  <>
+                    <h2 className="font-display text-4xl md:text-6xl text-background-light mb-6 font-normal leading-tight">
+                      High-risk Exclusions
+                    </h2>
+                    <p className="text-background-light/80 font-sans font-light text-sm md:text-base tracking-wide max-w-lg mx-auto leading-relaxed">
+                      Please confirm that none of the following apply today:
+                      <br />
+                      <span className="text-[10px] uppercase tracking-widest opacity-60 mt-2 block">
+                        (Select all that apply)
+                      </span>
+                    </p>
+                    <div className="w-12 h-px bg-primary/40 mx-auto mt-10" />
+                  </>
+                ) : step === 6 ? (
+                  <>
+                    <h2 className="font-display italic text-5xl md:text-6xl text-background-light mb-6 font-normal">
+                      Guidance Preference
+                    </h2>
+                    <p className="text-background-light/80 text-base md:text-lg font-light tracking-wide">
+                      Which approach best reflects how you like to work?
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="font-display text-4xl md:text-5xl text-background-light font-normal">
+                      Boundaries &amp; Expectations
+                    </h2>
+                  </>
+                )}
+              </div>
 
-          <form className="space-y-8" onSubmit={onSubmit}>
+              <form className="space-y-8" onSubmit={onSubmit}>
             {step === 1 ? (
               <>
                 <div className="w-24 h-px bg-primary/30 mx-auto mb-8" />
@@ -998,7 +971,9 @@ function App() {
                 ) : null}
               </button>
             </div>
-          </form>
+              </form>
+            </>
+          )}
           <div className="mt-20 border-t border-background-light/10 pt-8 text-center">
             <p className="text-xs text-background-light/30 leading-relaxed max-w-lg mx-auto">
               DISCLAIMER: Velvet Compass Health is a private medical office providing oversight and coordination. We do
