@@ -60,6 +60,13 @@ const guidanceOptions = [
 ]
 
 function App() {
+  const officeMapQuery = import.meta.env.VITE_GOOGLE_MAPS_QUERY || '23 Harley Street, London W1G 9QN'
+  const googleMapsEmbedApiKey = import.meta.env.VITE_GOOGLE_MAPS_EMBED_API_KEY
+  const officeMapEmbedSrc = googleMapsEmbedApiKey
+    ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(googleMapsEmbedApiKey)}&q=${encodeURIComponent(officeMapQuery)}`
+    : `https://www.google.com/maps?q=${encodeURIComponent(officeMapQuery)}&output=embed`
+  const officeDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(officeMapQuery)}`
+
   const [formData, setFormData] = useState(initialForm)
   const [status, setStatus] = useState({ type: 'idle', message: '' })
   const [submitting, setSubmitting] = useState(false)
@@ -318,7 +325,7 @@ function App() {
           <h2 className="text-xl md:text-2xl font-light text-charcoal/90 dark:text-gray-200 mb-6 tracking-wide">
             Outsource medical complexity through ongoing clinical oversight.
           </h2>
-          <div className="text-lg md:text-xl font-light text-charcoal/80 dark:text-gray-300 max-w-4xl mx-auto tracking-wide leading-relaxed mb-12 space-y-5">
+          <div className="text-sm md:text-base font-light text-charcoal/80 dark:text-gray-300 max-w-4xl mx-auto tracking-wide leading-[1.55] mb-10 space-y-3">
             <p>
               Velvet Compass Health is a private medical office providing clear medical direction for individuals whose
               roles, visibility, and responsibilities leave no room for overcomplicated or fragmented care.
@@ -560,11 +567,14 @@ function App() {
                     <h2 className="text-xs md:text-sm font-sans font-medium tracking-[0.4em] uppercase text-background-light/60 mb-8">
                       Important Notice
                     </h2>
-                    <h3 className="font-display text-4xl md:text-6xl text-background-light mb-10 font-normal leading-tight">
-                      Emergency Disclaimer
+                    <h3 className="font-display text-4xl md:text-6xl text-background-light mb-4 font-normal leading-tight">
+                      Request Access
                     </h3>
+                    <h4 className="font-display text-3xl md:text-4xl text-background-light/90 mb-8 font-normal leading-tight">
+                      Emergency Disclaimer
+                    </h4>
                     <div className="max-w-2xl mx-auto">
-                      <p className="text-base md:text-lg font-light leading-relaxed text-background-light/90">
+                      <p className="text-sm md:text-base font-light leading-relaxed text-background-light/90">
                         Velvet Compass Health is not an emergency service. If you are experiencing urgent symptoms,
                         including chest pain, severe breathlessness, sudden neurological symptoms, severe or worsening
                         abdominal pain, or thoughts of self-harm,{' '}
@@ -647,7 +657,7 @@ function App() {
                         type="checkbox"
                       />
                     </div>
-                    <div className="text-sm md:text-base leading-relaxed">
+                    <div className="text-xs md:text-sm leading-relaxed">
                       <label
                         className="font-light text-background-light/80 cursor-pointer select-none group-hover:text-background-light transition-colors"
                         htmlFor="emergency-confirm"
@@ -1001,6 +1011,106 @@ function App() {
         </div>
       </section>
 
+      <section
+        className="relative w-full h-[90vh] min-h-[750px] flex items-center overflow-hidden bg-background-light"
+        id="contact"
+      >
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full [filter:sepia(0.4)_saturate(0.6)_brightness(1.02)_contrast(0.9)_grayscale(0.2)] opacity-85">
+            <iframe
+              allowFullScreen
+              className="w-full h-full border-0 pointer-events-none"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src={officeMapEmbedSrc}
+              title="Office map"
+            />
+          </div>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(242,235,224,0.45),rgba(242,235,224,0.45))]" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+            <div className="relative">
+              <span
+                className="material-symbols-outlined text-primary text-5xl drop-shadow-md"
+                style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}
+              >
+                location_on
+              </span>
+              <div className="absolute inset-0 bg-primary/20 rounded-full scale-150 blur-xl" />
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 h-full flex items-center justify-end relative z-10">
+          <div className="w-full max-w-md bg-charcoal p-12 md:p-16 shadow-[0_40px_80px_rgba(0,0,0,0.25)] border-l border-white/5">
+            <div className="space-y-12">
+              <header>
+                <h2 className="font-display text-3xl md:text-4xl text-secondary mb-6 font-normal tracking-tight">
+                  Office Location
+                </h2>
+                <div className="w-12 h-0.5 bg-primary" />
+              </header>
+
+              <div className="space-y-10">
+                <div className="flex items-start">
+                  <span className="material-symbols-outlined text-primary mt-1 mr-6 text-2xl">location_on</span>
+                  <div>
+                    <h3 className="text-primary text-[10px] uppercase architectural-spacing font-semibold mb-3">
+                      Address
+                    </h3>
+                    <address className="not-italic text-secondary text-sm md:text-base leading-relaxed font-light opacity-90">
+                      23 Harley Street,
+                      <br />
+                      London
+                      <br />
+                      W1G 9QN
+                    </address>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="material-symbols-outlined text-primary mt-1 mr-6 text-2xl">mail</span>
+                  <div>
+                    <h3 className="text-primary text-[10px] uppercase architectural-spacing font-semibold mb-3">
+                      Email
+                    </h3>
+                    <a
+                      className="text-secondary text-sm md:text-base font-light hover:text-white transition-colors duration-300 opacity-90"
+                      href="mailto:office@velvetcompasshealth.com"
+                    >
+                      office@velvetcompasshealth.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="material-symbols-outlined text-primary mt-1 mr-6 text-2xl">call</span>
+                  <div>
+                    <h3 className="text-primary text-[10px] uppercase architectural-spacing font-semibold mb-3">
+                      Phone
+                    </h3>
+                    <p className="text-secondary text-sm md:text-base font-light opacity-90">07375028886</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-10 border-t border-white/10">
+                <a
+                  className="inline-flex items-center text-primary text-xs uppercase font-medium group tracking-[0.2em] hover:text-secondary transition-colors duration-300"
+                  href={officeDirectionsUrl}
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  Get Directions
+                  <span className="material-symbols-outlined ml-3 text-sm transform group-hover:translate-x-1 transition-transform">
+                    north_east
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-white/10 py-16">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-10">
           <div className="flex flex-col items-center gap-4">
@@ -1039,6 +1149,12 @@ function App() {
               href="#access"
             >
               Request Access
+            </a>
+            <a
+              className="text-xs uppercase tracking-widest text-charcoal/60 dark:text-gray-400 hover:text-primary transition-colors"
+              href="#contact"
+            >
+              Contact
             </a>
           </div>
           <div className="text-[10px] text-charcoal/40 dark:text-gray-600 font-light tracking-widest text-center uppercase">
