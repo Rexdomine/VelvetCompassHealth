@@ -561,6 +561,11 @@ function App() {
           ) : (
             <>
               <div className="text-center mb-12">
+                {step === 1 ? (
+                  <h3 className="font-display text-4xl md:text-6xl text-background-light mb-8 font-normal leading-tight">
+                    Request Access
+                  </h3>
+                ) : null}
                 <span className="text-xs font-bold tracking-[0.3em] text-background-light/50 uppercase block mb-4">
                   Step {step} of {TOTAL_STEPS}
                 </span>
@@ -569,9 +574,6 @@ function App() {
                     <h2 className="text-xs md:text-sm font-sans font-medium tracking-[0.4em] uppercase text-background-light/60 mb-8">
                       Important Notice
                     </h2>
-                    <h3 className="font-display text-4xl md:text-6xl text-background-light mb-4 font-normal leading-tight">
-                      Request Access
-                    </h3>
                     <h4 className="font-display text-3xl md:text-4xl text-background-light/90 mb-8 font-normal leading-tight">
                       Emergency Disclaimer
                     </h4>
