@@ -342,7 +342,7 @@ function App() {
               <img
                 alt="Abstract beige texture representing calm structure"
                 className="w-full h-full object-cover opacity-80 mix-blend-multiply dark:opacity-50"
-                src="/images/office-texture.png"
+                src="/images/office-section.jpg"
               />
               <div className="absolute inset-4 border border-primary/30 dark:border-secondary/30" />
             </div>
