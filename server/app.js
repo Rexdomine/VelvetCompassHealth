@@ -55,7 +55,26 @@ export function createApp({ db, emailService = null }) {
   const app = express()
 
   app.disable('x-powered-by')
-  app.use(helmet())
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          baseUri: ["'self'"],
+          fontSrc: ["'self'", 'https:', 'data:'],
+          formAction: ["'self'"],
+          frameAncestors: ["'self'"],
+          frameSrc: ["'self'", 'https://www.google.com', 'https://maps.google.com'],
+          imgSrc: ["'self'", 'data:'],
+          objectSrc: ["'none'"],
+          scriptSrc: ["'self'"],
+          scriptSrcAttr: ["'none'"],
+          styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
+          upgradeInsecureRequests: [],
+        },
+      },
+    }),
+  )
   app.use(express.json({ limit: '10kb' }))
 
   if (process.env.CORS_ORIGIN) {
