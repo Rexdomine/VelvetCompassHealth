@@ -61,10 +61,12 @@ const guidanceOptions = [
 
 function App() {
   const officeMapQuery = import.meta.env.VITE_GOOGLE_MAPS_QUERY || '23 Harley Street, London W1G 9QN'
-  const googleMapsEmbedApiKey = import.meta.env.VITE_GOOGLE_MAPS_EMBED_API_KEY
+  const googleMapsEmbedApiKey = import.meta.env.VITE_GOOGLE_MAPS_EMBED_API_KEY?.trim()
+  const useGoogleMapsEmbedApi = import.meta.env.VITE_GOOGLE_MAPS_USE_EMBED_API === 'true'
   const officeMapEmbedSrc = googleMapsEmbedApiKey
-    ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(googleMapsEmbedApiKey)}&q=${encodeURIComponent(officeMapQuery)}`
-    : `https://www.google.com/maps?q=${encodeURIComponent(officeMapQuery)}&output=embed`
+    && useGoogleMapsEmbedApi
+      ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(googleMapsEmbedApiKey)}&q=${encodeURIComponent(officeMapQuery)}`
+      : `https://maps.google.com/maps?q=${encodeURIComponent(officeMapQuery)}&z=15&output=embed`
   const officeDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(officeMapQuery)}`
 
   const [formData, setFormData] = useState(initialForm)
@@ -1019,14 +1021,14 @@ function App() {
           <div className="w-full h-full [filter:sepia(0.4)_saturate(0.6)_brightness(1.02)_contrast(0.9)_grayscale(0.2)] opacity-85">
             <iframe
               allowFullScreen
-              className="w-full h-full border-0 pointer-events-none"
+              className="w-full h-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src={officeMapEmbedSrc}
               title="Office map"
             />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(242,235,224,0.45),rgba(242,235,224,0.45))]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(242,235,224,0.25),rgba(242,235,224,0.25))]" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
             <div className="relative">
               <span
