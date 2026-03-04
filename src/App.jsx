@@ -1029,17 +1029,6 @@ function App() {
             />
           </div>
           <div className="absolute inset-0 bg-[linear-gradient(rgba(242,235,224,0.25),rgba(242,235,224,0.25))]" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-            <div className="relative">
-              <span
-                className="material-symbols-outlined text-primary text-5xl drop-shadow-md"
-                style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}
-              >
-                location_on
-              </span>
-              <div className="absolute inset-0 bg-primary/20 rounded-full scale-150 blur-xl" />
-            </div>
-          </div>
         </div>
 
         <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 h-full flex items-center justify-end relative z-10">
