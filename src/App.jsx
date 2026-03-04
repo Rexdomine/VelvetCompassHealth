@@ -1036,7 +1036,7 @@ function App() {
             <div className="space-y-12">
               <header>
                 <h2 className="font-display text-3xl md:text-4xl text-secondary mb-6 font-normal tracking-tight">
-                  Office Location
+                  London Office
                 </h2>
                 <div className="w-12 h-0.5 bg-primary" />
               </header>
