@@ -329,7 +329,7 @@ function App() {
           </h2>
           <div className="text-sm md:text-base font-light text-charcoal/80 dark:text-gray-300 max-w-4xl mx-auto tracking-wide leading-[1.55] mb-10 space-y-3">
             <p>
-              Velvet Compass Health is a private medical office providing clear medical direction for individuals whose
+              Velvet Compass Health is a private medical office, based in London Harley Street, providing clear medical direction for individuals whose
               roles, visibility, and responsibilities leave no room for overcomplicated or fragmented care.
             </p>
             <p>
