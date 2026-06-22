@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import MemberEmergencyPage from './MemberEmergencyPage.jsx'
+import { MEMBER_AREA_ROUTE } from './memberEmergencyProfile.js'
 
 const initialForm = {
   fullName: '',
@@ -75,6 +77,11 @@ function App() {
   const [submitted, setSubmitted] = useState(false)
   const [step, setStep] = useState(1)
   const [emergencyConfirmed, setEmergencyConfirmed] = useState(false)
+  const isMemberAreaRoute = window.location.pathname.replace(/\/$/, '') === MEMBER_AREA_ROUTE
+
+  if (isMemberAreaRoute) {
+    return <MemberEmergencyPage />
+  }
 
   const onChange = (event) => {
     const { name, type, value, checked } = event.target
