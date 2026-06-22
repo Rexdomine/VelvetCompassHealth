@@ -39,8 +39,8 @@ function PinGate({ pin, error, onPinChange, onSubmit }) {
             Protected clinical summary
           </h1>
           <p className="mt-6 text-sm md:text-base font-light leading-relaxed text-background-light/75">
-            This proof-of-concept page represents the QR-code destination printed on a Velvet Compass Health member
-            card. Enter the card PIN to view the demo emergency profile.
+            Enter the secure PIN printed on the member card to access their emergency clinical summary and coordination
+            details.
           </p>
 
           <form className="mt-10 space-y-6" onSubmit={onSubmit}>
@@ -67,13 +67,13 @@ function PinGate({ pin, error, onPinChange, onSubmit }) {
               className="w-full bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-[0.28em] text-white transition hover:bg-secondary hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
               type="submit"
             >
-              Unlock Profile
+              Unlock secure profile
             </button>
           </form>
 
           <p className="mt-8 border-t border-secondary/10 pt-6 text-xs font-light leading-relaxed text-background-light/55">
-            In a live system this access layer would be server-side protected. This static demo intentionally keeps the
-            flow simple for stakeholder review.
+            Access is intended for authorised clinical review during urgent care. If you are not involved in this
+            member’s care, please close this page and contact Velvet Compass Health.
           </p>
         </section>
       </div>
@@ -95,24 +95,27 @@ function EmergencyProfile() {
               Emergency Profile
             </span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-12 lg:gap-16 items-end pt-14 md:pt-20">
-            <div className="relative max-w-sm">
-              <div className="aspect-[4/5] overflow-hidden bg-background-alt">
-                <img
-                  alt={`Profile portrait for ${profile.memberName}`}
-                  className="h-full w-full object-cover mix-blend-luminosity opacity-95"
-                  src={profile.portraitSrc}
-                />
+          <div className="pt-14 md:pt-20">
+            <div className="rounded-[2rem] border border-secondary/20 bg-background-light/[0.05] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+              <div className="flex items-center gap-5 md:gap-8">
+                <div className="shrink-0 rounded-full border border-secondary/35 bg-background-alt p-1 shadow-xl">
+                  <img
+                    alt={`Profile portrait for ${profile.memberName}`}
+                    className="h-20 w-20 md:h-36 md:w-36 rounded-full object-cover mix-blend-luminosity opacity-95"
+                    src={profile.portraitSrc}
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-secondary/75">{profile.memberLabel}</p>
+                  <h1 className="mt-3 font-display text-2xl md:text-5xl lg:text-6xl leading-tight text-background-light">
+                    {profile.memberName}
+                  </h1>
+                  <p className="mt-5 max-w-3xl text-base md:text-lg font-light leading-relaxed text-background-light/82">
+                    This page contains emergency medical information for this Velvet Compass Health member. {profile.overview}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="pb-2">
-              <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-secondary/75">{profile.memberLabel}</p>
-              <h1 className="mt-5 font-display text-4xl md:text-6xl leading-tight text-background-light">
-                {profile.memberName}
-              </h1>
-              <p className="mt-8 max-w-3xl text-base md:text-lg font-light leading-relaxed text-background-light/82">
-                This page contains emergency medical information for this Velvet Compass Health member. {profile.overview}
-              </p>
+
               <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="border border-secondary/20 p-4">
                   <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-secondary/70">Blood Group</p>
@@ -212,7 +215,7 @@ export default function MemberEmergencyPage() {
       return
     }
 
-    setError('The PIN entered does not match this demo member card.')
+    setError('The PIN entered does not match this member card.')
   }
 
   if (!unlocked) {
