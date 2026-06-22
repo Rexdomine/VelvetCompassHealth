@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import {
   MEMBER_AREA_ROUTE,
@@ -47,5 +48,15 @@ describe('member emergency profile POC data', () => {
 
     const fallbackCopy = getEmergencyProfileCopy('unsupported')
     expect(fallbackCopy.memberLabel).toBe('Emergency Medical Information')
+  })
+
+  it('keeps the PIN and unlocked hero areas on the lighter brand experience', () => {
+    const pageSource = readFileSync(new URL('../src/MemberEmergencyPage.jsx', import.meta.url), 'utf8')
+
+    expect(pageSource).toContain('min-h-screen bg-background-light text-charcoal relative overflow-hidden')
+    expect(pageSource).toContain('relative overflow-hidden bg-secondary/35 text-charcoal')
+    expect(pageSource).toContain('rounded-[2rem] border border-secondary/70 bg-background-light/90')
+    expect(pageSource).not.toContain('bg-charcoal text-background-light relative overflow-hidden')
+    expect(pageSource).not.toContain('relative overflow-hidden bg-charcoal text-background-light')
   })
 })

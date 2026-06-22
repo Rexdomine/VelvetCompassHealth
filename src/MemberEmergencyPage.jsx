@@ -8,10 +8,10 @@ import {
 
 function LanguageSelector({ language, onLanguageChange, copy }) {
   return (
-    <label className="block text-[10px] font-bold uppercase tracking-[0.24em] text-secondary/80">
+    <label className="block text-[10px] font-bold uppercase tracking-[0.24em] text-charcoal/75">
       {copy.languageLabel}
       <select
-        className="mt-3 w-full border border-secondary/35 bg-charcoal/90 px-4 py-3 text-sm normal-case tracking-normal text-background-light outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+        className="mt-3 w-full border border-secondary/70 bg-background-light px-4 py-3 text-sm normal-case tracking-normal text-charcoal outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
         onChange={(event) => onLanguageChange(event.target.value)}
         value={language}
       >
@@ -50,10 +50,10 @@ function PinGate({ copy, language, pin, error, onLanguageChange, onPinChange, on
   const isRtl = language === 'ar'
 
   return (
-    <main className="min-h-screen bg-charcoal text-background-light relative overflow-hidden" dir={isRtl ? 'rtl' : 'ltr'}>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(252,226,160,0.2),transparent_34%),linear-gradient(135deg,rgba(252,226,160,0.08),transparent_46%)]" />
+    <main className="min-h-screen bg-background-light text-charcoal relative overflow-hidden" dir={isRtl ? 'rtl' : 'ltr'}>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(252,226,160,0.65),transparent_34%),linear-gradient(135deg,rgba(252,226,160,0.28),transparent_46%)]" />
       <div className="relative z-10 min-h-screen flex items-center justify-center px-6 py-16">
-        <section className="w-full max-w-xl border border-secondary/40 bg-background-light/[0.04] backdrop-blur-sm p-8 md:p-12 shadow-2xl">
+        <section className="w-full max-w-xl border border-secondary/70 bg-background-light/95 backdrop-blur-sm p-8 md:p-12 shadow-2xl">
           <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
             <img
               alt="Velvet Compass Health logo"
@@ -66,24 +66,24 @@ function PinGate({ copy, language, pin, error, onLanguageChange, onPinChange, on
             </div>
           </div>
 
-          <p className="mt-10 text-[11px] font-bold uppercase tracking-[0.28em] text-secondary">{copy.pin.eyebrow}</p>
-          <h1 className="mt-5 font-display text-4xl md:text-5xl leading-tight text-background-light">
+          <p className="mt-10 text-[11px] font-bold uppercase tracking-[0.28em] text-charcoal/75">{copy.pin.eyebrow}</p>
+          <h1 className="mt-5 font-display text-4xl md:text-5xl leading-tight text-charcoal">
             {copy.pin.title}
           </h1>
-          <p className="mt-6 text-sm md:text-base font-light leading-relaxed text-background-light/85">
+          <p className="mt-6 text-sm md:text-base font-light leading-relaxed text-charcoal/85">
             {copy.pin.intro}
           </p>
 
           <form className="mt-10 space-y-6" onSubmit={onSubmit}>
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-[0.24em] text-secondary" htmlFor="member-pin">
+              <label className="block text-[10px] font-bold uppercase tracking-[0.24em] text-charcoal/75" htmlFor="member-pin">
                 {copy.pin.label}
               </label>
               <input
                 aria-describedby={error ? 'member-pin-error' : undefined}
                 aria-invalid={Boolean(error)}
                 autoComplete="one-time-code"
-                className="mt-3 w-full border border-secondary/35 bg-transparent px-5 py-4 text-2xl tracking-[0.6em] text-secondary outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                className="mt-3 w-full border border-secondary/70 bg-white/35 px-5 py-4 text-2xl tracking-[0.6em] text-charcoal outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
                 id="member-pin"
                 inputMode="numeric"
                 maxLength="8"
@@ -93,16 +93,16 @@ function PinGate({ copy, language, pin, error, onLanguageChange, onPinChange, on
                 value={pin}
               />
             </div>
-            {error ? <p className="text-sm text-secondary" id="member-pin-error" role="alert">{error}</p> : null}
+            {error ? <p className="text-sm font-semibold text-primary" id="member-pin-error" role="alert">{error}</p> : null}
             <button
-              className="w-full bg-secondary px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-charcoal transition hover:bg-background-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+              className="w-full bg-secondary px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-charcoal transition hover:bg-background-alt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
               type="submit"
             >
               {copy.pin.submit}
             </button>
           </form>
 
-          <p className="mt-8 border-t border-secondary/20 pt-6 text-xs font-light leading-relaxed text-background-light/70">
+          <p className="mt-8 border-t border-secondary/45 pt-6 text-xs font-light leading-relaxed text-charcoal/70">
             {copy.pin.footer}
           </p>
         </section>
@@ -135,20 +135,20 @@ function EmergencyProfile({ copy, language, onLanguageChange }) {
 
   return (
     <main className="min-h-screen bg-background-light text-charcoal" dir={isRtl ? 'rtl' : 'ltr'}>
-      <header className="relative overflow-hidden bg-charcoal text-background-light">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(252,226,160,0.18),transparent_34%)]" />
+      <header className="relative overflow-hidden bg-secondary/35 text-charcoal">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(252,226,160,0.7),transparent_34%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-8 md:py-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <img alt="Velvet Compass Health logo" className="h-12 md:h-14 w-auto object-contain" src="/logo-header.png" />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               <LanguageSelector copy={copy} language={language} onLanguageChange={onLanguageChange} />
-              <span className="inline-flex border border-secondary/40 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-secondary">
+              <span className="inline-flex border border-secondary/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-charcoal/75">
                 {copy.headerBadge}
               </span>
             </div>
           </div>
           <div className="pt-14 md:pt-20">
-            <div className="rounded-[2rem] border border-secondary/30 bg-background-light/[0.05] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+            <div className="rounded-[2rem] border border-secondary/70 bg-background-light/90 p-6 md:p-8 shadow-2xl backdrop-blur-sm">
               <div className="flex items-center gap-5 md:gap-8">
                 <div className="shrink-0 rounded-full border border-secondary/45 bg-background-alt p-1 shadow-xl">
                   <img
@@ -158,28 +158,28 @@ function EmergencyProfile({ copy, language, onLanguageChange }) {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">{copy.memberLabel}</p>
-                  <h1 className="mt-3 font-display text-2xl md:text-5xl lg:text-6xl leading-tight text-background-light">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-charcoal/75">{copy.memberLabel}</p>
+                  <h1 className="mt-3 font-display text-2xl md:text-5xl lg:text-6xl leading-tight text-charcoal">
                     {profile.memberName}
                   </h1>
-                  <p className="mt-5 max-w-3xl text-base md:text-lg font-light leading-relaxed text-background-light/88">
+                  <p className="mt-5 max-w-3xl text-base md:text-lg font-light leading-relaxed text-charcoal/82">
                     {copy.overviewPrefix} {copy.overview}
                   </p>
                 </div>
               </div>
 
               <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="border border-secondary/30 p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{copy.labels.bloodGroup}</p>
-                  <p className="mt-2 text-3xl font-display text-secondary">{profile.criticalAlerts.bloodGroup}</p>
+                <div className="border border-secondary/70 bg-white/30 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-charcoal/75">{copy.labels.bloodGroup}</p>
+                  <p className="mt-2 text-3xl font-display text-charcoal">{profile.criticalAlerts.bloodGroup}</p>
                 </div>
-                <div className="border border-secondary/30 p-4 md:col-span-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{copy.labels.allergies}</p>
-                  <p className="mt-2 text-base font-semibold text-background-light">{profile.criticalAlerts.allergies.join(', ')}</p>
+                <div className="border border-secondary/70 bg-white/30 p-4 md:col-span-2">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-charcoal/75">{copy.labels.allergies}</p>
+                  <p className="mt-2 text-base font-semibold text-charcoal">{profile.criticalAlerts.allergies.join(', ')}</p>
                 </div>
-                <div className="border border-secondary/30 p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{copy.labels.anticoagulants}</p>
-                  <p className="mt-2 text-2xl font-display text-secondary">{anticoagulantStatus}</p>
+                <div className="border border-secondary/70 bg-white/30 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-charcoal/75">{copy.labels.anticoagulants}</p>
+                  <p className="mt-2 text-2xl font-display text-charcoal">{anticoagulantStatus}</p>
                 </div>
               </div>
             </div>
@@ -223,7 +223,7 @@ function EmergencyProfile({ copy, language, onLanguageChange }) {
                         ) : null}
                       </div>
                       <a
-                        className="inline-flex shrink-0 items-center justify-center bg-secondary px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-charcoal hover:text-background-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                        className="inline-flex shrink-0 items-center justify-center border border-secondary px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-charcoal transition hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
                         href={`tel:${contact.phone.replaceAll(' ', '')}`}
                       >
                         {copy.call} {contact.phone}
@@ -244,7 +244,7 @@ function EmergencyProfile({ copy, language, onLanguageChange }) {
               <p className="mt-2 text-sm uppercase tracking-[0.14em] text-charcoal/75">{copy.coordinationOffice.description}</p>
               <p className="mt-4 text-base font-semibold text-charcoal">{copy.coordinationOffice.service}</p>
               <a
-                className="mt-6 inline-flex items-center justify-center bg-secondary px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-charcoal hover:text-background-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                className="mt-6 inline-flex items-center justify-center border border-secondary px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-charcoal transition hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
                 href={`tel:${profile.contacts[0].phone.replaceAll(' ', '')}`}
               >
                 {copy.coordinationOffice.call}
