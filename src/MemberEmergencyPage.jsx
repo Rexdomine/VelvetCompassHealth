@@ -1,11 +1,35 @@
 import { useState } from 'react'
-import { emergencyProfile, isValidMemberPin } from './memberEmergencyProfile.js'
+import {
+  emergencyProfile,
+  getEmergencyProfileCopy,
+  isValidMemberPin,
+  languageOptions,
+} from './memberEmergencyProfile.js'
+
+function LanguageSelector({ language, onLanguageChange, copy }) {
+  return (
+    <label className="block text-[10px] font-bold uppercase tracking-[0.24em] text-secondary/80">
+      {copy.languageLabel}
+      <select
+        className="mt-3 w-full border border-secondary/35 bg-charcoal/90 px-4 py-3 text-sm normal-case tracking-normal text-background-light outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+        onChange={(event) => onLanguageChange(event.target.value)}
+        value={language}
+      >
+        {languageOptions.map((option) => (
+          <option key={option.code} value={option.code}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  )
+}
 
 function DetailRow({ label, value, emphasis = false }) {
   return (
-    <div className="border-b border-primary/15 py-4 last:border-b-0">
-      <dt className="text-[10px] font-bold uppercase tracking-[0.26em] text-primary/80">{label}</dt>
-      <dd className={`mt-2 text-base leading-relaxed ${emphasis ? 'font-semibold text-charcoal' : 'font-light text-charcoal/80'}`}>
+    <div className="border-b border-secondary/25 py-4 last:border-b-0">
+      <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-charcoal/75">{label}</dt>
+      <dd className={`mt-2 text-base leading-relaxed ${emphasis ? 'font-semibold text-charcoal' : 'font-light text-charcoal/85'}`}>
         {value}
       </dd>
     </div>
@@ -14,45 +38,52 @@ function DetailRow({ label, value, emphasis = false }) {
 
 function ProfileSection({ eyebrow, title, children, urgent = false }) {
   return (
-    <section className={`rounded-sm border bg-background-light/95 p-6 md:p-8 shadow-sm ${urgent ? 'border-primary/40' : 'border-primary/15'}`}>
-      <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/75">{eyebrow}</p>
+    <section className={`rounded-sm border bg-background-light/95 p-6 md:p-8 shadow-sm ${urgent ? 'border-secondary/60' : 'border-secondary/35'}`}>
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/75">{eyebrow}</p>
       <h2 className="mt-3 font-display text-2xl md:text-3xl text-charcoal">{title}</h2>
       <div className="mt-6">{children}</div>
     </section>
   )
 }
 
-function PinGate({ pin, error, onPinChange, onSubmit }) {
+function PinGate({ copy, language, pin, error, onLanguageChange, onPinChange, onSubmit }) {
+  const isRtl = language === 'ar'
+
   return (
-    <main className="min-h-screen bg-charcoal text-background-light relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,88,22,0.32),transparent_34%),linear-gradient(135deg,rgba(252,226,160,0.08),transparent_46%)]" />
+    <main className="min-h-screen bg-charcoal text-background-light relative overflow-hidden" dir={isRtl ? 'rtl' : 'ltr'}>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(252,226,160,0.2),transparent_34%),linear-gradient(135deg,rgba(252,226,160,0.08),transparent_46%)]" />
       <div className="relative z-10 min-h-screen flex items-center justify-center px-6 py-16">
-        <section className="w-full max-w-xl border border-primary/35 bg-background-light/[0.04] backdrop-blur-sm p-8 md:p-12 shadow-2xl">
-          <img
-            alt="Velvet Compass Health logo"
-            className="h-16 w-auto object-contain mb-10"
-            decoding="async"
-            src="/logo-header.png"
-          />
-          <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-secondary/70">Member Emergency Access</p>
+        <section className="w-full max-w-xl border border-secondary/40 bg-background-light/[0.04] backdrop-blur-sm p-8 md:p-12 shadow-2xl">
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+            <img
+              alt="Velvet Compass Health logo"
+              className="h-16 w-auto object-contain"
+              decoding="async"
+              src="/logo-header.png"
+            />
+            <div className="w-full sm:max-w-48">
+              <LanguageSelector copy={copy} language={language} onLanguageChange={onLanguageChange} />
+            </div>
+          </div>
+
+          <p className="mt-10 text-[11px] font-bold uppercase tracking-[0.28em] text-secondary">{copy.pin.eyebrow}</p>
           <h1 className="mt-5 font-display text-4xl md:text-5xl leading-tight text-background-light">
-            Protected clinical summary
+            {copy.pin.title}
           </h1>
-          <p className="mt-6 text-sm md:text-base font-light leading-relaxed text-background-light/75">
-            Enter the secure PIN printed on the member card to access their emergency clinical summary and coordination
-            details.
+          <p className="mt-6 text-sm md:text-base font-light leading-relaxed text-background-light/85">
+            {copy.pin.intro}
           </p>
 
           <form className="mt-10 space-y-6" onSubmit={onSubmit}>
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-[0.28em] text-secondary/70" htmlFor="member-pin">
-                Card PIN
+              <label className="block text-[10px] font-bold uppercase tracking-[0.24em] text-secondary" htmlFor="member-pin">
+                {copy.pin.label}
               </label>
               <input
                 aria-describedby={error ? 'member-pin-error' : undefined}
                 aria-invalid={Boolean(error)}
                 autoComplete="one-time-code"
-                className="mt-3 w-full border border-secondary/20 bg-transparent px-5 py-4 text-2xl tracking-[0.6em] text-secondary outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                className="mt-3 w-full border border-secondary/35 bg-transparent px-5 py-4 text-2xl tracking-[0.6em] text-secondary outline-none transition focus:border-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
                 id="member-pin"
                 inputMode="numeric"
                 maxLength="8"
@@ -64,16 +95,15 @@ function PinGate({ pin, error, onPinChange, onSubmit }) {
             </div>
             {error ? <p className="text-sm text-secondary" id="member-pin-error" role="alert">{error}</p> : null}
             <button
-              className="w-full bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-[0.28em] text-white transition hover:bg-secondary hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+              className="w-full bg-secondary px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-charcoal transition hover:bg-background-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
               type="submit"
             >
-              Unlock secure profile
+              {copy.pin.submit}
             </button>
           </form>
 
-          <p className="mt-8 border-t border-secondary/10 pt-6 text-xs font-light leading-relaxed text-background-light/55">
-            Access is intended for authorised clinical review during urgent care. If you are not involved in this
-            member’s care, please close this page and contact Velvet Compass Health.
+          <p className="mt-8 border-t border-secondary/20 pt-6 text-xs font-light leading-relaxed text-background-light/70">
+            {copy.pin.footer}
           </p>
         </section>
       </div>
@@ -81,24 +111,46 @@ function PinGate({ pin, error, onPinChange, onSubmit }) {
   )
 }
 
-function EmergencyProfile() {
+function translateYesNo(copy, value) {
+  return value === 'Yes' ? copy.values.yes : copy.values.no
+}
+
+function translateContact(copy, contact) {
+  const relationshipByName = {
+    'Dr Yin Lao': copy.relationships.personalPhysician,
+    'Mr Onosenadia Joseph-Ebare': copy.relationships.brother,
+  }
+
+  return {
+    ...contact,
+    relationship: relationshipByName[contact.name] ?? contact.relationship,
+    availability: contact.availability ? copy.relationships.availableByPhoneAndWhatsApp : undefined,
+  }
+}
+
+function EmergencyProfile({ copy, language, onLanguageChange }) {
   const profile = emergencyProfile
+  const isRtl = language === 'ar'
+  const anticoagulantStatus = translateYesNo(copy, profile.criticalAlerts.currentlyOnAnticoagulants)
 
   return (
-    <main className="min-h-screen bg-background-light text-charcoal">
+    <main className="min-h-screen bg-background-light text-charcoal" dir={isRtl ? 'rtl' : 'ltr'}>
       <header className="relative overflow-hidden bg-charcoal text-background-light">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(252,226,160,0.16),transparent_34%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(252,226,160,0.18),transparent_34%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-8 md:py-10">
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <img alt="Velvet Compass Health logo" className="h-12 md:h-14 w-auto object-contain" src="/logo-header.png" />
-            <span className="hidden sm:inline-flex border border-secondary/30 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-secondary/80">
-              Emergency Profile
-            </span>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <LanguageSelector copy={copy} language={language} onLanguageChange={onLanguageChange} />
+              <span className="inline-flex border border-secondary/40 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-secondary">
+                {copy.headerBadge}
+              </span>
+            </div>
           </div>
           <div className="pt-14 md:pt-20">
-            <div className="rounded-[2rem] border border-secondary/20 bg-background-light/[0.05] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+            <div className="rounded-[2rem] border border-secondary/30 bg-background-light/[0.05] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
               <div className="flex items-center gap-5 md:gap-8">
-                <div className="shrink-0 rounded-full border border-secondary/35 bg-background-alt p-1 shadow-xl">
+                <div className="shrink-0 rounded-full border border-secondary/45 bg-background-alt p-1 shadow-xl">
                   <img
                     alt={`Profile portrait for ${profile.memberName}`}
                     className="h-20 w-20 md:h-36 md:w-36 rounded-full object-cover mix-blend-luminosity opacity-95"
@@ -106,28 +158,28 @@ function EmergencyProfile() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-secondary/75">{profile.memberLabel}</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">{copy.memberLabel}</p>
                   <h1 className="mt-3 font-display text-2xl md:text-5xl lg:text-6xl leading-tight text-background-light">
                     {profile.memberName}
                   </h1>
-                  <p className="mt-5 max-w-3xl text-base md:text-lg font-light leading-relaxed text-background-light/82">
-                    This page contains emergency medical information for this Velvet Compass Health member. {profile.overview}
+                  <p className="mt-5 max-w-3xl text-base md:text-lg font-light leading-relaxed text-background-light/88">
+                    {copy.overviewPrefix} {copy.overview}
                   </p>
                 </div>
               </div>
 
               <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="border border-secondary/20 p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-secondary/70">Blood Group</p>
+                <div className="border border-secondary/30 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{copy.labels.bloodGroup}</p>
                   <p className="mt-2 text-3xl font-display text-secondary">{profile.criticalAlerts.bloodGroup}</p>
                 </div>
-                <div className="border border-secondary/20 p-4 md:col-span-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-secondary/70">Allergies</p>
+                <div className="border border-secondary/30 p-4 md:col-span-2">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{copy.labels.allergies}</p>
                   <p className="mt-2 text-base font-semibold text-background-light">{profile.criticalAlerts.allergies.join(', ')}</p>
                 </div>
-                <div className="border border-secondary/20 p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-secondary/70">Anticoagulants</p>
-                  <p className="mt-2 text-2xl font-display text-secondary">{profile.criticalAlerts.currentlyOnAnticoagulants}</p>
+                <div className="border border-secondary/30 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{copy.labels.anticoagulants}</p>
+                  <p className="mt-2 text-2xl font-display text-secondary">{anticoagulantStatus}</p>
                 </div>
               </div>
             </div>
@@ -136,63 +188,66 @@ function EmergencyProfile() {
       </header>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 md:py-16 space-y-8">
-        <ProfileSection eyebrow="Critical Alerts" title="Immediate safety information" urgent>
+        <ProfileSection eyebrow={copy.sections.criticalAlerts.eyebrow} title={copy.sections.criticalAlerts.title} urgent>
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
-            <DetailRow label="Allergies" value={profile.criticalAlerts.allergies.join(', ')} emphasis />
-            <DetailRow label="Blood Group" value={profile.criticalAlerts.bloodGroup} emphasis />
-            <DetailRow label="Currently on anticoagulants" value={profile.criticalAlerts.currentlyOnAnticoagulants} />
-            <DetailRow label="Medication safety flag" value={profile.criticalAlerts.medicationSafetyFlag} emphasis />
+            <DetailRow label={copy.labels.allergies} value={profile.criticalAlerts.allergies.join(', ')} emphasis />
+            <DetailRow label={copy.labels.bloodGroup} value={profile.criticalAlerts.bloodGroup} emphasis />
+            <DetailRow label={copy.labels.currentlyOnAnticoagulants} value={anticoagulantStatus} />
+            <DetailRow label={copy.labels.medicationSafetyFlag} value={copy.medicationSafetyFlag ?? profile.criticalAlerts.medicationSafetyFlag} emphasis />
           </dl>
         </ProfileSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8">
-          <ProfileSection eyebrow="Consent Information" title="Treatment consent indicators">
+          <ProfileSection eyebrow={copy.sections.consent.eyebrow} title={copy.sections.consent.title}>
             <dl>
-              <DetailRow label="Organ donor" value={profile.consent.organDonor} />
-              <DetailRow label="Blood transfusion consent" value={profile.consent.bloodTransfusionConsent} emphasis />
-              <DetailRow label="Blood products consent" value={profile.consent.bloodProductsConsent} emphasis />
+              <DetailRow label={copy.labels.organDonor} value={translateYesNo(copy, profile.consent.organDonor)} />
+              <DetailRow label={copy.labels.bloodTransfusionConsent} value={translateYesNo(copy, profile.consent.bloodTransfusionConsent)} emphasis />
+              <DetailRow label={copy.labels.bloodProductsConsent} value={translateYesNo(copy, profile.consent.bloodProductsConsent)} emphasis />
             </dl>
           </ProfileSection>
 
-          <ProfileSection eyebrow="Emergency Contacts" title="Clinical and family contacts">
+          <ProfileSection eyebrow={copy.sections.contacts.eyebrow} title={copy.sections.contacts.title}>
             <div className="space-y-5">
-              {profile.contacts.map((contact) => (
-                <article className="border border-primary/15 bg-white/30 p-5" key={contact.name}>
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                    <div>
-                      <h3 className="font-display text-2xl text-charcoal">{contact.name}</h3>
-                      <p className="mt-2 text-sm uppercase tracking-[0.2em] text-primary/75">
-                        {[contact.organisation, contact.relationship].filter(Boolean).join(' • ')}
-                      </p>
-                      {contact.availability ? (
-                        <p className="mt-3 text-sm font-light text-charcoal/70">{contact.availability}</p>
-                      ) : null}
+              {profile.contacts.map((contact) => {
+                const translatedContact = translateContact(copy, contact)
+                return (
+                  <article className="border border-secondary/35 bg-white/30 p-5" key={contact.name}>
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                      <div>
+                        <h3 className="font-display text-2xl text-charcoal">{contact.name}</h3>
+                        <p className="mt-2 text-sm uppercase tracking-[0.14em] text-charcoal/75">
+                          {[contact.organisation, translatedContact.relationship].filter(Boolean).join(' • ')}
+                        </p>
+                        {translatedContact.availability ? (
+                          <p className="mt-3 text-sm font-light text-charcoal/75">{translatedContact.availability}</p>
+                        ) : null}
+                      </div>
+                      <a
+                        className="inline-flex shrink-0 items-center justify-center bg-secondary px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-charcoal hover:text-background-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                        href={`tel:${contact.phone.replaceAll(' ', '')}`}
+                      >
+                        {copy.call} {contact.phone}
+                      </a>
                     </div>
-                    <a
-                      className="inline-flex shrink-0 items-center justify-center border border-primary px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary transition hover:bg-primary hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-                      href={`tel:${contact.phone.replaceAll(' ', '')}`}
-                    >
-                      Call {contact.phone}
-                    </a>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                )
+              })}
             </div>
           </ProfileSection>
         </div>
 
-        <ProfileSection eyebrow="Further Medical Information" title="Velvet Compass Health coordination">
+        <ProfileSection eyebrow={copy.sections.furtherInfo.eyebrow} title={copy.sections.furtherInfo.title}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-center">
-            <p className="text-lg font-light leading-relaxed text-charcoal/78">{profile.furtherMedicalInformation}</p>
-            <div className="border-l-2 border-primary bg-background-alt/45 p-6">
+            <p className="text-lg font-light leading-relaxed text-charcoal/82">{copy.furtherMedicalInformation}</p>
+            <div className="border-l-2 border-secondary bg-background-alt/45 p-6">
               <p className="font-display text-2xl text-charcoal">{profile.coordinationOffice.name}</p>
-              <p className="mt-2 text-sm uppercase tracking-[0.24em] text-primary/80">{profile.coordinationOffice.description}</p>
-              <p className="mt-4 text-base font-semibold text-charcoal">{profile.coordinationOffice.service}</p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-charcoal/75">{copy.coordinationOffice.description}</p>
+              <p className="mt-4 text-base font-semibold text-charcoal">{copy.coordinationOffice.service}</p>
               <a
-                className="mt-6 inline-flex items-center justify-center border border-primary px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary transition hover:bg-primary hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                className="mt-6 inline-flex items-center justify-center bg-secondary px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-charcoal hover:text-background-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
                 href={`tel:${profile.contacts[0].phone.replaceAll(' ', '')}`}
               >
-                Call coordination office
+                {copy.coordinationOffice.call}
               </a>
             </div>
           </div>
@@ -204,8 +259,15 @@ function EmergencyProfile() {
 
 export default function MemberEmergencyPage() {
   const [pin, setPin] = useState('')
+  const [language, setLanguage] = useState('en')
   const [unlocked, setUnlocked] = useState(false)
   const [error, setError] = useState('')
+  const copy = getEmergencyProfileCopy(language)
+
+  const onLanguageChange = (nextLanguage) => {
+    setLanguage(nextLanguage)
+    setError('')
+  }
 
   const onSubmit = (event) => {
     event.preventDefault()
@@ -215,12 +277,22 @@ export default function MemberEmergencyPage() {
       return
     }
 
-    setError('The PIN entered does not match this member card.')
+    setError(copy.pin.error)
   }
 
   if (!unlocked) {
-    return <PinGate error={error} onPinChange={setPin} onSubmit={onSubmit} pin={pin} />
+    return (
+      <PinGate
+        copy={copy}
+        error={error}
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onPinChange={setPin}
+        onSubmit={onSubmit}
+        pin={pin}
+      />
+    )
   }
 
-  return <EmergencyProfile />
+  return <EmergencyProfile copy={copy} language={language} onLanguageChange={onLanguageChange} />
 }
