@@ -35,9 +35,9 @@ describe('member emergency profile POC data', () => {
   })
 
   it('offers lightweight translated copy for the emergency profile demo', () => {
-    expect(languageOptions.map((option) => option.code)).toEqual(['en', 'fr', 'es', 'ar'])
+    expect(languageOptions.map((option) => option.code)).toEqual(['en', 'fr', 'es', 'de', 'ar'])
     expect(isSupportedLanguage('fr')).toBe(true)
-    expect(isSupportedLanguage('de')).toBe(false)
+    expect(isSupportedLanguage('de')).toBe(true)
 
     const frenchCopy = getEmergencyProfileCopy('fr')
     expect(frenchCopy.memberLabel).toBe('Informations médicales d’urgence')
@@ -45,6 +45,14 @@ describe('member emergency profile POC data', () => {
     expect(frenchCopy.sections.criticalAlerts.title).toBe('Informations de sécurité immédiates')
     expect(frenchCopy.values.yes).toBe('Oui')
     expect(frenchCopy.values.no).toBe('Non')
+
+    const germanCopy = getEmergencyProfileCopy('de')
+    expect(germanCopy.languageLabel).toBe('Seite übersetzen')
+    expect(germanCopy.memberLabel).toBe('Medizinische Notfallinformationen')
+    expect(germanCopy.pin.submit).toBe('Geschütztes Profil entsperren')
+    expect(germanCopy.sections.criticalAlerts.title).toBe('Sofortige Sicherheitsinformationen')
+    expect(germanCopy.values.yes).toBe('Ja')
+    expect(germanCopy.values.no).toBe('Nein')
 
     const fallbackCopy = getEmergencyProfileCopy('unsupported')
     expect(fallbackCopy.memberLabel).toBe('Emergency Medical Information')
