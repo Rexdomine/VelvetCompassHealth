@@ -5,6 +5,7 @@ export const languageOptions = [
   { code: 'en', label: 'English' },
   { code: 'fr', label: 'Français' },
   { code: 'es', label: 'Español' },
+  { code: 'de', label: 'Deutsch' },
   { code: 'ar', label: 'العربية' },
 ]
 
@@ -199,6 +200,57 @@ export const emergencyProfileTranslations = {
     medicationSafetyFlag:
       'Evitar las quinolonas cuando sea posible por riesgo de interacción con el perfil de medicación del paciente.',
     call: 'Llamar',
+  },
+  de: {
+    languageLabel: 'Seite übersetzen',
+    memberLabel: 'Medizinische Notfallinformationen',
+    headerBadge: 'Notfallprofil',
+    pin: {
+      eyebrow: 'Notfallzugang für Mitglieder',
+      title: 'Geschützte klinische Zusammenfassung',
+      intro:
+        'Geben Sie die sichere PIN ein, die auf der Mitgliederkarte aufgedruckt ist, um auf die klinische Notfallzusammenfassung und die Koordinationsdaten zuzugreifen.',
+      label: 'Karten-PIN',
+      submit: 'Geschütztes Profil entsperren',
+      footer:
+        'Dieser Zugriff ist für autorisierte klinische Prüfungen während einer dringenden Behandlung bestimmt. Wenn Sie nicht an der Versorgung dieses Mitglieds beteiligt sind, schließen Sie bitte diese Seite und kontaktieren Sie Velvet Compass Health.',
+      error: 'Die eingegebene PIN stimmt nicht mit dieser Mitgliederkarte überein.',
+    },
+    overviewPrefix: 'Diese Seite enthält medizinische Notfallinformationen für dieses Mitglied von Velvet Compass Health.',
+    overview:
+      'Wenn diese Person nicht kommunizieren kann, verwenden Sie bitte die folgenden Informationen für die dringende medizinische Versorgung und kontaktieren Sie Velvet Compass Health für die medizinische Koordination.',
+    labels: {
+      bloodGroup: 'Blutgruppe',
+      allergies: 'Allergien',
+      anticoagulants: 'Antikoagulanzien',
+      currentlyOnAnticoagulants: 'Derzeit Antikoagulanzien',
+      medicationSafetyFlag: 'Hinweis zur Arzneimittelsicherheit',
+      organDonor: 'Organspender',
+      bloodTransfusionConsent: 'Einwilligung zur Bluttransfusion',
+      bloodProductsConsent: 'Einwilligung zu Blutprodukten',
+    },
+    sections: {
+      criticalAlerts: { eyebrow: 'Kritische Hinweise', title: 'Sofortige Sicherheitsinformationen' },
+      consent: { eyebrow: 'Einwilligungsinformationen', title: 'Hinweise zur Behandlungseinwilligung' },
+      contacts: { eyebrow: 'Notfallkontakte', title: 'Klinische und familiäre Kontakte' },
+      furtherInfo: { eyebrow: 'Weitere medizinische Informationen', title: 'Velvet Compass Health Koordination' },
+    },
+    values: { yes: 'Ja', no: 'Nein' },
+    relationships: {
+      personalPhysician: 'Hausarzt',
+      brother: 'Bruder',
+      availableByPhoneAndWhatsApp: 'Telefonisch und per WhatsApp erreichbar',
+    },
+    coordinationOffice: {
+      description: 'Private Arztpraxis',
+      service: 'Medizinische Notfallkoordination',
+      call: 'Koordinationsstelle anrufen',
+    },
+    furtherMedicalInformation:
+      'Für ausführlichere medizinische Informationen, Arzneimittelhistorie, Facharztbriefe oder die Koordination der Versorgung kontaktieren Sie bitte direkt Velvet Compass Health.',
+    medicationSafetyFlag:
+      'Vermeiden Sie nach Möglichkeit Chinolone wegen des Risikos von Wechselwirkungen mit dem Medikationsprofil des Patienten.',
+    call: 'Anrufen',
   },
   ar: {
     languageLabel: 'ترجمة الصفحة',
