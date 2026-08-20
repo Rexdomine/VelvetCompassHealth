@@ -1,4 +1,5 @@
 import SiteHeader from './components/SiteHeader.jsx'
+import SupportingMedia from './components/SupportingMedia.jsx'
 import TrajectoryMark from './components/TrajectoryMark.jsx'
 
 const journey = [
@@ -87,12 +88,12 @@ export default function HomePage() {
 
         <section className="intelligence-section page-section" id="intelligence">
           <div className="page-shell intelligence-grid">
-            <div className="signal-panel" aria-hidden="true">
-              <p>Longitudinal view</p>
-              <div className="signal-axis"><span>Context</span><span>Change</span><span>Direction</span></div>
-              <TrajectoryMark variant="route" />
-              <div className="signal-note"><span /> Patterns interpreted in context</div>
-            </div>
+            <SupportingMedia
+              className="health-intelligence-media"
+              poster="/media/vch-health-intelligence.webp"
+              webm="/media/vch-health-intelligence.webm"
+              mp4="/media/vch-health-intelligence.mp4"
+            />
             <SectionHeading eyebrow="Health intelligence" title={<>Information becomes useful when it is <em>understood.</em></>}>
               <p>Investigations are interpreted in context, not isolation. The office considers each data point as part of your broader health narrative, helping to distinguish what matters from what merely creates noise.</p>
               <p>This is doctor-led interpretation: thoughtful, proportionate and connected to decisions over time.</p>
@@ -107,13 +108,12 @@ export default function HomePage() {
               <p>For internationally mobile individuals and families, VCH can help coordinate care across disciplines, institutions and countries while keeping one consistent clinical view.</p>
               <p>Support is needs-led and may sit across NHS and private settings, with specialists selected around the precise circumstances rather than a fixed directory.</p>
             </SectionHeading>
-            <div className="compass-graphic" aria-hidden="true">
-              <span className="compass-north">N</span>
-              <span className="compass-ring ring-one" />
-              <span className="compass-ring ring-two" />
-              <span className="compass-core" />
-              <span className="compass-route" />
-            </div>
+            <SupportingMedia
+              className="international-continuity-media"
+              poster="/media/vch-international-continuity.webp"
+              webm="/media/vch-international-continuity.webm"
+              mp4="/media/vch-international-continuity.mp4"
+            />
           </div>
         </section>
 
