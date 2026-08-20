@@ -4,6 +4,10 @@
     {
       "source": "/memberarea",
       "destination": "/index.html"
+    },
+    {
+      "source": "/memberarea/",
+      "destination": "/index.html"
     }
   ],
   "headers": [
