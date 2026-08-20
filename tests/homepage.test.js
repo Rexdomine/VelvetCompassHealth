@@ -25,7 +25,7 @@ describe('public homepage milestone', () => {
   })
 
   it('uses working homepage anchors and semantic landmarks', () => {
-    for (const id of ['continuity', 'how-it-works', 'intelligence', 'international', 'medical-director', 'contact']) {
+    for (const id of ['continuity', 'how-it-works', 'intelligence', 'international', 'expertise', 'contact']) {
       expect(homepageSource).toContain(`id="${id}"`)
       expect(homepageSource).toContain(`href="#${id}"`)
     }
@@ -35,6 +35,16 @@ describe('public homepage milestone', () => {
     expect(composedSource).toContain('<main')
     expect(composedSource).toContain('<footer')
     expect(homepageSource).toContain('className="skip-link"')
+  })
+
+  it('presents institutional expertise without a founder profile', () => {
+    expect(homepageSource).toContain('id="expertise"')
+    expect(composedSource).toContain('href="#expertise">Expertise</a>')
+    expect(composedSource).not.toContain('#medical-director')
+    expect(composedSource).not.toContain('Medical Director')
+    expect(homepageSource).not.toContain('/images/founder-portrait-new.jpg')
+    expect(homepageSource).not.toMatch(/Dr Ehizele Ijeoma Joseph-Ebare|Dr Joseph-Ebare/)
+    expect(homepageSource).not.toContain('“Clinical excellence and emotional intelligence')
   })
 
   it('uses the supplied art-directed media with a reduced-motion fallback contract', () => {
@@ -93,5 +103,9 @@ describe('public homepage milestone', () => {
     expect(stylesSource).toContain('--bronze-text: #825b32;')
     expect(stylesSource).toMatch(/\.eyebrow\s*\{[^}]*color:\s*var\(--bronze-text\)/)
     expect(stylesSource).toMatch(/\.intelligence-section \.eyebrow\s*\{[^}]*color:\s*#c49a6c/)
+  })
+
+  it('uses the accessible bronze text token for proposition numbers', () => {
+    expect(stylesSource).toMatch(/\.proposition-number\s*\{[^}]*color:\s*var\(--bronze-text\)/)
   })
 })

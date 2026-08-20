@@ -5,7 +5,7 @@ const links = [
   ['How it works', 'how-it-works'],
   ['Health intelligence', 'intelligence'],
   ['International', 'international'],
-  ['Medical Director', 'medical-director'],
+  ['Expertise', 'expertise'],
 ]
 
 export default function SiteHeader() {

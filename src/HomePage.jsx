@@ -117,18 +117,23 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="director-section page-section" id="medical-director">
-          <div className="page-shell director-grid">
-            <div className="director-portrait">
-              <img src="/images/founder-portrait-new.jpg" alt="Dr Ehizele Ijeoma Joseph-Ebare" width="900" height="1125" loading="lazy" />
-              <div className="portrait-caption"><span>Medical Director</span><span>London</span></div>
+        <section className="expertise-section page-section" id="expertise">
+          <div className="page-shell">
+            <div className="expertise-intro">
+              <p className="eyebrow">Accountable clinical leadership</p>
+              <p>VCH is an established private medical office with doctor-led accountability at the centre of each member relationship.</p>
             </div>
-            <div>
-              <SectionHeading eyebrow="Accountable clinical leadership" title={<>Dr Ehizele Ijeoma <em>Joseph-Ebare</em></>}>
-                <p>Dr Joseph-Ebare is a UK-trained medical doctor educated at Barts and The London School of Medicine and Dentistry. Her clinical training has included cardiology, acute medicine, emergency medicine and complex multi-morbidity across major London teaching hospitals.</p>
-                <p>Velvet Compass Health reflects her professional standard: precise, accountable and resistant to both medical excess and medical neglect.</p>
-              </SectionHeading>
-              <blockquote>“Clinical excellence and emotional intelligence are not opposing forces. Decisive medicine requires both.”</blockquote>
+            <div className="expertise-pair">
+              <article className="expertise-proposition">
+                <p className="proposition-number" aria-hidden="true">01</p>
+                <h2>Selected clinical <em>expertise.</em></h2>
+                <p>Specialist depth is selected according to need and coordinated around the member. Respiratory medicine, pain medicine, cardiology and nutrition are examples within a wider network—not a fixed or complete directory.</p>
+              </article>
+              <article className="expertise-proposition">
+                <p className="proposition-number" aria-hidden="true">02</p>
+                <h2>Health as an <em>asset.</em></h2>
+                <p>Ongoing clarity and continuity support proportionate health decisions over time for people whose complex lives require a considered, connected clinical view.</p>
+              </article>
             </div>
           </div>
         </section>
@@ -159,7 +164,7 @@ export default function HomePage() {
             <a href="#how-it-works">How it works</a>
             <a href="#intelligence">Health intelligence</a>
             <a href="#international">International</a>
-            <a href="#medical-director">Medical Director</a>
+            <a href="#expertise">Expertise</a>
             <a href="#contact">Enquire</a>
             <a href="/memberarea">Member sign in</a>
           </nav>
