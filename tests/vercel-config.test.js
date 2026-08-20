@@ -12,12 +12,13 @@ const headersForAllResponses = Object.fromEntries(
 )
 
 describe('Vercel hosted preview configuration', () => {
-  it('rewrites only the member-area route family to the SPA entry point', () => {
+  it('rewrites only the exact member-area route to the SPA entry point', () => {
     expect(vercelConfig.rewrites).toEqual([
-      { source: '/memberarea/:path*', destination: '/index.html' },
+      { source: '/memberarea', destination: '/index.html' },
     ])
 
     const rewriteSources = vercelConfig.rewrites.map(({ source }) => source)
+    expect(rewriteSources).not.toContain('/memberarea/:path*')
     expect(rewriteSources).not.toContain('/(.*)')
     expect(rewriteSources).not.toContain('/api/:path*')
     expect(rewriteSources).not.toContain('/media/:path*')

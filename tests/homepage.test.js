@@ -14,6 +14,7 @@ describe('public homepage milestone', () => {
     expect(getProductLane('/')).toBe('homepage')
     expect(getProductLane('/memberarea')).toBe('memberarea')
     expect(getProductLane('/memberarea/')).toBe('memberarea')
+    expect(getProductLane('/memberarea/example')).toBe('homepage')
     expect(getProductLane('/membership')).toBe('homepage')
   })
 
