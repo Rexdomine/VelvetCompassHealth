@@ -128,6 +128,8 @@ em { color: var(--bronze); font-weight: inherit; }
 .supporting-media { width: 100%; aspect-ratio: 4 / 3; position: relative; overflow: hidden; }
 .supporting-media img, .supporting-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .supporting-media video { z-index: 1; }
+.supporting-media__video { opacity: 0; transition: opacity .35s ease; }
+.supporting-media__video.is-ready { opacity: 1; }
 .health-intelligence-media { border: 1px solid #b68a5a45; background: #101529; }
 .health-intelligence-media img, .health-intelligence-media video { object-position: center center; }
 

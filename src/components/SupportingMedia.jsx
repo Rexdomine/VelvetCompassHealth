@@ -5,6 +5,7 @@ const DESKTOP_MOTION_QUERY = '(min-width: 769px) and (prefers-reduced-motion: no
 export default function SupportingMedia({ poster, webm, mp4, className = '' }) {
   const containerRef = useRef(null)
   const [isActive, setIsActive] = useState(false)
+  const [isVideoReady, setIsVideoReady] = useState(false)
 
   useEffect(() => {
     if (!window.matchMedia || !window.IntersectionObserver) return undefined
@@ -13,13 +14,15 @@ export default function SupportingMedia({ poster, webm, mp4, className = '' }) {
     let isIntersecting = false
 
     const updateActivation = () => {
-      setIsActive(mediaQuery.matches && isIntersecting)
+      const shouldActivate = mediaQuery.matches && isIntersecting
+      setIsActive(shouldActivate)
+      if (!shouldActivate) setIsVideoReady(false)
     }
 
     const observer = new IntersectionObserver(([entry]) => {
       isIntersecting = entry.isIntersecting
       updateActivation()
-    }, { rootMargin: '200px 0px' })
+    }, { rootMargin: '100% 0px' })
 
     const handleMediaChange = () => updateActivation()
     mediaQuery.addEventListener('change', handleMediaChange)
@@ -35,7 +38,16 @@ export default function SupportingMedia({ poster, webm, mp4, className = '' }) {
     <div ref={containerRef} className={`supporting-media ${className}`.trim()} aria-hidden="true">
       <img src={poster} alt="" width="960" height="720" loading="lazy" decoding="async" />
       {isActive ? (
-        <video autoPlay muted loop playsInline preload="none" tabIndex="-1">
+        <video
+          className={`supporting-media__video ${isVideoReady ? 'is-ready' : ''}`.trim()}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          tabIndex="-1"
+          onCanPlay={() => setIsVideoReady(true)}
+        >
           <source src={webm} type="video/webm" />
           <source src={mp4} type="video/mp4" />
         </video>

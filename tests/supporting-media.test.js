@@ -40,9 +40,18 @@ describe('homepage supporting media contract', () => {
     expect(mediaSource).toContain('matchMedia(DESKTOP_MOTION_QUERY)')
     expect(mediaSource).toContain('new IntersectionObserver')
     expect(mediaSource).toMatch(/entry\.isIntersecting/)
-    expect(mediaSource).toMatch(/rootMargin:\s*['"][^'"]+['"]/)
-    expect(mediaSource).toMatch(/setIsActive\(mediaQuery\.matches && isIntersecting\)/)
+    expect(mediaSource).toContain("rootMargin: '100% 0px'")
+    expect(mediaSource).toContain('const shouldActivate = mediaQuery.matches && isIntersecting')
+    expect(mediaSource).toContain('setIsActive(shouldActivate)')
     expect(mediaSource).not.toMatch(/IntersectionObserver[^]*setIsActive\(true\)/)
+  })
+
+  it('keeps the poster visible until the activated video is ready to play', () => {
+    expect(mediaSource).toContain('const [isVideoReady, setIsVideoReady] = useState(false)')
+    expect(mediaSource).toMatch(/<video[^>]+className=\{`supporting-media__video \$\{isVideoReady \? 'is-ready' : ''\}`\.trim\(\)\}/s)
+    expect(mediaSource).toMatch(/<video[^>]+onCanPlay=\{\(\) => setIsVideoReady\(true\)\}/s)
+    expect(mediaSource).toMatch(/if \(!shouldActivate\) setIsVideoReady\(false\)/)
+    expect(mediaSource).toMatch(/<img[\s\S]*\{isActive \? \([\s\S]*<video/)
   })
 
   it('mounts no video or sources until activated and tears them down after exit', () => {
