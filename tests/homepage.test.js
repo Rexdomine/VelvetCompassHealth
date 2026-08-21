@@ -61,6 +61,39 @@ describe('public homepage milestone', () => {
     expect(stylesSource).toContain('@media (prefers-reduced-motion: reduce)')
   })
 
+  it('keeps the fixed header on a cross-browser-safe paint path', () => {
+    const headerRule = stylesSource.match(/\.site-header\s*\{[^}]*\}/)?.[0] ?? ''
+
+    expect(headerRule).toContain('position: fixed')
+    expect(headerRule).not.toContain('backdrop-filter')
+  })
+
+  it('keeps exactly three explicitly identified principal cinematic moments', () => {
+    expect(homepageSource.match(/data-cinematic-moment=/g)).toHaveLength(3)
+    expect(homepageSource).toContain('data-cinematic-moment="living-compass"')
+    expect(homepageSource).toContain('data-cinematic-moment="health-intelligence"')
+    expect(homepageSource).toContain('data-cinematic-moment="international-coordination"')
+  })
+
+  it('preserves hero source priority and still-only delivery fences', () => {
+    const webmIndex = homepageSource.indexOf('src="/media/vch-living-compass-desktop.webm"')
+    const mp4Index = homepageSource.indexOf('src="/media/vch-living-compass-desktop.mp4"')
+
+    expect(webmIndex).toBeGreaterThan(-1)
+    expect(mp4Index).toBeGreaterThan(webmIndex)
+    expect(homepageSource.match(/media="\(min-width: 769px\) and \(prefers-reduced-motion: no-preference\)"/g)).toHaveLength(2)
+    expect(homepageSource).toMatch(/<picture className="hero-still">[\s\S]*media="\(max-width: 768px\)"[\s\S]*vch-living-compass-mobile\.webp/)
+    expect(stylesSource).toMatch(/@media \(max-width: 768px\)[\s\S]*?\.hero-media video \{ display: none; \}/)
+    expect(stylesSource).toMatch(/@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.hero-media video \{ display: none; \}/)
+  })
+
+  it('gives the two supporting moments distinct structural compositions', () => {
+    expect(homepageSource).toContain('className="intelligence-media-stage"')
+    expect(homepageSource).toContain('className="international-media-stage"')
+    expect(stylesSource).toMatch(/\.intelligence-media-stage\s*\{/)
+    expect(stylesSource).toMatch(/\.international-media-stage\s*\{/)
+  })
+
   it('discovers critical local fonts and viewport-specific hero art in initial HTML', () => {
     expect(indexSource).not.toMatch(/fonts\.(?:googleapis|gstatic)\.com/)
 
