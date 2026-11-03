@@ -1,6 +1,43 @@
+import { useEffect, useRef } from 'react'
 import './features/homepage/homepage.css'
 
 export default function HomePage() {
+  const heroFilmRef = useRef(null)
+
+  useEffect(() => {
+    const film = heroFilmRef.current
+    if (!film) return
+
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')
+    if (reducedMotion?.matches) {
+      film.pause()
+      return
+    }
+
+    const playFilm = () => {
+      film.muted = true
+      film.playsInline = true
+      film.setAttribute('webkit-playsinline', '')
+      film.play()?.catch(() => {
+        // Mobile browsers may still block autoplay in power-saving modes.
+      })
+    }
+    const resumeWhenVisible = () => {
+      if (!document.hidden) playFilm()
+    }
+
+    playFilm()
+    film.addEventListener('canplay', playFilm)
+    document.addEventListener('visibilitychange', resumeWhenVisible)
+    window.addEventListener('pageshow', resumeWhenVisible)
+
+    return () => {
+      film.removeEventListener('canplay', playFilm)
+      document.removeEventListener('visibilitychange', resumeWhenVisible)
+      window.removeEventListener('pageshow', resumeWhenVisible)
+    }
+  }, [])
+
   return (
 <main className="homepage" id="main-content">
       <svg className="trajectory" viewBox="0 0 1440 8400" preserveAspectRatio="none" aria-hidden="true">
@@ -44,17 +81,17 @@ export default function HomePage() {
         </header>
         <div className="hero-still" role="img" aria-label="Illustrative arrival scene at a private entrance"></div>
         <video
+          ref={heroFilmRef}
           className="hero-film"
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/vch-approved/vch-cinematic-arrival-hero.png"
+          src="/vch-approved/vch-arrival-film.mp4"
           aria-label="Cinematic arrival at a private medical office"
-        >
-          <source src="/vch-approved/vch-arrival-film.mp4" type="video/mp4" media="(prefers-reduced-motion: no-preference)" />
-        </video>
+        />
         <div className="hero-veil"></div>
         <div className="hero-copy">
           <p className="eyebrow light">Private members’ medical office</p>

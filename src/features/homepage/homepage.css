@@ -1250,6 +1250,16 @@ h2 em {
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
+  .mobile-navigation nav a:last-child {
+    width: max-content;
+    min-width: 160px;
+    margin-top: 18px;
+    padding: 15px 24px;
+    border-bottom: 0;
+    color: var(--white);
+    background: var(--burgundy);
+    text-align: center;
+  }
   .homepage .hero-copy {
     top: 28%;
     right: 28px;
@@ -1329,6 +1339,7 @@ h2 em {
   .homepage .membership-levels { margin: 30px 0; }
   .homepage .intelligence-panel,
   .homepage .borders-panel { padding: 28px 0; }
+  .homepage .borders-panel { min-height: 0; }
   .homepage .evidence-line { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
   .homepage .border-sequence { gap: 5px; }
   .homepage .border-sequence span { font-size: 16px; }

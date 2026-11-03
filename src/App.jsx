@@ -8,6 +8,7 @@ import MembershipPage from './MembershipPage.jsx'
 import EnquirePage from './EnquirePage.jsx'
 import MemberEmergencyPage from './MemberEmergencyPage.jsx'
 import { getProductLane } from './route.js'
+import './features/site-navigation/mobile-navigation.css'
 
 function App() {
   const lane = getProductLane(window.location.pathname)
