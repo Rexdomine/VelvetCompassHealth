@@ -2,7 +2,7 @@ services:
   - type: web
     name: velvet-compass-health
     env: node
-    branch: main
+    branch: codex/vch-live-visual-review-2026-11-03
     autoDeploy: true
     buildCommand: npm install --include=dev && npm run build
     startCommand: npm run start

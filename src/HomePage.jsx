@@ -1,183 +1,195 @@
-import SiteHeader from './components/SiteHeader.jsx'
-import SupportingMedia from './components/SupportingMedia.jsx'
-import TrajectoryMark from './components/TrajectoryMark.jsx'
-
-const journey = [
-  ['01', 'Understand', 'One doctor holds the full picture—your history, priorities and the context in which decisions are made.'],
-  ['02', 'Organise', 'Investigations, records and specialist opinions are brought into one clear, considered structure.'],
-  ['03', 'Coordinate', 'Care is directed across NHS and private settings, disciplines and institutions, around your precise needs.'],
-  ['04', 'Remain alongside', 'The relationship continues through decisions, transitions and change, reducing the friction of starting again.'],
-]
-
-function SectionHeading({ eyebrow, title, children }) {
-  return (
-    <div className="section-heading">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title}</h2>
-      {children ? <div className="section-intro">{children}</div> : null}
-    </div>
-  )
-}
-
-function Hero() {
-  return (
-    <section className="hero" id="top" aria-labelledby="hero-title" data-cinematic-moment="living-compass">
-      <div className="hero-media" aria-hidden="true">
-        <picture className="hero-still">
-          <source media="(max-width: 768px)" srcSet="/media/vch-living-compass-mobile.webp" />
-          <img src="/media/vch-living-compass-desktop.webp" alt="" fetchPriority="high" />
-        </picture>
-        <video autoPlay muted loop playsInline preload="metadata" tabIndex="-1">
-          <source media="(min-width: 769px) and (prefers-reduced-motion: no-preference)" src="/media/vch-living-compass-desktop.webm" type="video/webm" />
-          <source media="(min-width: 769px) and (prefers-reduced-motion: no-preference)" src="/media/vch-living-compass-desktop.mp4" type="video/mp4" />
-        </video>
-        <div className="hero-wash" />
-      </div>
-      <div className="hero-content page-shell">
-        <p className="eyebrow">A private medical office</p>
-        <h1 id="hero-title">A life, understood <em>over time.</em></h1>
-        <p className="hero-copy">One consistent doctor holds the complete health picture—bringing clarity, continuity and considered coordination to complex lives.</p>
-        <div className="hero-actions">
-          <a className="button" href="#how-it-works">Discover how VCH works</a>
-          <a className="text-link" href="#contact">Begin a private conversation <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-      <a className="scroll-cue" href="#continuity" aria-label="Explore — continue to the continuity section"><span />Explore</a>
-    </section>
-  )
-}
+import './features/homepage/homepage.css'
 
 export default function HomePage() {
   return (
-    <>
-      <a className="skip-link" href="#main-content">Skip to main content</a>
-      <SiteHeader />
-      <main id="main-content">
-        <Hero />
+<main className="homepage" id="main-content">
+      <svg className="trajectory" viewBox="0 0 1440 8400" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M40 1060 C40 1370 40 1660 40 1948 L1390 1948 L1390 2968 L40 2968 L40 3840 C40 3930 240 3970 360 3970 L520 3970 C600 3970 600 4030 680 4030 L800 4030 C880 4030 880 3970 960 3970 L1120 3970 C1220 3970 1220 3288 1324 3288 L1324 5138 L92 5138 L92 6148 L1324 6148 L1324 7270 L110 7270 L110 7860 C110 8020 310 8058 684 8058" />
+        <g className="compass-nodes">
+          <circle cx="360" cy="3970" r="6" />
+          <circle cx="600" cy="4008" r="6" />
+          <circle cx="880" cy="4008" r="6" />
+          <circle cx="1120" cy="3970" r="6" />
+        </g>
+        <circle className="end-node" cx="684" cy="8058" r="7" />
+      </svg>
 
-        <section className="continuity-section page-section" id="continuity">
-          <div className="page-shell continuity-grid">
-            <SectionHeading eyebrow="Continuity, by design" title={<>Your health is not a series of <em>separate moments.</em></>}>
-              <p>Velvet Compass Health operates as a private medical office structured to maintain clarity across time, transitions and complexity.</p>
-            </SectionHeading>
-            <div className="continuity-copy">
-              <p className="large-copy">Healthcare can become fragmented precisely when the full picture matters most.</p>
-              <p>The office brings coherence to investigations, specialist opinions and care pathways—aligning them within one defined structure. Decisions are considered early, not retrospectively.</p>
-              <p>Clarity over confusion. Proportion over excess. Direction over drift.</p>
-            </div>
-          </div>
-          <TrajectoryMark />
-        </section>
-
-        <section className="journey-section page-section" id="how-it-works">
-          <div className="page-shell">
-            <SectionHeading eyebrow="The VCH relationship" title={<>One clear point of care, <em>through every chapter.</em></>}>
-              <p>A personal doctor remains accountable for the longitudinal relationship while specialist depth is selected and coordinated around you.</p>
-            </SectionHeading>
-            <ol className="journey-grid">
-              {journey.map(([number, title, copy]) => (
-                <li key={title}>
-                  <span className="journey-number">{number}</span>
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section className="intelligence-section page-section" id="intelligence">
-          <div className="page-shell intelligence-grid">
-            <div className="intelligence-media-stage" data-cinematic-moment="health-intelligence">
-              <SupportingMedia
-                className="health-intelligence-media"
-                poster="/media/vch-health-intelligence.webp"
-                webm="/media/vch-health-intelligence.webm"
-                mp4="/media/vch-health-intelligence.mp4"
-              />
-            </div>
-            <SectionHeading eyebrow="Health intelligence" title={<>Information becomes useful when it is <em>understood.</em></>}>
-              <p>Investigations are interpreted in context, not isolation. The office considers each data point as part of your broader health narrative, helping to distinguish what matters from what merely creates noise.</p>
-              <p>This is doctor-led interpretation: thoughtful, proportionate and connected to decisions over time.</p>
-              <a className="text-link" href="#contact">Discuss your circumstances <span aria-hidden="true">↗</span></a>
-            </SectionHeading>
-          </div>
-        </section>
-
-        <section className="international-section page-section" id="international">
-          <div className="page-shell international-grid">
-            <SectionHeading eyebrow="International coordination" title={<>One relationship, when life moves <em>across borders.</em></>}>
-              <p>For internationally mobile individuals and families, VCH can help coordinate care across disciplines, institutions and countries while keeping one consistent clinical view.</p>
-              <p>Support is needs-led and may sit across NHS and private settings, with specialists selected around the precise circumstances rather than a fixed directory.</p>
-            </SectionHeading>
-            <div className="international-media-stage" data-cinematic-moment="international-coordination">
-              <SupportingMedia
-                className="international-continuity-media"
-                poster="/media/vch-international-continuity.webp"
-                webm="/media/vch-international-continuity.webm"
-                mp4="/media/vch-international-continuity.mp4"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="expertise-section page-section" id="expertise">
-          <div className="page-shell">
-            <div className="expertise-intro">
-              <p className="eyebrow">Accountable clinical leadership</p>
-              <p>VCH is an established private medical office with doctor-led accountability at the centre of each member relationship.</p>
-            </div>
-            <div className="expertise-pair">
-              <article className="expertise-proposition">
-                <p className="proposition-number" aria-hidden="true">01</p>
-                <h2>Selected clinical <em>expertise.</em></h2>
-                <p>Specialist depth is selected according to need and coordinated around the member. Respiratory medicine, pain medicine, cardiology and nutrition are examples within a wider network—not a fixed or complete directory.</p>
-              </article>
-              <article className="expertise-proposition">
-                <p className="proposition-number" aria-hidden="true">02</p>
-                <h2>Health as an <em>asset.</em></h2>
-                <p>Ongoing clarity and continuity support proportionate health decisions over time for people whose complex lives require a considered, connected clinical view.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="invitation-section" id="contact">
-          <div className="page-shell invitation-inner">
-            <p className="eyebrow">A discreet invitation</p>
-            <h2>Begin with a private conversation.</h2>
-            <p>Membership is intentionally limited to preserve continuity and discretion. Share only the contact details and brief context you are comfortable sending by email; please do not include sensitive medical information.</p>
-            <a className="button button-light" href="mailto:office@velvetcompasshealth.com?subject=Private%20membership%20enquiry">Enquire confidentially</a>
-            <p className="email-note">office@velvetcompasshealth.com</p>
-          </div>
-        </section>
-
-        <section className="safety-section" aria-label="Important medical boundaries">
-          <div className="page-shell safety-grid">
-            <h2>Important medical boundaries</h2>
-            <p><strong>VCH is not an emergency service.</strong> If you have urgent symptoms or believe there is an emergency, call 999/112 or attend A&amp;E.</p>
-            <p>VCH operates alongside your existing clinicians and does not replace your GP or specialist.</p>
-          </div>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <div className="page-shell footer-grid">
-          <a className="footer-brand" href="#top" aria-label="Velvet Compass Health, back to top"><img src="/logo-footer.webp" alt="Velvet Compass Health" width="280" height="90" loading="lazy" /></a>
-          <nav aria-label="Footer navigation">
-            <a href="#how-it-works">How it works</a>
-            <a href="#intelligence">Health intelligence</a>
-            <a href="#international">International</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#contact">Enquire</a>
-            <a href="/memberarea">Member sign in</a>
+      <section className="review-sheet hero" id="home">
+        <header className="site-header">
+          <a className="skip-link" href="#continuity">Skip to main content</a>
+          <a className="brand" href="#home" aria-label="Velvet Compass Health home">
+            <img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" />
+          </a>
+          <nav aria-label="Primary navigation">
+            <a href="#home">Home</a>
+            <a href="/membership">Membership</a>
+            <a href="/how-it-works">How it works</a>
+            <a href="/health-intelligence">Health Intelligence</a>
+            <a href="/clinical-network">Clinical Network</a>
+            <a href="/international-care">International Care</a>
+            <a href="/about-vch">About VCH</a>
+            <a className="nav-enquire" href="/enquire">Enquire</a>
           </nav>
-          <div className="footer-meta">
-            <address>23 Harley Street<br />London W1G 9QN</address>
-            <p>© {new Date().getFullYear()} Velvet Compass Health.<br />All rights reserved.</p>
+
+          <details className="mobile-navigation" onKeyDown={(event) => {
+            if (event.key === 'Escape') event.currentTarget.open = false
+          }}>
+            <summary aria-label="Navigation menu"><span></span><span></span><span></span><b>Menu</b></summary>
+            <nav aria-label="Mobile navigation" onClick={(event) => {
+              if (event.target.closest('a')) event.currentTarget.parentElement.open = false
+            }}>
+              <a href="#home">Home</a><a href="/membership">Membership</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch">About VCH</a><a href="/enquire">Enquire</a>
+            </nav>
+          </details>
+        </header>
+        <div className="hero-still" role="img" aria-label="Illustrative arrival scene at a private entrance"></div>
+        <video
+          className="hero-film"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/vch-approved/vch-cinematic-arrival-hero.png"
+          aria-label="Cinematic arrival at a private medical office"
+        >
+          <source src="/vch-approved/vch-arrival-film.mp4" type="video/mp4" media="(prefers-reduced-motion: no-preference)" />
+        </video>
+        <div className="hero-veil"></div>
+        <div className="hero-copy">
+          <p className="eyebrow light">Private members’ medical office</p>
+          <h1>The science of health strategy.<br /><em>The art of medicine made personal.</em></h1>
+          <p>Velvet Compass Health is a private members’ medical office. Each member has their own designated physician to oversee the whole health picture over time, bringing together prevention, longevity, specialist expertise and care across borders.</p>
+          <div className="actions">
+            <a className="button button-light" href="/membership">Explore Membership</a>
+            <a className="button button-ghost" href="/enquire">Enquire Privately</a>
           </div>
         </div>
-      </footer>
-    </>
+      </section>
+
+      <section className="review-sheet continuity" id="continuity">
+        <div className="sheet-index"><span>01</span><span>The longer view</span></div>
+        <div className="continuity-title">
+          <p className="eyebrow">Your own doctor. The whole picture. Over time.</p>
+          <h2>Your own doctor.<br />The whole picture.<br /><em>Over time.</em></h2>
+        </div>
+        <div className="continuity-copy">
+          <p>Most healthcare is organised around moments: a symptom, a test, an appointment or a diagnosis. Your health is not. It is changing quietly between those moments.</p>
+          <p>Every VCH member has a designated physician responsible for the longer view, supported by the wider medical office and its network. We understand your baseline, follow the direction of change, bring in the right expertise and keep each decision connected to the life you want your health to support.</p>
+        </div>
+        <figure className="artwork artwork-continuity">
+          <img loading="lazy" src="/vch-approved/vch-gallery-continuity.png" alt="A silver-haired woman walks past an anatomy-inspired artwork in a sunlit gallery setting" />
+        </figure>
+      </section>
+
+      <section className="review-sheet oversight" id="oversight">
+        <div className="sheet-index"><span>02</span><span>Risk and oversight</span></div>
+        <figure className="artwork artwork-anatomy">
+          <img loading="lazy" src="/vch-approved/vch-anatomical-oversight.png" alt="Conceptual anatomical art study of the shoulder and upper back" />
+        </figure>
+        <div className="risk-copy">
+          <p className="eyebrow">The risk you cannot see</p>
+          <h2>The risk you cannot see<br /><em>is still moving</em></h2>
+          <p>Feeling well does not mean that nothing is changing. Ageing, metabolism, cardiovascular risk, cognition, bone and joint health, sleep, recovery and hormonal health can all move long before they become an obvious problem.</p>
+          <p>VCH is designed to make those moving parts visible. We look beyond a single annual screen to patterns, risk, function and direction over time, then turn what matters into a considered health strategy.</p>
+        </div>
+        <div className="access-copy">
+          <p className="eyebrow">Access is not the same as oversight</p>
+          <h3>Access is not the same as oversight</h3>
+          <div className="access-columns">
+            <p>Modern healthcare can offer exceptional doctors, hospitals and diagnostics, yet still leave the individual carrying the burden of connecting them. Each clinician may answer their part of the question while nobody remains responsible for the whole.</p>
+            <p>VCH provides that responsibility. Information is not merely accumulated. It is interpreted, connected, acted upon and reviewed.</p>
+          </div>
+          <div className="oversight-sequence" aria-label="VCH interprets, connects, acts and reviews">
+            <span>Interpret</span><i></i><span>Connect</span><i></i><span>Act</span><i></i><span>Review</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="review-sheet compass" id="compass">
+        <div className="compass-art" role="img" aria-label="An original Renaissance-inspired folio about medicine, direction and the long view"></div>
+        <div className="compass-wash"></div>
+        <div className="sheet-index"><span>03</span><span>The VCH Compass</span></div>
+        <div className="compass-heading">
+          <p className="eyebrow">The VCH Compass</p>
+          <h2>The VCH<br /><em>Compass</em></h2>
+          <p>A four-part approach with one purpose: to protect the health that carries your life forward.</p>
+        </div>
+        <div className="compass-points">
+          <article><span>I</span><h3>Look ahead</h3><p>Bring developing risk, relevant advances and what comes next into view.</p></article>
+          <article><span>II</span><h3>Build health</h3><p>Turn insight into a personal strategy for greater strength, function, energy and healthy longevity.</p></article>
+          <article><span>III</span><h3>Carry the complexity</h3><p>Coordinate records, clinicians, tests, decisions and follow-up so the member does not have to.</p></article>
+          <article><span>IV</span><h3>Protect the future</h3><p>Safeguard the person behind the responsibilities, achievements and life still being built.</p></article>
+        </div>
+        <a className="text-link" href="/how-it-works">Member journey</a>
+      </section>
+
+      <section className="review-sheet membership" id="membership">
+        <div className="sheet-index"><span>04</span><span>Membership</span></div>
+        <div className="membership-heading">
+          <p className="script-accent">Membership</p>
+          <h2>For people who think in generations,<br /><em>not appointments.</em></h2>
+        </div>
+        <div className="membership-copy">
+          <p>Membership is an ongoing medical relationship, not a collection of disconnected encounters. Gold, Executive, Medical Director’s Office and International Students offer different levels of access, proactivity and oversight around the same principle: someone remains responsible for the whole picture.</p>
+          <a className="text-link" href="/membership">Explore Membership</a>
+        </div>
+        <div className="membership-levels" aria-label="Membership levels">
+          <span><b>01</b>Gold</span>
+          <span><b>02</b>Executive</span>
+          <span><b>03</b>Medical Director’s Office</span>
+          <span><b>04</b>International Students</span>
+        </div>
+        <figure className="artwork artwork-generations">
+          <img loading="lazy" src="/vch-approved/vch-generations-folio.png" alt="A continuous medical-art life study progressing from childhood through middle age to older age" />
+        </figure>
+      </section>
+
+      <section className="review-sheet intelligence" id="intelligence">
+        <div className="sheet-index"><span>05</span><span>Health intelligence</span></div>
+        <figure className="artwork artwork-intelligence">
+          <img loading="lazy" src="/vch-approved/vch-health-intelligence-sculpture.png" alt="A conceptual paper sculpture joining anatomy, botany and measured lines" />
+        </figure>
+        <div className="intelligence-panel">
+          <p className="eyebrow">Prevention, longevity and health intelligence</p>
+          <h2>Prevention, longevity<br /><em>and health intelligence</em></h2>
+          <p>VCH brings together relevant history, investigations, specialist opinion and selected health data to understand risk and function over time. Where clinically appropriate and available through suitable providers, this may include advanced diagnostics, genomics or pharmacogenomic insight. The purpose is not more testing. It is better decisions, made with context.</p>
+          <div className="evidence-line"><span>Relevant history</span><span>Investigations</span><span>Specialist opinion</span><span>Selected health data</span></div>
+          <a className="text-link" href="/health-intelligence">Explore Health Intelligence</a>
+        </div>
+      </section>
+
+      <section className="review-sheet borders" id="borders">
+        <div className="sheet-index"><span>06</span><span>Continuity across locations</span></div>
+        <figure className="artwork artwork-borders">
+          <img loading="lazy" src="/vch-approved/vch-care-across-borders.png" alt="A silver-haired traveler studies a pinned medical-art navigation map beside an unbranded ribbed travel case" />
+        </figure>
+        <div className="borders-panel">
+          <p className="eyebrow">Continuity across locations</p>
+          <h2>Care across borders</h2>
+          <p>When care moves between doctors, institutions or countries, the wider picture can be lost. VCH helps members prepare, coordinate records, identify appropriate locally licensed clinicians and maintain follow-up across borders.</p>
+          <div className="border-sequence" aria-label="Prepare, coordinate records and maintain follow-up">
+            <span><b>01</b>Prepare</span><i></i><span><b>02</b>Coordinate records</span><i></i><span><b>03</b>Maintain follow-up</span>
+          </div>
+          <a className="text-link" href="/international-care">Explore International Care</a>
+        </div>
+      </section>
+
+      <section className="review-sheet invitation" id="enquire">
+        <div className="sheet-index"><span>07</span><span>A private invitation</span></div>
+        <div className="invitation-copy">
+          <p className="script-accent">A private invitation</p>
+          <h2>A private invitation</h2>
+          <p>Membership begins with a confidential conversation about the support required, whether VCH is suitable and which level of membership best fits the individual or family.</p>
+          <a className="button button-burgundy" href="/enquire">Enquire Privately</a>
+        </div>
+        <div className="closing-mark" aria-hidden="true"><span>N</span><i></i><span>Long view</span></div>
+        <footer>
+          <img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" />
+          <p>VCH is not an emergency service. In the United Kingdom, call 999 or attend the nearest emergency department for an emergency. Outside the United Kingdom, contact the local emergency services.</p>
+          <nav aria-label="Footer navigation"><a href="#home">Home</a><a href="/membership">Membership</a><a href="/health-intelligence">Health Intelligence</a><a href="/enquire">Enquire</a></nav>
+        </footer>
+      </section>
+    </main>
   )
 }

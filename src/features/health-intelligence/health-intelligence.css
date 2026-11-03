@@ -1,0 +1,190 @@
+.hi-page {
+  --hi-spine: clamp(68px, 8vw, 112px);
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: 0 20px 80px rgba(42, 26, 20, 0.08);
+}
+
+.hi-page h1, .hi-page h2, .hi-page h3, .hi-page p, .hi-page figure { margin: 0; }
+.hi-page h1, .hi-page h2, .hi-page h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.035em; }
+.hi-page em { color: var(--burgundy); font-weight: 400; }
+.hi-page a:focus-visible, .hi-page summary:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 4px; }
+
+.hi-header {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  width: min(1440px, 100%);
+  height: 78px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  border-bottom: 1px solid rgba(42, 26, 20, 0.1);
+  background: rgba(255, 255, 255, 0.97);
+}
+.hi-brand img { display: block; width: 166px; height: auto; }
+.hi-nav { display: flex; align-items: center; gap: 20px; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+.hi-nav a { white-space: nowrap; }
+.hi-nav a[aria-current='page'] { color: var(--burgundy); box-shadow: 0 1px 0 var(--burgundy); }
+.hi-nav .hi-nav-enquire { padding: 10px 16px; color: var(--white); background: var(--burgundy); }
+.hi-skip { position: absolute; top: -80px; left: 12px; padding: 10px 16px; background: var(--white); }
+.hi-skip:focus { top: 12px; }
+.hi-mobile-nav { display: none; }
+
+.hi-eyebrow { color: var(--burgundy); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; line-height: 1.4; text-transform: uppercase; }
+.hi-button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 0 25px; color: var(--white); background: var(--burgundy); font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; }
+.hi-text-link { display: inline-flex; align-items: center; padding-bottom: 7px; border-bottom: 1px solid var(--gold); color: var(--burgundy); font-size: 11px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; }
+
+.hi-hero { position: relative; display: flex; min-height: 850px; align-items: center; padding: 145px 64px 95px; background: var(--cream); }
+.hi-hero-art, .hi-hero-wash { position: absolute; inset: 78px 0 0; width: 100%; height: calc(100% - 78px); }
+.hi-hero-art { object-fit: cover; object-position: center; }
+.hi-hero-wash { background: linear-gradient(90deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.91) 28%, rgba(255,255,255,.37) 57%, transparent 78%); }
+.hi-hero-copy { position: relative; z-index: 2; width: 56%; max-width: 730px; }
+.hi-hero h1 { max-width: 760px; margin: 26px 0 30px; font-size: clamp(63px, 6vw, 90px); line-height: .95; }
+.hi-hero-copy > p:not(.hi-eyebrow) { max-width: 550px; font-size: 17px; line-height: 1.7; }
+.hi-actions { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; margin-top: 38px; }
+
+.hi-section { position: relative; background: var(--white); }
+.hi-section::before { position: absolute; z-index: 1; top: 0; bottom: 0; left: var(--hi-spine); width: 1px; background: rgba(169,122,47,.62); content: ''; }
+.hi-section h2 { margin: 23px 0 28px; font-size: clamp(58px, 5.8vw, 82px); line-height: .96; }
+.hi-section p:not(.hi-eyebrow):not(.hi-status-note) { font-size: 17px; line-height: 1.72; }
+
+.hi-model { display: grid; min-height: 770px; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); gap: 45px; align-items: center; padding: 100px 85px 100px calc(var(--hi-spine) + 95px); }
+.hi-section-content { position: relative; z-index: 2; max-width: 550px; }
+.hi-model-study { position: relative; z-index: 2; padding: 40px 46px 32px; border: 1px solid rgba(42,26,20,.13); background: #fbfaf7; }
+.hi-source-row { display: flex; min-height: 72px; align-items: center; gap: 22px; border-bottom: 1px solid rgba(42,26,20,.13); color: var(--sage); font-size: 11px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+.hi-source-row span { min-width: 120px; }
+.hi-source-row i { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(169,122,47,.65), transparent); }
+.hi-interpretation { display: flex; min-height: 160px; flex-direction: column; justify-content: center; padding: 32px 0 8px 35%; }
+.hi-interpretation small { color: var(--burgundy); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.hi-interpretation b { margin-top: 8px; font-family: 'Cormorant Garamond',serif; font-size: 53px; font-weight: 400; line-height: 1; }
+
+.hi-signals { display: grid; min-height: 1100px; grid-template-columns: minmax(0,.86fr) minmax(0,1.14fr); gap: 56px; align-items: start; padding: 110px 80px 100px calc(var(--hi-spine) + 60px); background: #f8f6f1; }
+.hi-signals-art { position: relative; z-index: 2; height: 700px; overflow: hidden; background: var(--cream); }
+.hi-signals-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 28% center; }
+.hi-signals-content { position: relative; z-index: 2; max-width: 660px; padding-top: 35px; }
+.hi-signals h2 { font-size: clamp(55px,5vw,73px); }
+.hi-signals-content > p:not(.hi-eyebrow):not(.hi-status-note) { max-width: 620px; }
+.hi-source-table { margin-top: 38px; border-top: 1px solid rgba(42,26,20,.22); }
+.hi-source-table-head, .hi-source-table-row { display: grid; grid-template-columns: 125px 1fr; gap: 15px; border-bottom: 1px solid rgba(42,26,20,.16); }
+.hi-source-table-head { padding: 15px 0; color: var(--burgundy); font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+.hi-source-table-row { padding: 19px 0; font-size: 13px; line-height: 1.55; }
+.hi-source-table-row strong { color: var(--ink); font-weight: 500; }
+.hi-source-table-row span { color: rgba(42,26,20,.76); }
+.hi-status-note { margin-top: 20px !important; color: rgba(42,26,20,.59); font-size: 11px; line-height: 1.5; }
+
+.hi-women { display: grid; min-height: 740px; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding: 100px 125px 100px calc(var(--hi-spine) + 95px); }
+.hi-cycle-study { position: relative; width: min(100%, 470px); aspect-ratio: 1; margin: auto; }
+.hi-cycle-orbit { position: absolute; inset: 8%; border: 1px solid rgba(169,122,47,.33); border-radius: 50%; }
+.hi-cycle-orbit-two { inset: 20%; border-color: rgba(101,13,18,.17); }
+.hi-cycle-orbit-three { inset: 32%; border-color: rgba(122,130,84,.35); }
+.hi-cycle-point { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--burgundy); }
+.hi-cycle-point-one { top: 13%; left: 33%; }
+.hi-cycle-point-two { top: 43%; right: 9%; background: var(--gold); }
+.hi-cycle-point-three { bottom: 18%; left: 20%; background: var(--sage); }
+.hi-cycle-center { position: absolute; inset: 38%; display: grid; place-items: center; color: var(--burgundy); font-family: 'Cormorant Garamond',serif; font-size: 24px; line-height: 1; text-align: center; }
+
+.hi-trends { min-height: 1050px; padding: 125px 110px 100px calc(var(--hi-spine) + 95px); background: #f7f3ed; }
+.hi-trends-intro { max-width: 850px; }
+.hi-trends-intro > p:last-child { max-width: 780px; }
+.hi-domain-list { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; column-gap: 75px; margin-top: 75px; }
+.hi-domain { position: relative; display: flex; min-height: 110px; align-items: center; border-top: 1px solid rgba(42,26,20,.19); font-family: 'Cormorant Garamond',serif; font-size: 34px; }
+.hi-domain:nth-last-child(-n+2) { border-bottom: 1px solid rgba(42,26,20,.19); }
+.hi-domain-point { width: 7px; height: 7px; margin-right: 25px; border: 1px solid var(--gold); border-radius: 50%; background: var(--white); }
+
+.hi-biology { display: grid; min-height: 900px; grid-template-columns: 1.05fr .95fr; gap: 65px; align-items: center; padding: 100px 105px 100px calc(var(--hi-spine) + 60px); }
+.hi-biology-art { position: relative; z-index: 2; height: 670px; overflow: hidden; background: var(--cream); }
+.hi-biology-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% center; }
+.hi-biology-content { position: relative; z-index: 2; }
+.hi-biology-content > p:last-child { max-width: 530px; }
+
+.hi-medication { display: grid; min-height: 700px; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 100px 110px 100px calc(var(--hi-spine) + 95px); background: #faf8f4; }
+.hi-medication-copy { position: relative; z-index: 2; max-width: 590px; }
+.hi-medication-drawing { position: relative; z-index: 2; display: flex; height: 340px; align-items: center; justify-content: space-around; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.hi-medication-drawing::before { position: absolute; right: 0; left: 0; top: 50%; height: 1px; background: var(--gold); content: ''; }
+.hi-medication-drawing span { z-index: 1; width: 13px; height: 13px; border: 1px solid var(--gold); border-radius: 50%; background: #faf8f4; }
+.hi-medication-drawing span:nth-child(2), .hi-medication-drawing span:nth-child(4) { width: 8px; height: 8px; border-color: var(--burgundy); }
+
+.hi-longevity { display: flex; min-height: 680px; flex-direction: column; align-items: flex-start; justify-content: center; padding: 130px 140px 130px calc(var(--hi-spine) + 95px); }
+.hi-longevity h2 { font-size: clamp(78px,8vw,116px); }
+.hi-longevity > p:last-child { max-width: 670px; }
+
+.hi-decision { display: flex; min-height: 740px; flex-direction: column; align-items: flex-start; justify-content: center; padding: 130px 110px 130px calc(var(--hi-spine) + 95px); background: var(--cream); }
+.hi-decision h2 { font-size: clamp(78px,8vw,116px); }
+.hi-decision > p:not(.hi-eyebrow) { max-width: 620px; }
+.hi-decision .hi-button { margin-top: 38px; }
+.hi-line-end { position: absolute; z-index: 2; bottom: 0; left: var(--hi-spine); width: 13px; height: 13px; transform: translate(-50%,50%); border-radius: 50%; background: var(--burgundy); box-shadow: 0 0 0 4px var(--cream); }
+
+.hi-footer { display: flex; min-height: 160px; align-items: center; justify-content: space-between; padding: 40px 65px; border-top: 1px solid var(--hairline); }
+.hi-footer img { display: block; width: 180px; }
+.hi-footer nav { display: flex; flex-wrap: wrap; gap: 30px; font-size: 10px; font-weight: 500; letter-spacing: .11em; text-transform: uppercase; }
+
+@media (max-width: 1200px) {
+  .hi-header { padding: 0 28px; }
+  .hi-brand img { width: 145px; }
+  .hi-nav { gap: 13px; font-size: 8px; }
+  .hi-signals { gap: 36px; padding-right: 50px; }
+  .hi-biology { gap: 40px; padding-right: 55px; }
+  .hi-women { padding-right: 70px; }
+}
+
+@media (max-width: 930px) {
+  .hi-nav a:nth-child(n+5):not(.hi-nav-enquire) { display: none; }
+  .hi-hero-copy { width: 65%; }
+  .hi-hero h1 { font-size: clamp(58px,7.4vw,75px); }
+  .hi-model, .hi-women, .hi-medication { gap: 25px; padding-left: calc(var(--hi-spine) + 65px); }
+  .hi-signals { grid-template-columns: 1fr; }
+  .hi-signals-art { height: 460px; }
+  .hi-signals-content { max-width: 100%; }
+  .hi-biology { grid-template-columns: 1fr; }
+  .hi-biology-art { height: 480px; }
+}
+
+@media (max-width: 700px) {
+  .hi-page { --hi-spine: 34px; }
+  .hi-header { height: 68px; padding: 0 24px; }
+  .hi-nav { display: none; }
+  .hi-mobile-nav { display: block; margin-left: auto; }
+  .hi-mobile-nav summary { display: flex; width: 60px; flex-direction: column; gap: 4px; align-items: flex-end; list-style: none; cursor: pointer; }
+  .hi-mobile-nav summary::-webkit-details-marker { display: none; }
+  .hi-mobile-nav summary span { display: block; width: 22px; height: 1px; background: var(--ink); }
+  .hi-mobile-nav summary b { margin-top: 3px; font-size: 8px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+  .hi-mobile-nav nav { position: absolute; top: 68px; right: 0; left: 0; display: grid; padding: 16px 26px 24px; background: var(--white); box-shadow: 0 18px 32px rgba(42,26,20,.12); }
+  .hi-mobile-nav nav a { padding: 12px 0; border-bottom: 1px solid var(--hairline); font-size: 12px; }
+  .hi-hero { min-height: 930px; align-items: start; padding: 125px 27px 70px; }
+  .hi-hero-art, .hi-hero-wash { inset: 68px 0 0; height: calc(100% - 68px); }
+  .hi-hero-art { object-position: 67% center; }
+  .hi-hero-wash { background: linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.94) 50%,rgba(255,255,255,.2) 83%); }
+  .hi-hero-copy { width: 100%; }
+  .hi-hero h1 { font-size: clamp(48px,11vw,70px); }
+  .hi-hero-copy > p:not(.hi-eyebrow) { font-size: 15px; }
+  .hi-actions { gap: 24px; }
+  .hi-section h2 { font-size: clamp(52px,12vw,72px); }
+  .hi-section p:not(.hi-eyebrow):not(.hi-status-note) { font-size: 15px; }
+  .hi-model, .hi-women, .hi-medication { display: block; min-height: 0; padding: 90px 26px 90px 77px; }
+  .hi-model-study { margin-top: 45px; padding: 20px; }
+  .hi-source-row { gap: 10px; font-size: 9px; }
+  .hi-source-row span { min-width: 100px; }
+  .hi-signals { display: block; min-height: 0; padding: 90px 26px 90px 77px; }
+  .hi-signals-art { height: auto; aspect-ratio: 4/3; }
+  .hi-signals-content { padding-top: 45px; }
+  .hi-signals h2 { font-size: clamp(46px,11vw,64px); }
+  .hi-source-table-head, .hi-source-table-row { grid-template-columns: 88px 1fr; gap: 8px; }
+  .hi-source-table-row { font-size: 11px; }
+  .hi-cycle-study { width: 280px; max-width: 100%; margin-top: 45px; }
+  .hi-trends { min-height: 0; padding: 90px 26px 90px 77px; }
+  .hi-domain-list { display: block; margin-top: 50px; }
+  .hi-domain { min-height: 80px; font-size: 28px; }
+  .hi-domain:nth-last-child(2) { border-bottom: 0; }
+  .hi-biology { display: block; min-height: 0; padding: 90px 26px 90px 77px; }
+  .hi-biology-art { height: auto; aspect-ratio: 4/3; margin-bottom: 45px !important; }
+  .hi-medication-drawing { height: 200px; margin-top: 50px; }
+  .hi-longevity, .hi-decision { min-height: 0; padding: 110px 26px 110px 77px; }
+  .hi-longevity h2, .hi-decision h2 { font-size: clamp(60px,14vw,90px); }
+  .hi-footer { display: block; min-height: 0; padding: 40px 30px; }
+  .hi-footer img { width: 170px; margin-bottom: 30px; }
+  .hi-footer nav { gap: 15px 24px; }
+}
