@@ -310,8 +310,12 @@ h2 em {
   height: calc(100% - 78px);
   object-fit: cover;
   object-position: center;
-  background: var(--ink);
+  opacity: 0;
+  background: transparent;
+  transition: opacity 0.4s ease;
 }
+
+.hero-film.is-playing { opacity: 1; }
 
 
 .hero-veil {

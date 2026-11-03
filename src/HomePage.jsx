@@ -22,17 +22,22 @@ export default function HomePage() {
         // Mobile browsers may still block autoplay in power-saving modes.
       })
     }
+    const revealFilm = () => {
+      if (film.currentTime > 0.05 && film.videoWidth > 0) film.classList.add('is-playing')
+    }
     const resumeWhenVisible = () => {
       if (!document.hidden) playFilm()
     }
 
     playFilm()
     film.addEventListener('canplay', playFilm)
+    film.addEventListener('timeupdate', revealFilm)
     document.addEventListener('visibilitychange', resumeWhenVisible)
     window.addEventListener('pageshow', resumeWhenVisible)
 
     return () => {
       film.removeEventListener('canplay', playFilm)
+      film.removeEventListener('timeupdate', revealFilm)
       document.removeEventListener('visibilitychange', resumeWhenVisible)
       window.removeEventListener('pageshow', resumeWhenVisible)
     }
