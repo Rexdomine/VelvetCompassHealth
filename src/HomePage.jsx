@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import MembershipNavItem from './features/site-navigation/MembershipNavItem.jsx'
 import './features/homepage/homepage.css'
 
 export default function HomePage() {
@@ -64,7 +65,7 @@ export default function HomePage() {
           </a>
           <nav aria-label="Primary navigation">
             <a href="#home">Home</a>
-            <a href="/membership">Membership</a>
+            <MembershipNavItem />
             <a href="/how-it-works">How it works</a>
             <a href="/health-intelligence">Health Intelligence</a>
             <a href="/clinical-network">Clinical Network</a>
@@ -80,7 +81,7 @@ export default function HomePage() {
             <nav aria-label="Mobile navigation" onClick={(event) => {
               if (event.target.closest('a')) event.currentTarget.parentElement.open = false
             }}>
-              <a href="#home">Home</a><a href="/membership">Membership</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch">About VCH</a><a href="/enquire">Enquire</a>
+              <a href="#home">Home</a><MembershipNavItem mobile /><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch">About VCH</a><a href="/enquire">Enquire</a>
             </nav>
           </details>
         </header>

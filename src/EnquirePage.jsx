@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import MembershipNavItem from './features/site-navigation/MembershipNavItem.jsx'
 import { validateStep } from './features/enquire/validation.js'
 import './features/international-care/international-care.css'
 import './features/enquire/enquire.css'
@@ -84,7 +85,9 @@ function EnquireHeader() {
       <a className="ic-skip" href="#eq-main">Skip to main content</a>
       <a className="ic-brand" href="/" aria-label="Velvet Compass Health home"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" /></a>
       <nav className="ic-nav" aria-label="Primary navigation">
-        {navigation.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+        {navigation.map(([label, href]) => label === 'Membership'
+          ? <MembershipNavItem key={label} />
+          : <a key={label} href={href}>{label}</a>)}
         <a className="ic-nav-enquire" href="/enquire" aria-current="page">Enquire</a>
       </nav>
       <details className="ic-mobile-nav" onKeyDown={(event) => {
@@ -94,7 +97,9 @@ function EnquireHeader() {
         <nav aria-label="Mobile navigation" onClick={(event) => {
           if (event.target.closest('a')) event.currentTarget.parentElement.open = false
         }}>
-          {navigation.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+          {navigation.map(([label, href]) => label === 'Membership'
+            ? <MembershipNavItem key={label} mobile />
+            : <a key={label} href={href}>{label}</a>)}
           <a href="/enquire" aria-current="page">Enquire</a>
         </nav>
       </details>

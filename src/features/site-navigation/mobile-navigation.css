@@ -58,7 +58,7 @@
     line-height: 1.58;
   }
 
-  body :is(.how-mobile-nav, .hi-mobile-nav, .cn-mobile-nav, .ic-mobile-nav) nav a:last-child {
+  body :is(.how-mobile-nav, .hi-mobile-nav, .cn-mobile-nav, .ic-mobile-nav) nav > a:last-child {
     width: max-content;
     min-width: 160px;
     margin-top: 18px;

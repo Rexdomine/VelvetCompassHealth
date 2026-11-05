@@ -5,10 +5,13 @@ import ClinicalNetworkPage from './ClinicalNetworkPage.jsx'
 import InternationalCarePage from './InternationalCarePage.jsx'
 import AboutPage from './AboutPage.jsx'
 import MembershipPage from './MembershipPage.jsx'
+import AthletesPage from './AthletesPage.jsx'
+import InternationalStudentsPage from './InternationalStudentsPage.jsx'
 import EnquirePage from './EnquirePage.jsx'
 import MemberEmergencyPage from './MemberEmergencyPage.jsx'
 import { getProductLane } from './route.js'
 import './features/site-navigation/mobile-navigation.css'
+import './features/site-navigation/membership-submenu.css'
 
 function App() {
   const lane = getProductLane(window.location.pathname)
@@ -19,6 +22,8 @@ function App() {
   if (lane === 'international-care') return <InternationalCarePage />
   if (lane === 'about-vch') return <AboutPage />
   if (lane === 'membership') return <MembershipPage />
+  if (lane === 'athletes') return <AthletesPage />
+  if (lane === 'international-students') return <InternationalStudentsPage />
   if (lane === 'enquire') return <EnquirePage />
   return <HomePage />
 }

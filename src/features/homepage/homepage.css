@@ -1254,7 +1254,7 @@ h2 em {
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-  .mobile-navigation nav a:last-child {
+  .mobile-navigation nav > a:last-child {
     width: max-content;
     min-width: 160px;
     margin-top: 18px;

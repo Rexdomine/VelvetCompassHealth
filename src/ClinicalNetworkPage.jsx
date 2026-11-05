@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import MembershipNavItem from './features/site-navigation/MembershipNavItem.jsx'
 import './features/clinical-network/clinical-network.css'
 
 const enquiryHref = '/enquire'
@@ -33,9 +34,9 @@ function ClinicalHeader() {
         <img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" />
       </a>
       <nav className="cn-nav" aria-label="Primary navigation">
-        {navigation.map(([label, href]) => (
-          <a key={label} href={href} aria-current={label === 'Clinical Network' ? 'page' : undefined}>{label}</a>
-        ))}
+        {navigation.map(([label, href]) => label === 'Membership'
+          ? <MembershipNavItem key={label} />
+          : <a key={label} href={href} aria-current={label === 'Clinical Network' ? 'page' : undefined}>{label}</a>)}
         <a className="cn-nav-enquire" href={enquiryHref}>Enquire</a>
       </nav>
       <details className="cn-mobile-nav" onKeyDown={(event) => {
@@ -45,7 +46,9 @@ function ClinicalHeader() {
         <nav aria-label="Mobile navigation" onClick={(event) => {
           if (event.target.closest('a')) event.currentTarget.parentElement.open = false
         }}>
-          {navigation.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+          {navigation.map(([label, href]) => label === 'Membership'
+            ? <MembershipNavItem key={label} mobile />
+            : <a key={label} href={href}>{label}</a>)}
           <a href={enquiryHref}>Enquire</a>
         </nav>
       </details>

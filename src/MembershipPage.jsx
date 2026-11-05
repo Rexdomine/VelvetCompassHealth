@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import MembershipNavItem from './features/site-navigation/MembershipNavItem.jsx'
 import './features/international-care/international-care.css'
 import './features/membership/membership.css'
 
@@ -73,9 +74,9 @@ function MembershipHeader() {
         <img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" />
       </a>
       <nav className="ic-nav" aria-label="Primary navigation">
-        {navigation.map(([label, href]) => (
-          <a key={label} href={href} aria-current={label === 'Membership' ? 'page' : undefined}>{label}</a>
-        ))}
+        {navigation.map(([label, href]) => label === 'Membership'
+          ? <MembershipNavItem key={label} current="overview" />
+          : <a key={label} href={href}>{label}</a>)}
         <a className="ic-nav-enquire" href={enquiryHref}>Enquire</a>
       </nav>
       <details className="ic-mobile-nav" onKeyDown={(event) => {
@@ -85,7 +86,9 @@ function MembershipHeader() {
         <nav aria-label="Mobile navigation" onClick={(event) => {
           if (event.target.closest('a')) event.currentTarget.parentElement.open = false
         }}>
-          {navigation.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+          {navigation.map(([label, href]) => label === 'Membership'
+            ? <MembershipNavItem key={label} mobile current="overview" />
+            : <a key={label} href={href}>{label}</a>)}
           <a href={enquiryHref}>Enquire</a>
         </nav>
       </details>
@@ -259,21 +262,13 @@ export default function MembershipPage() {
             <p className="ic-eyebrow">Athletes</p>
             <h3>Protecting the player <em>behind the game.</em></h3>
             <p>VCH offers personal medical oversight beyond immediate performance, connecting recovery, joint longevity, specialist care, psychological wellbeing and life after sport.</p>
-            <details className="mb-path-detail">
-              <summary className="ic-text-link">Explore Athletes</summary>
-              <p>Elite sport is organised around the next match, selection and season. VCH keeps sight of the longer story: the injuries that accumulate, the recovery that changes, the identity behind performance and the health that must last beyond the game.</p>
-              <a className="ic-text-link" href="/enquire?type=Individual%20or%20family%20membership&focus=performance">Discuss Athlete Membership</a>
-            </details>
+            <a className="ic-text-link" href="/membership/athletes">Explore Athletes</a>
           </article>
           <article id="international-students">
             <p className="ic-eyebrow">International Students</p>
             <h3>Assurance, <em>not just insurance.</em></h3>
             <p>Doctor-led support for students abroad, giving parents confidence that trusted medical guidance is always within reach.</p>
-            <details className="mb-path-detail">
-              <summary className="ic-text-link">Explore International Students</summary>
-              <p>Insurance may help meet the cost of eligible care. VCH gives your child a doctor who understands their history, knows how UK healthcare works and can guide what happens next throughout the academic year.</p>
-              <a className="ic-text-link" href="/enquire?type=International%20Students">Enquire for a Student</a>
-            </details>
+            <a className="ic-text-link" href="/membership/international-students">Explore International Students</a>
           </article>
         </section>
       </main>
