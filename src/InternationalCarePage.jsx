@@ -12,6 +12,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -107,6 +108,18 @@ export default function InternationalCarePage() {
           </figure>
         </section>
 
+        <section className="ic-emergency-card ic-flow" aria-labelledby="ic-emergency-card-title">
+          <span className="ic-node" aria-hidden="true" />
+          <figure className="ic-emergency-card-art">
+            <img loading="lazy" src="/vch-approved/international-care/emergency-medical-card.svg" alt="Illustration of a Velvet Compass Health Emergency Medical Card with clearly fictional sample information and a translated reference card behind it" />
+          </figure>
+          <div className="ic-emergency-card-copy">
+            <p className="ic-eyebrow">Emergency Medical Card</p>
+            <h2 id="ic-emergency-card-title">Essential information.<br /><em>Wherever life takes you.</em></h2>
+            <p>Your Emergency Medical Card brings key medical information and emergency contacts into one accessible reference. It can be translated into different languages, helping communicate essential details when you need care abroad.</p>
+          </div>
+        </section>
+
         <section className="ic-journey ic-flow" aria-labelledby="ic-journey-title">
           <div className="ic-journey-intro">
             <p className="ic-eyebrow">Care, connected</p>
@@ -143,7 +156,7 @@ export default function InternationalCarePage() {
       </main>
       <footer className="ic-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care" aria-current="page">International Care</a><a href={privateEnquiryHref}>Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care" aria-current="page">International Care</a><a href="/hotels">Hotels</a><a href={privateEnquiryHref}>Enquire</a></nav>
       </footer>
     </div>
   )

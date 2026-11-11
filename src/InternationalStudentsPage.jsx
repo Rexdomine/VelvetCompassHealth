@@ -12,6 +12,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -95,7 +96,6 @@ export default function InternationalStudentsPage() {
             <p>Doctor-led support for students abroad, giving parents confidence that their child has trusted medical guidance and a clear route through UK healthcare.</p>
             <div className="ic-actions">
               <a className="ic-button" href={studentEnquiryHref}>Enquire for a Student</a>
-              <a className="ic-text-link" href={studentEnquiryHref}>Speak to VCH</a>
             </div>
           </div>
           <figure className="st-hero-art">
@@ -174,7 +174,7 @@ export default function InternationalStudentsPage() {
       </main>
       <footer className="ic-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership">Membership</a><a href="/membership/athletes">Athletes</a><a href="/membership/international-students" aria-current="page">International Students</a><a href="/how-it-works">How it works</a><a href="/enquire">Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership">Membership</a><a href="/membership/athletes">Athletes</a><a href="/membership/international-students" aria-current="page">International Students</a><a href="/how-it-works">How it works</a><a href="/hotels">Hotels</a><a href="/enquire">Enquire</a></nav>
       </footer>
     </div>
   )

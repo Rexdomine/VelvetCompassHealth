@@ -40,7 +40,7 @@
 }
 .membership-nav-group.is-mobile { display: none; }
 
-@media (max-width: 760px) {
+@media (max-width: 930px) {
   .membership-nav-group.is-mobile { display: block; }
   .membership-nav-group.is-mobile summary {
     display: flex;

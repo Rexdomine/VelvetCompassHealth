@@ -28,10 +28,14 @@ describe('VCH Health Intelligence page', () => {
     expect(markup).toContain('VCH brings relevant clinical information, personal data')
   })
 
-  it('labels proposed sources and uses distinct contextual artwork without platform logos', () => {
+  it('labels proposed sources and illustrative analytics while retaining the ring artwork', () => {
     expect(markup).toContain('Potential source')
     expect(markup).toContain('require confirmation before launch')
-    expect(markup).toContain('/vch-approved/health-intelligence/hero-study.jpg')
+    expect(markup).toContain('Illustrative health data view')
+    expect(markup).toContain('Member-entered')
+    expect(markup).toContain('Device-generated')
+    expect(markup).toContain('/vch-approved/health-intelligence/stone-light-hero.jpg')
+    expect(markup).toContain('/vch-approved/health-intelligence/illustrative-display.jpg')
     expect(markup).toContain('/vch-approved/health-intelligence/signal-study.jpg')
     expect(markup).toContain('/vch-approved/health-intelligence/inheritance-dna-study.webp')
     expect(markup).not.toContain('<img alt="Oura')

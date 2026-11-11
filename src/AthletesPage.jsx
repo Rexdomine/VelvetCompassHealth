@@ -3,7 +3,7 @@ import MembershipNavItem from './features/site-navigation/MembershipNavItem.jsx'
 import './features/international-care/international-care.css'
 import './features/athletes/athletes.css'
 
-const enquiryHref = '/enquire?type=Individual%20or%20family%20membership&focus=athletes'
+const enquiryHref = '/enquire?type=Individual%20or%20family%20membership&focus=performance'
 
 const navigation = [
   ['Home', '/'],
@@ -12,6 +12,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -69,7 +70,6 @@ export default function AthletesPage() {
             <p>Personal medical oversight for athletes who want to perform now without losing sight of joint longevity, psychological wellbeing and the life that continues beyond sport.</p>
             <div className="ic-actions">
               <a className="ic-button" href={enquiryHref}>Discuss Athlete Membership</a>
-              <a className="ic-text-link" href="/enquire">Enquire Privately</a>
             </div>
           </div>
           <figure className="at-hero-art">
@@ -169,7 +169,7 @@ export default function AthletesPage() {
       </main>
       <footer className="ic-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership">Membership</a><a href="/membership/athletes" aria-current="page">Athletes</a><a href="/how-it-works">How it works</a><a href="/clinical-network">Clinical Network</a><a href="/enquire">Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership">Membership</a><a href="/membership/athletes" aria-current="page">Athletes</a><a href="/how-it-works">How it works</a><a href="/clinical-network">Clinical Network</a><a href="/hotels">Hotels</a><a href="/enquire">Enquire</a></nav>
       </footer>
     </div>
   )

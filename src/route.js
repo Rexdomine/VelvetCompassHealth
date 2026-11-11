@@ -7,6 +7,7 @@ export function getProductLane(pathname) {
   if (path === '/health-intelligence') return 'health-intelligence'
   if (path === '/clinical-network') return 'clinical-network'
   if (path === '/international-care') return 'international-care'
+  if (path === '/hotels') return 'hotels'
   if (path === '/about-vch') return 'about-vch'
   if (path === '/membership') return 'membership'
   if (path === '/membership/athletes') return 'athletes'

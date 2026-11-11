@@ -22,6 +22,8 @@ export function createDatabase(dbPath) {
       phone TEXT,
       email TEXT NOT NULL,
       interest TEXT NOT NULL,
+      enquiry_type TEXT,
+      contact_method TEXT,
       support_focus_json TEXT,
       support_focus_other TEXT,
       gp_registered TEXT,
@@ -35,13 +37,28 @@ export function createDatabase(dbPath) {
       ack_information_accuracy INTEGER NOT NULL DEFAULT 0,
       message TEXT,
       emergency_confirmed INTEGER NOT NULL DEFAULT 0,
+      privacy_consent INTEGER NOT NULL DEFAULT 0,
       ip_address TEXT,
       user_agent TEXT,
       created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
   `)
 
+  db.exec(`CREATE TABLE IF NOT EXISTS hotel_enquiries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    hotel TEXT NOT NULL,
+    role TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`)
+
   const columns = db.prepare('PRAGMA table_info(enquiries)').all()
+  if (!columns.some((column) => column.name === 'enquiry_type')) db.exec('ALTER TABLE enquiries ADD COLUMN enquiry_type TEXT')
+  if (!columns.some((column) => column.name === 'contact_method')) db.exec('ALTER TABLE enquiries ADD COLUMN contact_method TEXT')
+  if (!columns.some((column) => column.name === 'privacy_consent')) db.exec('ALTER TABLE enquiries ADD COLUMN privacy_consent INTEGER NOT NULL DEFAULT 0')
   const hasEmergencyConfirmed = columns.some((column) => column.name === 'emergency_confirmed')
   if (!hasEmergencyConfirmed) {
     db.exec('ALTER TABLE enquiries ADD COLUMN emergency_confirmed INTEGER NOT NULL DEFAULT 0')

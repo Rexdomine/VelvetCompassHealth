@@ -1,5 +1,5 @@
 /* Keep the public-page mobile menus aligned with the approved homepage menu. */
-@media (max-width: 700px) {
+@media (max-width: 930px) {
   body :is(.how-mobile-nav, .hi-mobile-nav, .cn-mobile-nav, .ic-mobile-nav) summary {
     display: flex;
     width: 48px;

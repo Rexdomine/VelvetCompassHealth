@@ -21,8 +21,8 @@ describe('About VCH page', () => {
 
   it('retains all client-written sections and full supporting copy', () => {
     const sections = [...aboutSource.matchAll(/### ([^\n]+)\n\n([^\n]+)/g)]
-      .filter(([, heading]) => heading !== 'Visual direction')
-    expect(sections).toHaveLength(6)
+      .filter(([, heading]) => heading !== 'Visual direction' && heading !== 'Medical direction')
+    expect(sections).toHaveLength(5)
     for (const [, heading, body] of sections) {
       expect(plain).toContain(heading)
       expect(plain).toContain(body)
@@ -31,8 +31,15 @@ describe('About VCH page', () => {
     expect(markup).toContain('Velvet Compass Health was created to manage health as a living, changing whole')
   })
 
-  it('uses the real VCH portrait and distinct page artwork', () => {
-    expect(markup).toContain('/vch-approved/about-vch/dr-ehizele-joseph-ebare.webp')
+  it('keeps the updated biographies with Rex’s latest director portrait and Adel portrait', () => {
+    expect(markup).toContain('/vch-approved/about-vch/dr-ehizele-portrait-nov-2026.jpg')
+    expect(markup).toContain('/vch-approved/about-vch/adel-samat.jpg')
+    expect(markup).toContain('class="av-person av-person--director"')
+    expect(markup).toContain('class="av-person av-person--adel"')
+    expect(plain).toContain('Dr Ehizele Ijeoma Joseph-Ebare Medical Director')
+    expect(plain).toContain('A published researcher, invited UK Parliament speaker and former COVID Medicines Delivery Unit lead clinician')
+    expect(plain).toContain('Adel Samat Head of East Asia Clientele')
+    expect(plain).toContain('He also holds a medical degree completed in China.')
     expect(markup).toContain('/vch-approved/about-vch/long-view-hero.webp')
     expect(markup).toContain('/vch-approved/about-vch/workshop-observation.webp')
     expect(markup).toContain('Information is handled discreetly and shared only through appropriate, consent-based clinical processes or where the law requires otherwise.')

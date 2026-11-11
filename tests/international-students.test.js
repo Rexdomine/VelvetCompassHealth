@@ -51,4 +51,11 @@ describe('International Students membership page', () => {
     expect(plain).toContain('call 999 or attend the nearest emergency department')
     expect(markup).toContain('type=International%20Students')
   })
+
+  it('uses one hero enquiry action with the student enquiry selected', () => {
+    const heroActions = markup.match(/<div class="ic-actions">([\s\S]*?)<\/div>/)?.[1]
+    expect(heroActions).toBeDefined()
+    expect(heroActions.match(/<a /g)).toHaveLength(1)
+    expect(heroActions).toContain('type=International%20Students')
+  })
 })

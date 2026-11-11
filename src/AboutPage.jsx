@@ -12,6 +12,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -98,15 +99,31 @@ export default function AboutPage() {
           <p>VCH provides an ongoing relationship with a doctor who understands the member’s wider health picture. The role is to interpret information, coordinate appropriate expertise, maintain follow-up and help the member make deliberate decisions over time.</p>
         </section>
 
-        <section className="av-director ic-flow" aria-labelledby="av-director-title">
+        <section className="av-leadership ic-flow" aria-label="VCH leadership">
           <span className="ic-node" aria-hidden="true" />
-          <figure className="av-director-art">
-            <img loading="lazy" src="/vch-approved/about-vch/dr-ehizele-joseph-ebare.webp" alt="Portrait of Dr Ehizele Joseph-Ebare" />
-          </figure>
-          <div className="av-director-copy">
-            <p className="ic-eyebrow">Medical direction</p>
-            <h2 id="av-director-title">Dr Ehizele<br /><em>Joseph-Ebare</em></h2>
-            <p>Dr Ehizele Joseph-Ebare leads VCH as Medical Director, setting the clinical direction, understanding each member’s priorities and ensuring every part of their care remains connected to the wider strategy.</p>
+          <div className="av-people-grid">
+            <article className="av-person av-person--director" aria-labelledby="av-director-title">
+              <figure className="av-person-art">
+                <img loading="lazy" src="/vch-approved/about-vch/dr-ehizele-portrait-nov-2026.jpg" alt="Portrait of Dr Ehizele Ijeoma Joseph-Ebare" />
+              </figure>
+              <div className="av-person-copy">
+                <p className="ic-eyebrow">Medical direction</p>
+                <h2 id="av-director-title">Dr Ehizele Ijeoma<br /><em>Joseph-Ebare</em></h2>
+                <p className="av-person-role">Medical Director</p>
+                <p>Dr Joseph-Ebare is a medical doctor with years of experience in emergency medicine. Her work spans NHS and private care. A Barts and The London graduate with a BSc in Global and Public Health, she completed business studies at Harvard University. A published researcher, invited UK Parliament speaker and former COVID Medicines Delivery Unit lead clinician, she is Country Director for Professionals for Humanity. Her “portfolio manager for health” philosophy protects health as a lifelong asset through personal strategy and continuity.</p>
+              </div>
+            </article>
+            <article className="av-person av-person--adel" aria-labelledby="av-adel-title">
+              <figure className="av-person-art">
+                <img loading="lazy" src="/vch-approved/about-vch/adel-samat.jpg" alt="Portrait of Adel Samat" />
+              </figure>
+              <div className="av-person-copy">
+                <p className="ic-eyebrow">East Asia clientele</p>
+                <h2 id="av-adel-title">Adel<br /><em>Samat</em></h2>
+                <p className="av-person-role">Head of East Asia Clientele</p>
+                <p>Adel advises ultra-high-net-worth clients on luxury assets and international opportunities, with experience spanning exceptional property, confidential transactions and relationships with private wealth teams. He also holds a medical degree completed in China. At VCH, he brings an understanding of discretion, personal service and the cultural expectations of our East Asia clientele to the asset that matters most: health, leading relationships with our East Asia members and their families.</p>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -143,7 +160,7 @@ export default function AboutPage() {
       </main>
       <footer className="ic-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch" aria-current="page">About VCH</a><a href={enquiryHref}>Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch" aria-current="page">About VCH</a><a href="/hotels">Hotels</a><a href={enquiryHref}>Enquire</a></nav>
       </footer>
     </div>
   )

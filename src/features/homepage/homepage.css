@@ -34,11 +34,6 @@
   font-weight: 500;
 }
 
-@font-face {
-  font-family: "Allura";
-  src: url("/vch-approved/fonts/allura-regular.ttf") format("truetype");
-}
-
 :root {
   --white: #fff;
   --cream: #f7f1e3;
@@ -158,14 +153,6 @@ h2 em {
 
 .eyebrow.light {
   color: rgba(255, 255, 255, 0.84);
-}
-
-.script-accent {
-  margin-bottom: 12px;
-  color: var(--gold);
-  font-family: "Allura", cursive;
-  font-size: 32px;
-  line-height: 1;
 }
 
 .sheet-index {
@@ -777,7 +764,7 @@ h2 em {
 
 .invitation-copy {
   position: absolute !important;
-  top: 170px;
+  top: 210px;
   left: 50%;
   width: 790px;
   transform: translateX(-50%);
@@ -789,7 +776,7 @@ h2 em {
   font-size: 102px;
 }
 
-.invitation-copy > p:not(.script-accent) {
+.invitation-copy > p {
   width: 620px;
   margin: 0 auto 34px;
   font-size: 17px;
@@ -990,7 +977,7 @@ h2 em {
 
   .risk-copy > p:not(.eyebrow),
   .compass-heading > p:last-child,
-  .invitation-copy > p:not(.script-accent) {
+  .invitation-copy > p {
     width: auto;
   }
 

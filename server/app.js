@@ -7,8 +7,16 @@ import { z } from 'zod'
 const enquirySchema = z.object({
   fullName: z.string().trim().min(2).max(120),
   location: z.string().trim().min(2).max(160),
-  phone: z.string().trim().min(7).max(40),
+  phone: z.string().trim().max(40),
   email: z.string().trim().email().max(254),
+  contactMethod: z.enum(['Email', 'Telephone']),
+  enquiryType: z.enum([
+    'Individual or family membership',
+    'International Students',
+    'Clinical network or professional collaboration',
+    'Partnerships and organisations',
+    'Media or speaking enquiry',
+  ]),
   supportFocus: z
     .array(
       z.enum([
@@ -22,6 +30,7 @@ const enquirySchema = z.object({
     )
     .min(1),
   supportFocusOther: z.string().trim().max(500).optional().or(z.literal('')),
+  message: z.string().trim().min(1).max(2000),
   gpRegistered: z.enum(['yes', 'no']),
   gpDetails: z.string().trim().max(500).optional().or(z.literal('')),
   exclusions: z
@@ -36,6 +45,23 @@ const enquirySchema = z.object({
   ackProfessionalBoundaries: z.literal(true),
   ackInformationAccuracy: z.literal(true),
   emergencyConfirmed: z.literal(true),
+  privacyConsent: z.literal(true),
+})
+
+const hotelSchema = z.object({
+  name: z.string().trim().min(2).max(120),
+  hotel: z.string().trim().min(2).max(160),
+  role: z.string().trim().min(2).max(120),
+  email: z.string().trim().email().max(254),
+  phone: z.string().trim().min(7).max(40),
+  message: z.string().trim().min(1).max(2000),
+})
+
+const enquiryLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
 })
 
 function parseAllowedOrigins(originsEnv) {
@@ -92,12 +118,7 @@ export function createApp({ db, emailService = null }) {
 
   app.post(
     '/api/enquiries',
-    rateLimit({
-      windowMs: 15 * 60 * 1000,
-      max: 20,
-      standardHeaders: true,
-      legacyHeaders: false,
-    }),
+    enquiryLimiter,
     async (req, res) => {
       const parsed = enquirySchema.safeParse(req.body)
       if (!parsed.success) {
@@ -105,6 +126,9 @@ export function createApp({ db, emailService = null }) {
       }
 
       const payload = parsed.data
+      if (payload.contactMethod === 'Telephone' && payload.phone.length < 7) {
+        return res.status(400).json({ error: 'Please provide a telephone number for your preferred contact method.' })
+      }
       if (payload.supportFocus.includes('other') && !payload.supportFocusOther?.trim()) {
         return res.status(400).json({ error: 'Please specify details for "Other".' })
       }
@@ -125,15 +149,19 @@ export function createApp({ db, emailService = null }) {
       const enquiryDetails = {
         ...payload,
         submittedAt: new Date().toISOString(),
-        ipAddress: req.ip,
-        userAgent: req.get('user-agent') ?? '',
       }
 
-      if (emailService) {
+      if (!emailService) {
+        return res.status(503).json({ error: 'Enquiry delivery is temporarily unavailable. Please try again later.' })
+      }
+      try {
         await emailService.sendEnquiryNotification(enquiryDetails)
+      } catch {
+        return res.status(502).json({ error: 'We could not send your enquiry. Please try again later.' })
       }
 
-      const insert = db.prepare(`
+      try {
+        const insert = db.prepare(`
         INSERT INTO enquiries (
           name,
           full_name,
@@ -141,6 +169,8 @@ export function createApp({ db, emailService = null }) {
           phone,
           email,
           interest,
+          enquiry_type,
+          contact_method,
           support_focus_json,
           support_focus_other,
           gp_registered,
@@ -154,8 +184,7 @@ export function createApp({ db, emailService = null }) {
           ack_information_accuracy,
           message,
           emergency_confirmed,
-          ip_address,
-          user_agent
+          privacy_consent
         )
         VALUES (
           @name,
@@ -164,6 +193,8 @@ export function createApp({ db, emailService = null }) {
           @phone,
           @email,
           @interest,
+          @enquiry_type,
+          @contact_method,
           @support_focus_json,
           @support_focus_other,
           @gp_registered,
@@ -177,38 +208,76 @@ export function createApp({ db, emailService = null }) {
           @ack_information_accuracy,
           @message,
           @emergency_confirmed,
-          @ip_address,
-          @user_agent
+          @privacy_consent
         )
       `)
+        insert.run({
+          name: payload.fullName,
+          full_name: payload.fullName,
+          primary_location: payload.location,
+          phone: payload.phone,
+          email: payload.email,
+          interest: payload.enquiryType,
+          enquiry_type: payload.enquiryType,
+          contact_method: payload.contactMethod,
+          support_focus_json: JSON.stringify(payload.supportFocus),
+          support_focus_other: payload.supportFocusOther?.trim() ?? '',
+          gp_registered: payload.gpRegistered,
+          gp_details: payload.gpDetails?.trim() ?? '',
+          high_risk_exclusions_json: JSON.stringify(payload.exclusions),
+          guidance_preference: payload.guidancePreference,
+          ack_not_emergency_service: 1,
+          ack_urgent_escalation: 1,
+          ack_invitation_only: 1,
+          ack_professional_boundaries: 1,
+          ack_information_accuracy: 1,
+          message: payload.message,
+          emergency_confirmed: 1,
+          privacy_consent: 1,
+        })
+      } catch {
+        // The office has accepted the message; do not invite a duplicate submission.
+        console.error('Could not store an enquiry after office email delivery.')
+      }
 
-      insert.run({
-        name: payload.fullName,
-        full_name: payload.fullName,
-        primary_location: payload.location,
-        phone: payload.phone,
-        email: payload.email,
-        interest: 'New Client Enquiry',
-        support_focus_json: JSON.stringify(payload.supportFocus),
-        support_focus_other: payload.supportFocusOther?.trim() ?? '',
-        gp_registered: payload.gpRegistered,
-        gp_details: payload.gpDetails?.trim() ?? '',
-        high_risk_exclusions_json: JSON.stringify(payload.exclusions),
-        guidance_preference: payload.guidancePreference,
-        ack_not_emergency_service: 1,
-        ack_urgent_escalation: 1,
-        ack_invitation_only: 1,
-        ack_professional_boundaries: 1,
-        ack_information_accuracy: 1,
-        message: '',
-        emergency_confirmed: 1,
-        ip_address: enquiryDetails.ipAddress,
-        user_agent: enquiryDetails.userAgent,
-      })
-
-      return res.status(201).json({ success: true })
+      let receiptSent = true
+      try {
+        await emailService.sendEnquiryReceipt(enquiryDetails)
+      } catch {
+        receiptSent = false
+      }
+      return res.status(201).json({ success: true, receiptSent })
     },
   )
+
+  app.post('/api/hotel-enquiries', enquiryLimiter, async (req, res) => {
+    const parsed = hotelSchema.safeParse(req.body)
+    if (!parsed.success) {
+      return res.status(400).json({ error: 'Please complete all partnership enquiry fields.' })
+    }
+    if (!emailService) {
+      return res.status(503).json({ error: 'Enquiry delivery is temporarily unavailable. Please try again later.' })
+    }
+    const enquiry = { ...parsed.data, submittedAt: new Date().toISOString() }
+    try {
+      await emailService.sendHotelNotification(enquiry)
+    } catch {
+      return res.status(502).json({ error: 'We could not send your enquiry. Please try again later.' })
+    }
+    try {
+      db.prepare(`INSERT INTO hotel_enquiries (name, hotel, role, email, phone, message)
+        VALUES (@name, @hotel, @role, @email, @phone, @message)`).run(parsed.data)
+    } catch {
+      console.error('Could not store a hotel enquiry after office email delivery.')
+    }
+    let receiptSent = true
+    try {
+      await emailService.sendHotelReceipt(enquiry)
+    } catch {
+      receiptSent = false
+    }
+    return res.status(201).json({ success: true, receiptSent })
+  })
 
   app.use((err, _req, res, _next) => {
     if (err instanceof SyntaxError && 'body' in err) {

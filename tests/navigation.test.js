@@ -9,8 +9,9 @@ import ClinicalNetworkPage from '../src/ClinicalNetworkPage.jsx'
 import InternationalCarePage from '../src/InternationalCarePage.jsx'
 import AboutPage from '../src/AboutPage.jsx'
 import EnquirePage from '../src/EnquirePage.jsx'
+import HotelsPage from '../src/HotelsPage.jsx'
 
-const pages = [HomePage, MembershipPage, HowItWorksPage, HealthIntelligencePage, ClinicalNetworkPage, InternationalCarePage, AboutPage, EnquirePage]
+const pages = [HomePage, MembershipPage, HowItWorksPage, HealthIntelligencePage, ClinicalNetworkPage, InternationalCarePage, HotelsPage, AboutPage, EnquirePage]
 
 describe('site navigation', () => {
   it('keeps Insights out of desktop and mobile menus until the editorial capability exists', () => {
@@ -22,6 +23,16 @@ describe('site navigation', () => {
       expect(mobile, Page.name).toBeDefined()
       expect(primary).not.toMatch(/>Insights</)
       expect(mobile).not.toMatch(/>Insights</)
+    }
+  })
+
+  it('links Hotels from public desktop, mobile and footer navigation', () => {
+    for (const Page of pages) {
+      const markup = renderToStaticMarkup(createElement(Page))
+      for (const label of ['Primary navigation', 'Mobile navigation', 'Footer navigation']) {
+        const nav = markup.match(new RegExp(`<nav[^>]*aria-label="${label}"[^>]*>(.*?)<\\/nav>`, 's'))?.[1]
+        expect(nav, `${Page.name}: ${label}`).toContain('href="/hotels"')
+      }
     }
   })
 })

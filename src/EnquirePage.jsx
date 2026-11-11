@@ -11,6 +11,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -131,6 +132,9 @@ export default function EnquirePage() {
     }
   })
   const [error, setError] = useState('')
+  const [sending, setSending] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [receiptSent, setReceiptSent] = useState(true)
   const stepHeadingRef = useRef(null)
 
   useEffect(() => {
@@ -163,11 +167,31 @@ export default function EnquirePage() {
     setError('')
   }
 
-  const advance = (event) => {
+  const advance = async (event) => {
     event.preventDefault()
-    if (step === 7) return
     const nextError = validateStep(step, values)
     if (nextError) return setError(nextError)
+    if (step === 7) {
+      if (sending) return
+      setSending(true)
+      setError('')
+      try {
+        const response = await fetch('/api/enquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        })
+        const result = await response.json()
+        if (!response.ok) throw new Error(result.error || 'Your enquiry could not be sent. Please try again.')
+        setReceiptSent(result.receiptSent !== false)
+        setSubmitted(true)
+      } catch (submissionError) {
+        setError(submissionError.message || 'Your enquiry could not be sent. Please try again.')
+      } finally {
+        setSending(false)
+      }
+      return
+    }
     setError('')
     setStep((current) => current + 1)
   }
@@ -191,7 +215,13 @@ export default function EnquirePage() {
             <p>We ask only for what helps us understand the nature of your enquiry. Please leave medical records and detailed clinical history out of this form.</p>
           </div>
 
-          <form className="eq-form" onSubmit={advance} noValidate>
+          {submitted ? <div className="eq-form eq-confirmation" role="status">
+            <p className="ic-eyebrow">A private first step</p>
+            <h3>Your enquiry has been received.</h3>
+            <p>Thank you. The VCH team will respond during normal business days using your preferred contact method. A response does not establish a doctor-patient relationship or confirm membership.</p>
+            {!receiptSent && <p>We received your enquiry, but the email confirmation could not be sent. You do not need to submit the form again.</p>}
+            <p>If you need urgent medical help, contact the appropriate local emergency service rather than waiting for a reply.</p>
+          </div> : <form className="eq-form" onSubmit={advance} noValidate>
             <div className="eq-progress" aria-label={`Step ${step} of 7`}>
               <span>Step {String(step).padStart(2, '0')} <i>/</i> 07</span>
               <div className="eq-progress-track" role="progressbar" aria-label="Enquiry progress" aria-valuenow={step} aria-valuemin="1" aria-valuemax="7"><span style={{ width: `${step / 7 * 100}%` }} /></div>
@@ -264,11 +294,10 @@ export default function EnquirePage() {
 
             {error && <p className="eq-error" role="alert">{error}</p>}
             <div className="eq-controls">
-              {step > 1 && <button className="eq-back" type="button" onClick={() => { setError(''); setStep((current) => current - 1) }}>Back</button>}
-              {step < 7 ? <button className="ic-button eq-next" type="submit">Continue</button> : <button className="ic-button eq-next" type="button" disabled aria-describedby="eq-unavailable">Request Intake Review</button>}
+              {step > 1 && <button className="eq-back" type="button" disabled={sending} onClick={() => { setError(''); setStep((current) => current - 1) }}>Back</button>}
+              {step < 7 ? <button className="ic-button eq-next" type="submit">Continue</button> : <button className="ic-button eq-next" type="submit" disabled={sending}>{sending ? 'Sending…' : 'Request Intake Review'}</button>}
             </div>
-            {step === 7 && <p className="eq-unavailable" id="eq-unavailable" role="status">This form is available for design review. Enquiries cannot be submitted until the private delivery service is connected.</p>}
-          </form>
+          </form>}
           <span className="eq-endpoint" aria-hidden="true" />
         </section>
 
@@ -279,7 +308,7 @@ export default function EnquirePage() {
       </main>
       <footer className="ic-footer">
         <a href="/" aria-label="Velvet Compass Health home"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership">Membership</a><a href="/how-it-works">How it works</a><a href="/about-vch">About VCH</a><a href="/enquire" aria-current="page">Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership">Membership</a><a href="/how-it-works">How it works</a><a href="/about-vch">About VCH</a><a href="/hotels">Hotels</a><a href="/enquire" aria-current="page">Enquire</a></nav>
       </footer>
     </div>
   )

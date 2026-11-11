@@ -70,6 +70,7 @@ export default function HomePage() {
             <a href="/health-intelligence">Health Intelligence</a>
             <a href="/clinical-network">Clinical Network</a>
             <a href="/international-care">International Care</a>
+            <a href="/hotels">Hotels</a>
             <a href="/about-vch">About VCH</a>
             <a className="nav-enquire" href="/enquire">Enquire</a>
           </nav>
@@ -81,7 +82,7 @@ export default function HomePage() {
             <nav aria-label="Mobile navigation" onClick={(event) => {
               if (event.target.closest('a')) event.currentTarget.parentElement.open = false
             }}>
-              <a href="#home">Home</a><MembershipNavItem mobile /><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch">About VCH</a><a href="/enquire">Enquire</a>
+              <a href="#home">Home</a><MembershipNavItem mobile /><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/hotels">Hotels</a><a href="/about-vch">About VCH</a><a href="/enquire">Enquire</a>
             </nav>
           </details>
         </header>
@@ -170,7 +171,7 @@ export default function HomePage() {
       <section className="review-sheet membership" id="membership">
         <div className="sheet-index"><span>04</span><span>Membership</span></div>
         <div className="membership-heading">
-          <p className="script-accent">Membership</p>
+          <p className="eyebrow">Membership</p>
           <h2>For people who think in generations,<br /><em>not appointments.</em></h2>
         </div>
         <div className="membership-copy">
@@ -221,7 +222,6 @@ export default function HomePage() {
       <section className="review-sheet invitation" id="enquire">
         <div className="sheet-index"><span>07</span><span>A private invitation</span></div>
         <div className="invitation-copy">
-          <p className="script-accent">A private invitation</p>
           <h2>A private invitation</h2>
           <p>Membership begins with a confidential conversation about the support required, whether VCH is suitable and which level of membership best fits the individual or family.</p>
           <a className="button button-burgundy" href="/enquire">Enquire Privately</a>
@@ -230,7 +230,7 @@ export default function HomePage() {
         <footer>
           <img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health" />
           <p>VCH is not an emergency service. In the United Kingdom, call 999 or attend the nearest emergency department for an emergency. Outside the United Kingdom, contact the local emergency services.</p>
-          <nav aria-label="Footer navigation"><a href="#home">Home</a><a href="/membership">Membership</a><a href="/health-intelligence">Health Intelligence</a><a href="/enquire">Enquire</a></nav>
+          <nav aria-label="Footer navigation"><a href="#home">Home</a><a href="/membership">Membership</a><a href="/health-intelligence">Health Intelligence</a><a href="/hotels">Hotels</a><a href="/enquire">Enquire</a></nav>
         </footer>
       </section>
     </main>

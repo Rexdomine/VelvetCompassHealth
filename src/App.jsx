@@ -3,6 +3,7 @@ import HowItWorksPage from './HowItWorksPage.jsx'
 import HealthIntelligencePage from './HealthIntelligencePage.jsx'
 import ClinicalNetworkPage from './ClinicalNetworkPage.jsx'
 import InternationalCarePage from './InternationalCarePage.jsx'
+import HotelsPage from './HotelsPage.jsx'
 import AboutPage from './AboutPage.jsx'
 import MembershipPage from './MembershipPage.jsx'
 import AthletesPage from './AthletesPage.jsx'
@@ -20,6 +21,7 @@ function App() {
   if (lane === 'health-intelligence') return <HealthIntelligencePage />
   if (lane === 'clinical-network') return <ClinicalNetworkPage />
   if (lane === 'international-care') return <InternationalCarePage />
+  if (lane === 'hotels') return <HotelsPage />
   if (lane === 'about-vch') return <AboutPage />
   if (lane === 'membership') return <MembershipPage />
   if (lane === 'athletes') return <AthletesPage />

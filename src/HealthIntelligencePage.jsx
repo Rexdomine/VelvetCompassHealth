@@ -11,6 +11,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -70,7 +71,7 @@ export default function HealthIntelligencePage() {
       <HealthHeader />
       <main id="hi-main">
         <section className="hi-hero" aria-labelledby="hi-title">
-          <img className="hi-hero-art" src="/vch-approved/health-intelligence/hero-study.jpg" alt="Translucent anatomical art with a fine gold trajectory on a luminous white field" />
+          <img className="hi-hero-art" src="/vch-approved/health-intelligence/stone-light-hero.jpg" alt="Sculptural warm stone passage opening to a sunlit horizon" />
           <div className="hi-hero-wash" aria-hidden="true" />
           <div className="hi-hero-copy">
             <p className="hi-eyebrow">Health intelligence</p>
@@ -89,11 +90,14 @@ export default function HealthIntelligencePage() {
             <h2 id="hi-model-title">From data<br /><em>to direction</em></h2>
             <p>Your health information lives across tests, appointments, reports and devices. VCH brings it together, follows what changes and turns it into a clearer next step.</p>
           </div>
-          <div className="hi-model-study" aria-label="Illustrative sources brought into one medically interpreted view">
-            <div className="hi-source-row"><span>Clinical</span><i /></div>
-            <div className="hi-source-row"><span>Genomic</span><i /></div>
-            <div className="hi-source-row"><span>Member-entered</span><i /></div>
-            <div className="hi-source-row"><span>Device-generated</span><i /></div>
+          <div className="hi-model-study">
+            <figure className="hi-model-image">
+              <img loading="lazy" src="/vch-approved/health-intelligence/illustrative-display.jpg" alt="An unbranded desktop display with a restrained, fictional view of health trends over time" />
+              <figcaption>Illustrative health data view</figcaption>
+            </figure>
+            <div className="hi-source-key" aria-label="Information sources considered in medical interpretation">
+              <span>Clinical</span><span>Genomic</span><span>Member-entered</span><span>Device-generated</span>
+            </div>
             <div className="hi-interpretation"><small>Medical interpretation</small><b>Direction</b></div>
           </div>
         </section>
@@ -172,7 +176,7 @@ export default function HealthIntelligencePage() {
       </main>
       <footer className="hi-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works">How it works</a><a href="/health-intelligence" aria-current="page">Health Intelligence</a><a href={enquiryHref}>Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works">How it works</a><a href="/health-intelligence" aria-current="page">Health Intelligence</a><a href="/hotels">Hotels</a><a href={enquiryHref}>Enquire</a></nav>
       </footer>
     </div>
   )

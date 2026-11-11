@@ -11,6 +11,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -180,7 +181,7 @@ export default function HowItWorksPage() {
       </main>
       <footer className="how-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works" aria-current="page">How it works</a><a href="/membership">Membership</a><a href={enquiryHref}>Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/how-it-works" aria-current="page">How it works</a><a href="/membership">Membership</a><a href="/hotels">Hotels</a><a href={enquiryHref}>Enquire</a></nav>
       </footer>
     </div>
   )

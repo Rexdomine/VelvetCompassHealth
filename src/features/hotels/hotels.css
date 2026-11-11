@@ -1,0 +1,160 @@
+.ht-page {
+  --ht-ivory: #f7f1e3;
+  --ht-ink: #2a1a14;
+  --ht-burgundy: #650d12;
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--ht-ink);
+  background: #fff;
+  box-shadow: 0 20px 80px rgba(42, 26, 20, .08);
+}
+
+.ht-page h1, .ht-page h2, .ht-page h3, .ht-page p, .ht-page ol, .ht-page ul { margin: 0; }
+.ht-page h1, .ht-page h2, .ht-page h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; letter-spacing: -.038em; }
+.ht-page em { font-weight: 400; }
+.ht-page a:focus-visible, .ht-page input:focus-visible, .ht-page textarea:focus-visible, .ht-page summary:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 4px; }
+.ht-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .2em; line-height: 1.4; text-transform: uppercase; }
+.ht-button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 25px; border: 1px solid var(--ht-burgundy); color: #fff; background: var(--ht-burgundy); cursor: pointer; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-align: center; text-transform: uppercase; }
+.ht-button:hover { color: var(--ht-burgundy); background: transparent; }
+.ht-button:disabled { cursor: not-allowed; opacity: .52; }
+
+.ht-page .ht-header { border-bottom-color: rgba(42, 26, 20, .12); background: rgba(247, 241, 227, .94); backdrop-filter: blur(12px); }
+.ht-page .ic-nav a[aria-current='page'] { color: var(--ht-burgundy); box-shadow: 0 1px 0 var(--ht-burgundy); }
+
+.ht-hero { position: relative; min-height: min(920px, 100svh); overflow: hidden; color: #fff; background: #3b302a; }
+.ht-hero-image, .ht-hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ht-hero-image { object-fit: cover; object-position: center; }
+.ht-hero-shade { background: linear-gradient(90deg, rgba(42, 26, 20, .7) 0%, rgba(42, 26, 20, .38) 38%, rgba(42, 26, 20, .05) 72%), linear-gradient(0deg, rgba(42, 26, 20, .17), transparent 45%); }
+.ht-hero-copy { position: relative; z-index: 2; max-width: 770px; padding: clamp(210px, 21vw, 300px) 0 250px clamp(58px, 7vw, 102px); }
+.ht-hero h1 { margin: 28px 0 25px; font-size: clamp(79px, 8vw, 119px); line-height: .9; }
+.ht-hero h1 em { color: #f1dfc1; }
+.ht-hero-copy > p:last-child { max-width: 445px; font-size: 19px; line-height: 1.55; }
+.ht-concierge-panel { position: absolute; z-index: 3; right: clamp(30px, 5vw, 72px); bottom: 48px; width: min(410px, 34vw); padding: 30px 33px 34px; color: var(--ht-ink); background: rgba(247, 241, 227, .96); box-shadow: 0 13px 35px rgba(42, 26, 20, .11); }
+.ht-concierge-panel .ht-eyebrow { color: #7c5c30; }
+.ht-concierge-panel > p:nth-child(2) { margin: 14px 0 25px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; line-height: 1.12; }
+
+.ht-journey { padding: 140px clamp(58px, 7vw, 100px) 165px; }
+.ht-section-intro { max-width: 790px; }
+.ht-section-intro .ht-eyebrow, .ht-services .ht-eyebrow, .ht-enquiry .ht-eyebrow { color: var(--burgundy); }
+.ht-section-intro h2, .ht-services h2, .ht-partnership h2, .ht-enquiry h2 { margin-top: 22px; font-size: clamp(72px, 7vw, 108px); line-height: .94; }
+.ht-section-intro h2 em, .ht-services h2 em, .ht-partnership h2 em, .ht-enquiry h2 em { color: var(--burgundy); }
+.ht-steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3.4vw, 50px); margin-top: 100px !important; padding: 0; list-style: none; }
+.ht-steps::before { position: absolute; top: 25px; right: 0; left: 0; height: 1px; background: #b9945a; content: ''; }
+.ht-step { position: relative; padding-top: 86px; }
+.ht-step::before { position: absolute; top: 17px; left: 0; width: 17px; height: 17px; border: 1px solid var(--burgundy); border-radius: 50%; background: #fff; content: ''; }
+.ht-step-number { position: absolute; top: 0; left: 0; transform: translateY(-38px); color: #987449; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; line-height: 1; }
+.ht-step h3 { max-width: 260px; color: var(--ht-ink); font-size: clamp(36px, 3vw, 48px); line-height: 1.02; }
+.ht-step p { max-width: 250px; margin-top: 20px; color: #514a43; font-size: 15px; line-height: 1.65; }
+
+.ht-fees { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; padding: 130px clamp(58px, 7vw, 100px) 145px; color: #fff; background: var(--ht-ink); }
+.ht-fees .ht-eyebrow { color: #ceb184; }
+.ht-fees h2 { margin-top: 25px; font-size: clamp(75px, 7vw, 105px); line-height: .93; }
+.ht-fees h2 em { color: #e3c7a0; }
+.ht-fees-detail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: center; gap: 30px 35px; }
+.ht-fee { padding: 20px 0 35px; border-top: 1px solid rgba(247, 241, 227, .45); }
+.ht-fee strong { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(78px, 7vw, 105px); font-weight: 400; line-height: 1; }
+.ht-fee span { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.ht-fee-principle, .ht-fee-note, .ht-fee-hours { grid-column: 1 / -1; }
+.ht-fee-principle { margin-top: 8px !important; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 31px; line-height: 1.1; }
+.ht-fee-note { max-width: 620px; color: #e6dfd2; font-size: 14px; line-height: 1.65; }
+.ht-fee-hours { color: #c9bca9; font-size: 12px; line-height: 1.5; }
+
+.ht-services { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; padding: 150px clamp(58px, 7vw, 100px) 160px; }
+.ht-service-list { padding: 0; list-style: none; }
+.ht-service-list li { padding: 28px 0; border-top: 1px solid rgba(42, 26, 20, .25); color: var(--ht-ink); font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(29px, 2.9vw, 41px); line-height: 1.12; }
+.ht-service-list li:last-child { border-bottom: 1px solid rgba(42, 26, 20, .25); }
+
+.ht-language { display: grid; grid-template-columns: 1.3fr .7fr; gap: 80px; align-items: end; padding: 105px clamp(58px, 7vw, 100px) 125px; background: var(--ht-ivory); }
+.ht-language .ht-eyebrow { grid-column: 1 / -1; color: #8d7048; }
+.ht-language h2 { color: var(--ht-ink); font-size: clamp(69px, 6.4vw, 96px); line-height: .94; }
+.ht-language h2 em { color: var(--burgundy); }
+.ht-language > p:last-child { max-width: 380px; padding-bottom: 5px; font-size: 17px; line-height: 1.7; }
+
+.ht-partnership { display: grid; grid-template-columns: 1fr .75fr; gap: 100px; padding: 150px clamp(58px, 7vw, 100px) 160px; }
+.ht-partnership .ht-eyebrow { color: var(--burgundy); }
+.ht-partnership-copy { align-self: end; }
+.ht-partnership-copy > p:first-child { font-size: 20px; line-height: 1.65; }
+.ht-member-note { margin: 26px 0 33px !important; padding-top: 20px; border-top: 1px solid rgba(42, 26, 20, .2); color: #63574d; font-size: 14px; line-height: 1.6; }
+
+.ht-enquiry { display: grid; grid-template-columns: .85fr 1.15fr; gap: 95px; padding: 145px clamp(58px, 7vw, 100px) 155px; background: #f9f7f2; scroll-margin-top: 80px; }
+.ht-enquiry-intro > p:last-child { max-width: 400px; margin-top: 30px; font-size: 16px; line-height: 1.7; }
+.ht-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 27px 35px; align-content: start; }
+.ht-form label { display: block; color: var(--ht-ink); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.ht-form input, .ht-form textarea { display: block; width: 100%; margin-top: 8px; padding: 13px 2px; border: 0; border-bottom: 1px solid #a9a49b; border-radius: 0; color: var(--ht-ink); background: transparent; font: 400 16px 'Jost', sans-serif; letter-spacing: 0; resize: vertical; }
+.ht-form input { min-height: 50px; }
+.ht-form-message, .ht-form-end { grid-column: 1 / -1; }
+.ht-form-end { margin-top: 12px; }
+.ht-form-end p { max-width: 430px; margin-top: 14px; color: #655f59; font-size: 12px; line-height: 1.5; }
+.ht-footer { align-items: flex-start; gap: 40px; }
+.ht-footer > div { max-width: 790px; }
+.ht-footer p { margin-top: 25px; color: #6f6660; font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 1100px) {
+  .ht-page .ic-nav { gap: 10px; font-size: 8px; }
+  .ht-hero-copy { max-width: 690px; }
+  .ht-concierge-panel { width: 370px; }
+  .ht-fees, .ht-services, .ht-partnership, .ht-enquiry { gap: 55px; }
+}
+
+@media (max-width: 930px) {
+  .ht-page .ic-nav { display: none; }
+  .ht-page .ic-mobile-nav { display: block; margin-left: auto; }
+  .ht-page .ic-mobile-nav nav { top: 78px; max-height: calc(100svh - 78px); }
+  .ht-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 75px 50px; }
+  .ht-steps::before { display: none; }
+  .ht-step::after { position: absolute; top: 25px; right: -50px; left: 0; height: 1px; background: #b9945a; content: ''; z-index: -1; }
+  .ht-step:nth-child(even)::after { right: 0; }
+  .ht-language { gap: 40px; }
+}
+
+@media (max-width: 700px) {
+  .ht-page .ic-header { height: 68px; }
+  .ht-page .ic-nav { display: none; }
+  .ht-page .ic-mobile-nav nav { top: 68px; max-height: calc(100svh - 68px); }
+  .ht-hero { min-height: 900px; }
+  .ht-hero-image { object-position: 93% center; }
+  .ht-hero-shade { background: linear-gradient(180deg, rgba(42, 26, 20, .7) 0%, rgba(42, 26, 20, .56) 48%, rgba(42, 26, 20, .1) 100%); }
+  .ht-hero-copy { max-width: none; padding: 165px 27px 360px; }
+  .ht-hero h1 { max-width: 570px; font-size: clamp(62px, 12vw, 82px); }
+  .ht-hero-copy > p:last-child { max-width: 340px; font-size: 16px; }
+  .ht-concierge-panel { right: 20px; bottom: 26px; left: 20px; width: auto; padding: 25px 27px 29px; }
+  .ht-concierge-panel > p:nth-child(2) { font-size: 29px; }
+  .ht-journey, .ht-fees, .ht-services, .ht-language, .ht-partnership, .ht-enquiry { padding-right: 29px; padding-left: 29px; }
+  .ht-journey { padding-top: 100px; padding-bottom: 115px; }
+  .ht-section-intro h2, .ht-services h2, .ht-partnership h2, .ht-enquiry h2 { font-size: clamp(61px, 11vw, 80px); }
+  .ht-steps { display: block; margin-top: 90px !important; padding-left: 61px; }
+  .ht-steps::before { display: block; top: 5px; right: auto; bottom: 0; left: 12px; width: 1px; height: auto; }
+  .ht-step { min-height: 220px; padding: 0 0 65px; }
+  .ht-step::before { top: 4px; left: -57px; }
+  .ht-step::after { display: none; }
+  .ht-step-number { top: 2px; left: 0; transform: none; font-size: 23px; }
+  .ht-step h3 { padding-top: 42px; font-size: 43px; }
+  .ht-step p { max-width: 440px; margin-top: 15px; }
+  .ht-fees, .ht-services, .ht-language, .ht-partnership, .ht-enquiry { display: block; }
+  .ht-fees { padding-top: 100px; padding-bottom: 115px; }
+  .ht-fees h2 { margin-bottom: 60px; font-size: 75px; }
+  .ht-fee strong { font-size: 84px; }
+  .ht-services, .ht-partnership { padding-top: 110px; padding-bottom: 115px; }
+  .ht-service-list { margin-top: 62px !important; }
+  .ht-language { padding-top: 90px; padding-bottom: 100px; }
+  .ht-language h2 { margin-top: 25px; font-size: clamp(63px, 11vw, 80px); }
+  .ht-language > p:last-child { margin-top: 32px; font-size: 16px; }
+  .ht-partnership-copy { margin-top: 55px; }
+  .ht-enquiry { padding-top: 105px; padding-bottom: 120px; }
+  .ht-enquiry-intro > p:last-child { margin-bottom: 60px; }
+  .ht-footer { display: block; }
+  .ht-footer > div { margin-top: 28px; }
+}
+
+@media (max-width: 460px) {
+  .ht-hero { min-height: 850px; }
+  .ht-hero-copy { padding-top: 148px; }
+  .ht-hero h1 { font-size: clamp(55px, 13.5vw, 66px); }
+  .ht-fees-detail { gap: 15px; }
+  .ht-fee strong { font-size: 67px; }
+  .ht-fee span { font-size: 10px; }
+  .ht-form { display: block; }
+  .ht-form label + label { margin-top: 26px; }
+  .ht-form-end { margin-top: 35px; }
+}

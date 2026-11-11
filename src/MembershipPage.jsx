@@ -12,6 +12,7 @@ const navigation = [
   ['Health Intelligence', '/health-intelligence'],
   ['Clinical Network', '/clinical-network'],
   ['International Care', '/international-care'],
+  ['Hotels', '/hotels'],
   ['About VCH', '/about-vch'],
 ]
 
@@ -274,7 +275,7 @@ export default function MembershipPage() {
       </main>
       <footer className="ic-footer">
         <a href="/"><img src="/vch-approved/vch-logo.png" alt="Velvet Compass Health home" /></a>
-        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership" aria-current="page">Membership</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch">About VCH</a><a href={enquiryHref}>Enquire</a></nav>
+        <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/membership" aria-current="page">Membership</a><a href="/how-it-works">How it works</a><a href="/health-intelligence">Health Intelligence</a><a href="/clinical-network">Clinical Network</a><a href="/international-care">International Care</a><a href="/about-vch">About VCH</a><a href="/hotels">Hotels</a><a href={enquiryHref}>Enquire</a></nav>
       </footer>
     </div>
   )

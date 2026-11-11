@@ -28,4 +28,13 @@ describe('International Care', () => {
     expect(markup).toContain('/vch-approved/international-care/continuity-digital-folio-v3.webp')
     expect(markup).not.toContain('vch-care-across-borders.png')
   })
+
+  it('includes the client-requested Emergency Medical Card section and sample illustration', () => {
+    expect(markup).toContain('Essential information.')
+    expect(markup).toContain('Wherever life takes you.')
+    expect(markup).toContain('Your Emergency Medical Card brings key medical information and emergency contacts into one accessible reference.')
+    expect(markup).toContain('It can be translated into different languages')
+    expect(markup).toContain('/vch-approved/international-care/emergency-medical-card.svg')
+    expect(markup).toContain('fictional sample information')
+  })
 })

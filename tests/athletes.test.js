@@ -38,4 +38,11 @@ describe('Athletes membership page', () => {
     expect(plain).toContain('evidence, regulation, provider quality and personal suitability')
     expect(markup).toContain('/vch-approved/athletes/beyond-the-game.jpg')
   })
+
+  it('uses one hero enquiry action with the relevant form focus preselected', () => {
+    const heroActions = markup.match(/<div class="ic-actions">([\s\S]*?)<\/div>/)?.[1]
+    expect(heroActions).toBeDefined()
+    expect(heroActions.match(/<a /g)).toHaveLength(1)
+    expect(heroActions).toContain('type=Individual%20or%20family%20membership&amp;focus=performance')
+  })
 })
