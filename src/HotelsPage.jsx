@@ -152,7 +152,7 @@ export default function HotelsPage() {
             <h2 id="ht-fees-title">Clear from<br /><em>the outset.</em></h2>
           </div>
           <div className="ht-fees-detail">
-            <div className="ht-fee"><strong>£400</strong><span>Day consultation</span></div>
+            <div className="ht-fee"><strong>£500</strong><span>Day consultation</span></div>
             <div className="ht-fee"><strong>£600</strong><span>Night consultation</span></div>
             <p className="ht-fee-principle">Paid directly by the guest. No fee to the hotel.</p>
             <p className="ht-fee-note">Blood tests, medicines and delivery are charged separately, with costs confirmed before proceeding.</p>

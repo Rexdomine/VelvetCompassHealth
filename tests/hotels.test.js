@@ -20,7 +20,7 @@ describe('Hotels page', () => {
     for (const step of ['The concierge desk calls', 'The doctor comes to the room', 'Medicines delivered. Blood tests in the room.', 'The guest knows what follows']) {
       expect(markup).toContain(step)
     }
-    expect(markup).toContain('£400')
+    expect(markup).toContain('£500')
     expect(markup).toContain('£600')
     expect(markup).toContain('Paid directly by the guest. No fee to the hotel.')
     expect(markup).toContain('Blood tests, medicines and delivery are charged separately')
