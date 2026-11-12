@@ -21,6 +21,12 @@ const potentialSources = [
   ['Apple Health', 'A member-controlled view of health, activity, cardiovascular, sleep and other information gathered from Apple devices and compatible apps.'],
 ]
 
+const sourceMarks = [
+  { name: 'Oura', image: '/vch-approved/health-intelligence/oura-logo-transparent.png', style: 'oura' },
+  { name: 'WHOOP', image: '/vch-approved/health-intelligence/whoop-logo-transparent.png', style: 'whoop' },
+  { name: 'Apple Health', image: '/vch-approved/health-intelligence/apple-logo.svg', style: 'apple' },
+]
+
 const domains = ['Sleep', 'Recovery', 'Cardiovascular health', 'Metabolism', 'Hormones', 'Mobility']
 
 function HealthHeader() {
@@ -71,7 +77,7 @@ export default function HealthIntelligencePage() {
       <HealthHeader />
       <main id="hi-main">
         <section className="hi-hero" aria-labelledby="hi-title">
-          <img className="hi-hero-art" src="/vch-approved/health-intelligence/stone-light-hero.jpg" alt="Sculptural warm stone passage opening to a sunlit horizon" />
+          <img className="hi-hero-art" src="/vch-approved/health-intelligence/hero-study.jpg" alt="Translucent anatomical art with a fine gold trajectory on a luminous white field" />
           <div className="hi-hero-wash" aria-hidden="true" />
           <div className="hi-hero-copy">
             <p className="hi-eyebrow">Health intelligence</p>
@@ -103,18 +109,25 @@ export default function HealthIntelligencePage() {
         </section>
 
         <section className="hi-section hi-signals" aria-labelledby="hi-signals-title">
-          <figure className="hi-signals-art">
-            <img loading="lazy" src="/vch-approved/health-intelligence/signal-study.jpg" alt="An unbranded ring beside translucent papers with restrained signal lines" />
-          </figure>
           <div className="hi-signals-content">
             <p className="hi-eyebrow">Selected signals, with permission</p>
             <h2 id="hi-signals-title">Insights powered by Oura, WHOOP and Apple Health</h2>
             <p>With the member’s permission, VCH can bring selected wearable and health-platform data into the wider medical picture. The technology supplies the signals. VCH provides the medical context, interpretation and next steps.</p>
-            <div className="hi-source-table" role="table" aria-label="Potential health data sources">
-              <div className="hi-source-table-head" role="row"><span role="columnheader">Potential source</span><span role="columnheader">What it may contribute</span></div>
-              {potentialSources.map(([name, contribution]) => <div className="hi-source-table-row" role="row" key={name}><strong role="cell">{name}</strong><span role="cell">{contribution}</span></div>)}
+            <div className="hi-source-signatures" aria-label="Potential sources: Oura, WHOOP and Apple Health">
+              {sourceMarks.map(({ name, image, style }) => <span className={`hi-source-signature hi-source-signature--${style}`} role="img" aria-label={`${name} logo`} key={name}>
+                <img src={image} alt="" aria-hidden="true" />
+                {style === 'apple' && <span>Apple Health</span>}
+              </span>)}
             </div>
-            <p className="hi-status-note">Potential sources shown for review. Availability and connection methods require confirmation before launch.</p>
+          </div>
+          <figure className="hi-signals-art">
+            <img loading="lazy" src="/vch-approved/health-intelligence/wearable-still-life-app.jpg" alt="An unbranded ring and recovery band beside a phone showing an illustrative health overview app on a sunlit stone table" />
+          </figure>
+          <div className="hi-source-panel" aria-label="Potential health data sources">
+            <p className="hi-source-panel-label">Three sources, one medical picture</p>
+            {potentialSources.map(([name, contribution]) => <div className="hi-source-item" key={name}>
+              <div><h3>{name}</h3><p>{contribution}</p></div>
+            </div>)}
           </div>
         </section>
 
@@ -137,6 +150,7 @@ export default function HealthIntelligencePage() {
             <h2 id="hi-trends-title">See what is changing.<br /><em>Know what to do next.</em></h2>
             <p>Sleep. Recovery. Cardiovascular health. Metabolism. Hormones. Mobility. VCH follows the patterns that matter and turns change over time into earlier, more informed action.</p>
           </div>
+          <figure className="hi-trends-art"><img loading="lazy" src="/vch-approved/health-intelligence/interpretation-conversation.jpg" alt="Two people considering a sparse illustrative health trend display in a warm gallery-like setting" /></figure>
           <div className="hi-domain-list" aria-label="Areas considered over time">
             {domains.map((domain) => <div className="hi-domain" key={domain}><span className="hi-domain-point" aria-hidden="true" /><span>{domain}</span></div>)}
           </div>
